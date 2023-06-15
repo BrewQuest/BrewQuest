@@ -20,7 +20,7 @@ public class Driver {
     @Column(nullable = false, length = 50)
     private String driversLicenseNum;
     @Column(nullable = false, length = 50)
-    private String licensePlaceNum;
+    private String licensePlateNum;
     @Column(nullable = false, length = 50)
     private String carMake;
     @Column(nullable = false, length = 50)

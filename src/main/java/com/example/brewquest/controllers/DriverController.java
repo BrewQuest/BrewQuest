@@ -24,13 +24,13 @@ public class DriverController {
     @GetMapping("/signup-driver")
     public String showSignupForm(Model model) {
         model.addAttribute("driver", new Driver());
-        return "signup-driver";
+        return "/Driver/sign-up-driver";
     }
 
     @PostMapping("/signup-driver")
     public String processSignupForm(@ModelAttribute("driver") Driver driver, BindingResult result) {
         if (result.hasErrors()) {
-            return "signup-driver";
+            return "/Driver/sign-up-driver";
         }
 
         driverRepository.save(driver);
