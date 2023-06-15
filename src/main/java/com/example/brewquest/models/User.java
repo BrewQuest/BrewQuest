@@ -24,6 +24,8 @@ public class User {
     private String lastName;
     @Column(nullable = false, length = 50)
     private String birthDate;
+    @Column(nullable = false, length = 25)
+    private int zipcode;
     @Column(nullable = false, unique = true, length = 100)
     private String username;
     @Column(nullable = false, length=100)
@@ -38,6 +40,9 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Wishlist> wishlists;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Favorite> favorites;
 
     public User(User copy) {
         id = copy.id;
