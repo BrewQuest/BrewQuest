@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,8 +26,8 @@ public class Review {
     private int rating;
     @Column(columnDefinition = "text")
     private String description;
-    @Column(nullable = false, columnDefinition = "timestamp default current_date")
-    private LocalDate date;
+    @Column(nullable = false, columnDefinition = "timestamp default current_timestamp")
+    private LocalDateTime date;
     @Column
     private int passengers;
 
