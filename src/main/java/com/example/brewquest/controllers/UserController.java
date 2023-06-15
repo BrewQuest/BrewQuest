@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -33,4 +34,34 @@ public class UserController {
         userDao.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/profile/{id}")
+    public String showProfile(@PathVariable Long id, Model model) {
+        User user = userDao.findById(id).get();
+        model.addAttribute("user", user);
+        return "users/profile";
+    }
+
+    @GetMapping("/profile/{id}/edit")
+    public String showEditProfile(@PathVariable Long id, Model model) {
+        User user = userDao.findById(id).get();
+        model.addAttribute("user", user);
+        return "users/edit";
+    }
+
+    @PostMapping("/profile/{id}/edit")
+    public String editProfile(@PathVariable Long id, @ModelAttribute User user){
+        User editUser = userDao.findById(id).get();
+        editUser.setFirstName(user.getFirstName());
+        editUser.setLastName(user.getLastName());
+        editUser.setEmail(user.getEmail());
+        editUser.setZipcode(user.getZipcode());
+        editUser.setUsername(user.getUsername());
+        editUser.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userDao.save(editUser);
+        return "redirect:/profile/1";
+    }
+
+
 }
