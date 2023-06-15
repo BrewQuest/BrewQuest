@@ -28,4 +28,7 @@ public class Driver {
 
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int totalPassengers;
+
+    @OneToOne
+    private User user;
 }

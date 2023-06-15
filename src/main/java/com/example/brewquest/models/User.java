@@ -44,6 +44,11 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Favorite> favorites;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Friend> friends;
+
+
+
     public User(User copy) {
         id = copy.id;
         lastName = copy.lastName;
