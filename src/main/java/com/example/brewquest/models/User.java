@@ -36,6 +36,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Review> reviews;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Wishlist> wishlists;
+
     public User(User copy) {
         id = copy.id;
         lastName = copy.lastName;
