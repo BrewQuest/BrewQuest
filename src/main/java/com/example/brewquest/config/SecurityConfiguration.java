@@ -44,6 +44,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/sign-up", "/login", "profile/*", "/home", "/leaderboard", "/brewery/*", "/search", "/aboutus").permitAll()
 
          // allow loading of static resources
+
+                        .requestMatchers("/", "/posts", "/posts/*", "/sign-up", "/login", "profile/*", "profile/*/edit").permitAll()
+
+                        // allow loading of static resources
+
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )
                 /* Login configuration */
