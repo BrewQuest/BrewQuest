@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+</head>
+<body>
+<h1>Champion: <span th:text="${user.username}"></span></h1>
+<form th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
+    <button type="submit">Edit Profile</button>
+</form>
+</body>
+</html>
