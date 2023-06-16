@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>About BrewQuest</title>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/about.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div id="aboutDiv">
     <h1>BrewQuest</h1>
     <p>Embark on an Epic Beer Adventure!
@@ -26,5 +28,6 @@
 
         <p>The Founders, BrewQuest</p>
 </div>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
