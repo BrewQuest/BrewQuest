@@ -1,6 +1,5 @@
 package com.example.brewquest.config;
 
-
 import com.example.brewquest.services.UserDetailsLoader;
 
 import org.springframework.context.annotation.Bean;

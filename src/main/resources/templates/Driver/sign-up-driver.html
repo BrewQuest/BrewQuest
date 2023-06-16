@@ -8,7 +8,7 @@
 <h1>Driver Profile</h1>
 <form th:action="@{/signup-driver}" th:method="post" th:object="${driver}">
     <label for="carMake">Car Make:</label>
-    <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"><br><br>
+    <input type="text" id="carMake" name="carMake" required th:field="*{carModel}"><br><br>
 
     <label for="carModel">Car Model:</label>
     <input type="text" id="carModel" name="carModel" required th:field="*{carModel}"><br><br>
