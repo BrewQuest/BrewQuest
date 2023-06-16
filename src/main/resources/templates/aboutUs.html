@@ -3,26 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>About BrewQuest</title>
-    <style>
-        body {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/img/aboutus.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            text-align: center;
-        }
-        #aboutDiv {
-            width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            color: burlywood;
-        }
-        p{
-            font-size: 15px;
-        }
-
-    </style>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/about.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div id="aboutDiv">
     <h1>BrewQuest</h1>
     <p>Embark on an Epic Beer Adventure!
@@ -43,5 +28,6 @@
 
         <p>The Founders, BrewQuest</p>
 </div>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
