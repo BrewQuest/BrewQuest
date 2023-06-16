@@ -6,6 +6,7 @@
     <th:block th:replace="partials/Navbar :: styles"></th:block>
 
     <style>
+    /*infinity scroll */
         #scroll-parent {
             display: flex;
             position: relative;
@@ -55,6 +56,8 @@
             white-space: nowrap;
             display: flex;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .row {
@@ -81,7 +84,7 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>test</h1>
+
 
 <div id="scroll-parent" class="container">
     <div class="row scroll-element primary" >
@@ -109,27 +112,7 @@
         <div class="card">Card 20</div>
     </div>
 </div>
-
-
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
-
-<!--<script>-->
-<!--	// Auto-scroll the container horizontally-->
-<!--	var container = document.querySelector('.container');-->
-<!--	var scrollDirection = 1; // 1 = right, -1 = left-->
-<!--	var scrollSpeed = 1; // Adjust scroll speed (1 = slowest, 10 = fastest)-->
-
-<!--	function autoScroll() {-->
-<!--		container.scrollLeft += scrollDirection * scrollSpeed;-->
-<!--		if (scrollDirection === 1 && container.scrollLeft >= (container.scrollWidth - container.offsetWidth)) {-->
-<!--			scrollDirection = -1;-->
-<!--		} else if (scrollDirection === -1 && container.scrollLeft <= 0) {-->
-<!--			scrollDirection = 1;-->
-<!--		}-->
-<!--	}-->
-
-<!--	setInterval(autoScroll, 10); // Adjust scroll interval (10 = 100 times per second)-->
-<!--</script>-->
 </body>
 </html>
 
