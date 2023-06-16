@@ -51,22 +51,23 @@ public class DriverController {
 
     @PostMapping("/driver/{id}/edit")
     public String updateDriver(@PathVariable long id, @ModelAttribute Driver driver) {
+        User user = usersDao.findById(id).get();
+        driver.setUser(user);
         driver.setCarMake(driver.getCarMake());
         driver.setCarModel(driver.getCarModel());
         driver.setLicensePlateNum(driver.getLicensePlateNum());
         driver.setDriversLicenseNum(driver.getDriversLicenseNum());
-
         driversDao.save(driver);
         return "users/profile";
     }
 
-
-    @PostMapping("/drivers/{id}/delete")
-    public String deleteDriver(@PathVariable("id") Long id) {
+    @PostMapping("/driver/{id}/delete")
+    public String deleteDriver(@PathVariable("id") long id) {
         driversDao.deleteById(id);
         return "users/profile";
     }
 }
+
 
 
 
