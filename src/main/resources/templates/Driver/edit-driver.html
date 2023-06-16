@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Driver</title>
+</head>
+<body>
+<h1>Edit Driver's Profile</h1>
+
+<form th:action="@{/driver/{id}/edit(id=${driver.user.id})}" th:method="post" th:object="${driver}">
+    <label for="carMake">Car Make:</label>
+    <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"><br><br>
+
+    <label for="carModel">Car Model:</label>
+    <input type="text" id="carModel" name="carModel" required th:field="*{carModel}"><br><br>
+
+    <label for="driverLicense">Driver's License:</label>
+    <input type="text" id="driverLicense" name="driversLicenseNum" required th:field="*{driversLicenseNum}"><br><br>
+
+    <label for="licensePlate">License Plate:</label>
+    <input type="text" id="licensePlate" name="licensePlateNum" required th:field="*{licensePlateNum}"><br><br>
+
+    <button type="submit">Edit Driver</button>
+</form>
+
+<form th:action="@{/driver/{id}/delete(id=${driver.id})}" th:method="post">
+    <button type="submit" class="delete-button">Delete Driver</button>
+</form>
+</body>
+</html>

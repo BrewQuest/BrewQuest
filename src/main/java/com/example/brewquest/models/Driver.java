@@ -20,7 +20,7 @@ public class Driver {
     @Column(nullable = false, length = 50)
     private String driversLicenseNum;
     @Column(nullable = false, length = 50)
-    private String licensePlaceNum;
+    private String licensePlateNum;
     @Column(nullable = false, length = 50)
     private String carMake;
     @Column(nullable = false, length = 50)
@@ -31,4 +31,11 @@ public class Driver {
 
     @OneToOne
     private User user;
+
+    public Driver(String driversLicenseNum, String licensePlateNum, String carMake, String carModel) {
+        this.driversLicenseNum = driversLicenseNum;
+        this.licensePlateNum = licensePlateNum;
+        this.carMake = carMake;
+        this.carModel = carModel;
+    }
 }
