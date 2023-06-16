@@ -26,7 +26,12 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <input value="Sign me up!" type="submit" />
+    <input value="Update Profile" type="submit" />
+</form>
+
+<p>Looking to delete your Account?</p>
+<form th:action="@{/profile/{id}/delete(id=${user.id})}" method="post">
+    <button type="submit">Delete Account</button>
 </form>
 </body>
 </html>

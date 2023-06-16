@@ -3,6 +3,7 @@ package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,9 +45,16 @@ public class UserController {
 
     @GetMapping("/profile/{id}/edit")
     public String showEditProfile(@PathVariable Long id, Model model) {
-        User user = userDao.findById(id).get();
-        model.addAttribute("user", user);
-        return "users/edit";
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(user.getId() == userDao.findById(id).get().getId()) {
+            User userProfile = userDao.findById(id).get();
+            model.addAttribute("user", userProfile);
+            return "users/edit";
+        } else {
+            return "redirect:/home";
+        }
+
     }
 
     @PostMapping("/profile/{id}/edit")
@@ -61,6 +69,17 @@ public class UserController {
 
         userDao.save(editUser);
         return "redirect:/profile/1";
+    }
+
+    @PostMapping("/profile/{id}/delete")
+    public String deleteProfile(@PathVariable Long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if(user.getId() == userDao.findById(id).get().getId()) {
+            userDao.deleteById(id);
+        }
+
+        return "redirect:/home";
     }
 
 

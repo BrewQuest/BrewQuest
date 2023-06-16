@@ -1,7 +1,7 @@
 package com.example.brewquest.config;
 
-
 import com.example.brewquest.services.UserDetailsLoader;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,15 +38,17 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
-                        .requestMatchers("/posts/create", "/posts/*/edit", "/posts/*/delete").authenticated()
+                        .requestMatchers("/reviews/create", "/reviews/*/edit", "/reviews/*/delete", "/profile/*", "/profile/*/edit", "/profile/*/delete").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/posts", "/posts/*", "/sign-up", "/login", "profile/*", "profile/*/edit").permitAll()
-                        // allow loading of static resources
+
+                        .requestMatchers("/", "/posts", "/posts/*", "/sign-up", "/login", "profile/*", "profile/*/edit", "/signup-driver", "/driver/*/edit", "/driver/*/delete", "/reviews/*", "/home").permitAll()
+
+         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )
                 /* Login configuration */
-                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/posts"))
+                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/home"))
                 /* Logout configuration */
                 .logout((logout) -> logout.logoutSuccessUrl("/login?logout"))
                 .httpBasic(Customizer.withDefaults());
