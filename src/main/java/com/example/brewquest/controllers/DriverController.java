@@ -49,7 +49,7 @@ public class DriverController {
         return "users/profile";
     }
 
-    @GetMapping("/driver/{id}/edit")
+    @PostMapping("/driver/{id}/edit")
     public String updateDriver(@ModelAttribute Driver driver) {
         User user = usersDao.findById(driver.getId()).get();
         driver.setUser(user);
