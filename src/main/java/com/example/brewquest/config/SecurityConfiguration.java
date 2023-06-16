@@ -38,15 +38,15 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
-                        .requestMatchers("/posts/create", "/posts/*/edit", "/posts/*/delete").authenticated()
+                        .requestMatchers("/reviews/create", "/reviews/*/edit", "/reviews/*/delete", "/profile/*", "/profile/*/edit").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/posts", "/posts/*", "/sign-up", "/login", "profile/*", "profile/*/edit").permitAll()
+                        .requestMatchers("/", "/home", "/reviews/*", "/sign-up", "/login").permitAll()
                         // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 )
                 /* Login configuration */
-                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/posts"))
+                .formLogin((login) -> login.loginPage("/login").defaultSuccessUrl("/"))
                 /* Logout configuration */
                 .logout((logout) -> logout.logoutSuccessUrl("/login?logout"))
                 .httpBasic(Customizer.withDefaults());
