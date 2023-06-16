@@ -46,22 +46,22 @@ public class DriverController {
             Driver driverToEdit = driversDao.findById(id).get();
             model.addAttribute("driver", driverToEdit);  // Make sure the attribute name is "driver"
         }
-        return "users/profile";
+        return "Driver/edit-driver";
     }
 
     @PostMapping("/driver/{id}/edit")
-    public String updateDriver(@ModelAttribute Driver driver) {
-        User user = usersDao.findById(driver.getId()).get();
-        driver.setUser(user);
+    public String updateDriver(@PathVariable long id, @ModelAttribute Driver driver) {
         driver.setCarMake(driver.getCarMake());
         driver.setCarModel(driver.getCarModel());
         driver.setLicensePlateNum(driver.getLicensePlateNum());
         driver.setDriversLicenseNum(driver.getDriversLicenseNum());
+
+        driversDao.save(driver);
         return "users/profile";
     }
 
 
-    @DeleteMapping("/drivers/{id}/delete")
+    @PostMapping("/drivers/{id}/delete")
     public String deleteDriver(@PathVariable("id") Long id) {
         driversDao.deleteById(id);
         return "users/profile";

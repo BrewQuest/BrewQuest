@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Edit Drivers Profile</h1>
-<form th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="post" th:object="${driver}">
+<form th:action="@{/driver/{id}/edit(id=${driver.user.id})}" th:method="post" th:object="${driver}">
     <label for="carMake">Car Make:</label>
     <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"><br><br>
 
@@ -19,7 +19,11 @@
     <label for="licensePlate">License Plate:</label>
     <input type="text" id="licensePlate" name="licensePlateNum" required th:field="*{licensePlateNum}"><br><br>
 
-    <button type="submit">Sign Up</button>
+    <button type="submit">Edit Driver</button>
+</form>
+
+<form th:action="@{/diver/{id}/delete(id=${driver.id})}" method="post">
+
 </form>
 </body>
 </html>
