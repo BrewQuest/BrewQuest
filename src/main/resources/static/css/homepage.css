@@ -1,0 +1,113 @@
+/*infinity scroll */
+#scroll-parent {
+    display: flex;
+    position: relative;
+    width: 280vw;
+    overflow-x: hidden;
+}
+
+.scroll-element {
+    width: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: primary 10s linear infinite;
+    margin-top: 5%;
+}
+
+.primary {
+    animation: primary 10s linear infinite;
+}
+
+.secondary {
+    animation: secondary 10s linear infinite;
+}
+
+@keyframes primary {
+    from {
+        left: 0%;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes secondary {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+/* Existing CSS code... */
+.container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+    vertical-align: top;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-wrap: nowrap;
+}
+
+.card {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin-right: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    /*margin-left: 200px;*/
+}
+
+body {
+    background-image: url("/img/bw-homepage.webp");
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.flag {
+    width: 800px;
+    height: 600px;
+    box-sizing: content-box;
+    padding-top: 15px;
+    /*position: relative;*/
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 11px;
+    transform: rotate(-90deg);
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.flag::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 800px;
+    height: 1200px;
+    border-bottom: 500px solid transparent;
+    border-left: 500px solid #70452e;
+    border-right: 500px solid #70452e;
+    padding-left: 0;
+    margin-left: 0;
+}
