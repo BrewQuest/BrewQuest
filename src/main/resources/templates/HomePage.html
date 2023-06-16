@@ -7,6 +7,7 @@
 
     <style>
         #scroll-parent {
+            display: flex;
             position: relative;
             width: 100vw;
             height: 20rem;
@@ -19,14 +20,14 @@
             position: absolute;
             left: 0%;
             top: 0%;
-            animation: primary 3s linear infinite;
+            animation: primary 6s linear infinite;
         }
         .primary {
-            animation: primary 3s linear infinite;
+            animation: primary 6s linear infinite;
         }
 
         .secondary {
-            animation: secondary 3s linear infinite;
+            animation: secondary 6s linear infinite;
         }
 
         @keyframes primary {
@@ -54,15 +55,15 @@
             white-space: nowrap;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .row {
-            display: inline-block;
+            display: flex;
             vertical-align: top;
             width: 100%;
             margin-bottom: 20px;
             text-align: center;
+            flex-wrap: nowrap;
         }
 
         .card {
