@@ -5,23 +5,21 @@
     <title>Edit Driver</title>
 </head>
 <body>
-<h1>Edit Driver</h1>
-<form th:action="@{/driver/{id}/edit (id = ${driver.id})}" th:method="post" th:object="${driver}">
+<h1>Edit Drivers Profile</h1>
+<form th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="post" th:object="${driver}">
     <label for="carMake">Car Make:</label>
-    <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"/><br><br>
+    <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"><br><br>
 
     <label for="carModel">Car Model:</label>
-    <input type="text" id="carModel" name="carModel" required th:field="*{carModel}"/><br><br>
+    <input type="text" id="carModel" name="carModel" required th:field="*{carModel}"><br><br>
 
     <label for="driverLicense">Driver's License:</label>
-    <input type="text" id="driverLicense" name="driverLicense" required th:field="*{driversLicenseNum}"/><br><br>
+    <input type="text" id="driverLicense" name="driversLicenseNum" required th:field="*{driversLicenseNum}"><br><br>
 
     <label for="licensePlate">License Plate:</label>
-    <input type="text" id="licensePlate" name="licensePlate" required th:field="*{licensePlateNum}"/><br><br>
+    <input type="text" id="licensePlate" name="licensePlateNum" required th:field="*{licensePlateNum}"><br><br>
 
-    <form th:method="post" th:action="@{/driver/{id}/edit (id = ${driver.id})}">
-        <button>delete</button>
-    <a href="/profile">Cancel</a>
+    <button type="submit">Sign Up</button>
 </form>
 </body>
 </html>

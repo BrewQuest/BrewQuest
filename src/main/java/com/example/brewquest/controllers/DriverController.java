@@ -44,7 +44,7 @@ public class DriverController {
     public String showEditForm(@PathVariable long id, Model model) {
         if (driversDao.findById(id).isPresent()) {
             Driver driverToEdit = driversDao.findById(id).get();
-            model.addAttribute("driver", driverToEdit);
+            model.addAttribute("driver", driverToEdit);  // Make sure the attribute name is "driver"
         }
         return "users/profile";
     }

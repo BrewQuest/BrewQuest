@@ -31,4 +31,11 @@ public class Driver {
 
     @OneToOne
     private User user;
+
+    public Driver(String driversLicenseNum, String licensePlateNum, String carMake, String carModel) {
+        this.driversLicenseNum = driversLicenseNum;
+        this.licensePlateNum = licensePlateNum;
+        this.carMake = carMake;
+        this.carModel = carModel;
+    }
 }
