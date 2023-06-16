@@ -27,14 +27,16 @@ public class DriverController {
     }
 
     @PostMapping("/signup-driver")
-    public String processSignupForm(@ModelAttribute("driver") Driver driver, BindingResult result) {
-        if (result.hasErrors()) {
-            return "/Driver/sign-up-driver";
-        }
+    public String processSignupForm(@ModelAttribute Driver driver) {
+        driver.setCarMake(driver.getCarMake());
+        driver.setCarModel(driver.getCarModel());
+        driver.setLicensePlateNum(driver.getLicensePlateNum());
+        driver.setDriversLicenseNum(driver.getDriversLicenseNum());
 
         driverRepository.save(driver);
-        return "redirect:/profile";
+        return "redirect:/";
     }
+//    test
 //    test
 }
 
