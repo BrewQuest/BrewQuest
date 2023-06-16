@@ -4,113 +4,45 @@
     <meta charset="UTF-8"/>
     <title>Home Page</title>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
-
-    <style>
-    /*infinity scroll */
-        #scroll-parent {
-            display: flex;
-            position: relative;
-            width: 100vw;
-            overflow-x: hidden;
-        }
-
-        .scroll-element {
-            width: inherit;
-            position: absolute;
-            left: 0%;
-            top: 0%;
-            animation: primary 6s linear infinite;
-            margin-top: 25%;
-        }
-        .primary {
-            animation: primary 6s linear infinite;
-        }
-
-        .secondary {
-            animation: secondary 6s linear infinite;
-        }
-
-        @keyframes primary {
-            from {
-                left: 0%;
-            }
-            to {
-                left: -100%;
-            }
-        }
-
-        @keyframes secondary {
-            from {
-                left: 100%;
-            }
-            to {
-                left: 0%;
-            }
-        }
-
-        /* Existing CSS code... */
-        .container {
-            width: 100%;
-            overflow-x: auto;
-            white-space: nowrap;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .row {
-            display: flex;
-            vertical-align: top;
-            width: 100%;
-            margin-bottom: 20px;
-            text-align: center;
-            flex-wrap: nowrap;
-        }
-
-        .card {
-            display: inline-block;
-            width: 200px;
-            height: 200px;
-            margin-right: 10px;
-            background-color: #f2f2f2;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-        }
-    </style>
-
+    <link rel="stylesheet" th:href="@{/css/homepage.css}" type="text/css">
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-
-
-<div id="scroll-parent" class="container">
-    <div class="row scroll-element primary" >
-        <div class="card">Card 1</div>
-        <div class="card">Card 2</div>
-        <div class="card">Card 3</div>
-        <div class="card">Card 4</div>
-        <div class="card">Card 5</div>
-        <div class="card">Card 6</div>
-        <div class="card">Card 7</div>
-        <div class="card">Card 8</div>
-        <div class="card">Card 9</div>
-        <div class="card">Card 10</div>
-    </div>
-    <div class="row scroll-element secondary">
-        <div class="card">Card 11</div>
-        <div class="card">Card 12</div>
-        <div class="card">Card 13</div>
-        <div class="card">Card 14</div>
-        <div class="card">Card 15</div>
-        <div class="card">Card 16</div>
-        <div class="card">Card 17</div>
-        <div class="card">Card 18</div>
-        <div class="card">Card 19</div>
-        <div class="card">Card 20</div>
+<div id="scroll-parent" class="container-fluid">
+    <!--    <div class = "row">-->
+    <!--    <div class="flag">-->
+    <div class="row">
+        <div class="col">
+            <div class="flag"></div>
+        </div>
+        <div class="col scroll-element primary">
+            <div class="card">Card 1</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+            <div class="card">Card 4</div>
+            <div class="card">Card 5</div>
+            <div class="card">Card 6</div>
+            <div class="card">Card 7</div>
+            <div class="card">Card 8</div>
+            <div class="card">Card 9</div>
+            <div class="card">Card 10</div>
+        </div>
+                    <div class="row scroll-element secondary">
+                <div class="card">Card 11</div>
+                <div class="card">Card 12</div>
+                <div class="card">Card 13</div>
+                <div class="card">Card 14</div>
+                <div class="card">Card 15</div>
+                <div class="card">Card 16</div>
+                <div class="card">Card 17</div>
+                <div class="card">Card 18</div>
+                <div class="card">Card 19</div>
+                <div class="card">Card 20</div>
+                    </div>
     </div>
 </div>
+<!--</div>-->
+
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
