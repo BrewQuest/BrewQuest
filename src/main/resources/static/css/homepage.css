@@ -83,8 +83,9 @@ body {
 }
 
 .flag {
-    width: 800px;
-    height: 600px;
+    margin-top: 200px;
+    width: 700px;
+    height: 500px;
     box-sizing: content-box;
     padding-top: 15px;
     /*position: relative;*/
@@ -103,8 +104,8 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 800px;
-    height: 1200px;
+    width: 500px;
+    height: 700px;
     border-bottom: 500px solid transparent;
     border-left: 500px solid #70452e;
     border-right: 500px solid #70452e;

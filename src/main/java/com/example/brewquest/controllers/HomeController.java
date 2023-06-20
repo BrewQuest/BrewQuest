@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String home(){
-        return "HomePage";
-    }
-
-    @GetMapping("/home")
-        public String homePage(){
-            return "HomePage";
+    public String home() {
+        return "users/leaderboard";
     }
 }
+
+//    @GetMapping("/home")
+//        public String homePage(){
+//            return "HomePage";
+//    }
+//}
