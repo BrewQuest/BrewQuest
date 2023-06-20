@@ -1,7 +1,9 @@
 package com.example.brewquest.controllers;
 
 
+import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.User;
+import com.example.brewquest.repositories.Driver_repository;
 import com.example.brewquest.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,14 +14,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    private final Driver_repository driverDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, Driver_repository driverDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.driverDao = driverDao;
     }
 
     @GetMapping("/sign-up")
@@ -80,6 +88,15 @@ public class UserController {
         }
 
         return "redirect:/home";
+    }
+
+    @GetMapping("/leaderboard")
+    public String viewLeaderboard(Model model) {
+        List<User> users = userDao.findAll();
+        model.addAttribute("users", users);
+        List<Driver> drivers = driverDao.findAll();
+        model.addAttribute("drivers", drivers);
+        return "/leaderboard";
     }
 
 

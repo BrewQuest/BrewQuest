@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Leaderboards</title>
-    <th:block th:replace="partials/Navbar :: styles"></th:block>
-    <link rel="stylesheet" th:href="@{/css/leaderboard.css}" type="text/css">
+    <style>
+        /* Your CSS styles here */
+    </style>
 </head>
 <body>
-<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div class="container">
     <div class="leaderboard" id="breweryLeaderboard">
         <h2>Brewery Leaderboard</h2>
@@ -18,13 +18,16 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Brewery leaderboard rows will be dynamically added here -->
+            <tr th:each="user : ${users}" class="burlywood-text">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.score}"></td>
+            </tr>
             </tbody>
         </table>
     </div>
 
     <div class="leaderboard" id="passengerLeaderboard">
-        <h2>Driver Leaderboard</h2>
+        <h2>Passenger Leaderboard</h2>
         <table id="passengerTable">
             <thead>
             <tr>
@@ -33,12 +36,15 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Passenger leaderboard rows will be dynamically added here -->
+            <tr th:each="driver : ${drivers}" class="burlywood-text">
+                <td th:text="${driver.username}"></td>
+                <td th:text="${driver.score}"></td>
+            </tr>
             </tbody>
         </table>
     </div>
 </div>
-<th:block th:replace="partials/Navbar :: scripts"></th:block>
-<script src="leaderboard.js"></script>
+
+<script src="script.js"></script>
 </body>
 </html>

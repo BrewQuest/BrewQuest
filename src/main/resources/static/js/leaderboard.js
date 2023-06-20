@@ -1,42 +1,18 @@
-// Function to fetch user data from the database
-async function fetchUserData() {
-	try {
-		const response = await fetch('your-user-api-endpoint');
-		const userData = await response.json();
-		return userData;
-	} catch (error) {
-		console.error('Error fetching user data:', error);
-		return []; // Return an empty array or handle the error as needed
-	}
-}
-
-// Function to fetch driver data from the database
-async function fetchDriverData() {
-	try {
-		const response = await fetch('your-driver-api-endpoint');
-		const driverData = await response.json();
-		return driverData;
-	} catch (error) {
-		console.error('Error fetching driver data:', error);
-		return []; // Return an empty array or handle the error as needed
-	}
-}
-
 // Function to update the brewery leaderboard
-async function updateBreweryLeaderboard() {
+function updateBreweryLeaderboard() {
 	const breweryTable = document.getElementById('breweryTable');
 	const tbody = breweryTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	const userData = await fetchUserData();
+	const users = [[${users}]]; // Retrieve users from Thymeleaf model
 
-	userData.forEach((entry, index) => {
+	users.forEach((user, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
 
-		usernameCell.textContent = entry.username;
-		scoreCell.textContent = entry.score;
+		usernameCell.textContent = user.username;
+		scoreCell.textContent = user.score;
 
 		row.appendChild(usernameCell);
 		row.appendChild(scoreCell);
@@ -51,20 +27,20 @@ async function updateBreweryLeaderboard() {
 }
 
 // Function to update the passenger leaderboard
-async function updatePassengerLeaderboard() {
+function updatePassengerLeaderboard() {
 	const passengerTable = document.getElementById('passengerTable');
 	const tbody = passengerTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	const driverData = await fetchDriverData();
+	const drivers = [[${drivers}]]; // Retrieve drivers from Thymeleaf model
 
-	driverData.forEach((entry, index) => {
+	drivers.forEach((driver, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
 
-		usernameCell.textContent = entry.username;
-		scoreCell.textContent = entry.score;
+		usernameCell.textContent = driver.username;
+		scoreCell.textContent = driver.score;
 
 		row.appendChild(usernameCell);
 		row.appendChild(scoreCell);
@@ -86,3 +62,9 @@ setInterval(() => {
 	updateBreweryLeaderboard();
 	updatePassengerLeaderboard();
 }, 5000);
+
+
+// the updateBreweryLeaderboard and updatePassengerLeaderboard functions have been updated to directly use the data retrieved from the Thymeleaf model. The users and drivers data are now retrieved from the Thymeleaf expressions [[${users}]] and [[${drivers}]], respectively.
+//
+// 	Make sure that the Thymeleaf expressions [[${users}]] and [[${drivers}]] match the attribute names used in your controller's viewLeaderboard method (i.e., "users" and "drivers").
+
