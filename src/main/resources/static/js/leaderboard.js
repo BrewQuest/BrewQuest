@@ -4,26 +4,31 @@ function updateBreweryLeaderboard() {
 	const tbody = breweryTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	const users = [[${users}]]; // Retrieve users from Thymeleaf model
+	fetch('/api/brewery-leaderboard')
+		.then(response => response.json())
+		.then(data => {
+			data.forEach((entry, index) => {
+				const row = document.createElement('tr');
+				const usernameCell = document.createElement('td');
+				const scoreCell = document.createElement('td');
 
-	users.forEach((user, index) => {
-		const row = document.createElement('tr');
-		const usernameCell = document.createElement('td');
-		const scoreCell = document.createElement('td');
+				usernameCell.textContent = entry.username;
+				scoreCell.textContent = entry.score;
 
-		usernameCell.textContent = user.username;
-		scoreCell.textContent = user.score;
+				row.appendChild(usernameCell);
+				row.appendChild(scoreCell);
+				tbody.appendChild(row);
 
-		row.appendChild(usernameCell);
-		row.appendChild(scoreCell);
-		tbody.appendChild(row);
-
-		// Add classes to the row
-		if (index % 2 === 0) {
-			row.classList.add('alternate-row');
-		}
-		row.classList.add('burlywood-text');
-	});
+				// Add classes to the row
+				if (index % 2 === 0) {
+					row.classList.add('alternate-row');
+				}
+				row.classList.add('burlywood-text');
+			});
+		})
+		.catch(error => {
+			console.error('Error fetching brewery leaderboard:', error);
+		});
 }
 
 // Function to update the passenger leaderboard
@@ -32,26 +37,31 @@ function updatePassengerLeaderboard() {
 	const tbody = passengerTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	const drivers = [[${drivers}]]; // Retrieve drivers from Thymeleaf model
+	fetch('/api/passenger-leaderboard')
+		.then(response => response.json())
+		.then(data => {
+			data.forEach((entry, index) => {
+				const row = document.createElement('tr');
+				const usernameCell = document.createElement('td');
+				const scoreCell = document.createElement('td');
 
-	drivers.forEach((driver, index) => {
-		const row = document.createElement('tr');
-		const usernameCell = document.createElement('td');
-		const scoreCell = document.createElement('td');
+				usernameCell.textContent = entry.username;
+				scoreCell.textContent = entry.score;
 
-		usernameCell.textContent = driver.username;
-		scoreCell.textContent = driver.score;
+				row.appendChild(usernameCell);
+				row.appendChild(scoreCell);
+				tbody.appendChild(row);
 
-		row.appendChild(usernameCell);
-		row.appendChild(scoreCell);
-		tbody.appendChild(row);
-
-		// Add classes to the row
-		if (index % 2 === 0) {
-			row.classList.add('alternate-row');
-		}
-		row.classList.add('burlywood-text');
-	});
+				// Add classes to the row
+				if (index % 2 === 0) {
+					row.classList.add('alternate-row');
+				}
+				row.classList.add('burlywood-text');
+			});
+		})
+		.catch(error => {
+			console.error('Error fetching passenger leaderboard:', error);
+		});
 }
 
 // Update leaderboards initially and set an interval to update them periodically

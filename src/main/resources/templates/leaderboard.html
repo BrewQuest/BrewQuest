@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Leaderboards</title>
-    <style>
-        /* Your CSS styles here */
-    </style>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/leaderboard.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div class="container">
     <div class="leaderboard" id="breweryLeaderboard">
         <h2>Brewery Leaderboard</h2>
@@ -17,12 +17,7 @@
                 <th>Score</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="user : ${users}" class="burlywood-text">
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.score}"></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 
@@ -35,16 +30,12 @@
                 <th>Score</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="driver : ${drivers}" class="burlywood-text">
-                <td th:text="${driver.username}"></td>
-                <td th:text="${driver.score}"></td>
-            </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
 </div>
-
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 <script src="script.js"></script>
 </body>
 </html>
+
