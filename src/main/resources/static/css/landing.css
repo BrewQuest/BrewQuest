@@ -7,17 +7,20 @@ html, body {
     justify-content: center;
     text-align: center;
 }
+
 body {
     background-image: url("/img/landing-page.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
 }
+
 .card {
-    background-color: rgba(127,76,7,0.50);
+    background-color: rgba(127, 76, 7, 0.5);
     padding: 20px;
     border-radius: 10px;
 }
+
 .white-button {
     background-color: white;
     color: black;
@@ -25,6 +28,7 @@ body {
     border-radius: 20px;
     padding: 10px 20px;
 }
+
 .red-button {
     background-color: red;
     color: black;
@@ -32,17 +36,41 @@ body {
     border-radius: 20px;
     padding: 10px 20px;
 }
-.red-text{
+
+.red-text {
     color: red;
 }
-.white-text{
+
+.white-text {
     color: white;
 }
+
 .white-button,
 .red-button {
     margin-top: 10px;
 }
-h1{
+
+h1 {
     text-align: center;
     font-size: 30px;
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+    body {
+        background-position: center;
+    }
+
+    .card {
+        max-width: 90%;
+    }
+
+    .white-button,
+    .red-button {
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
 }

@@ -98,7 +98,6 @@ body {
     text-transform: uppercase;
 }
 
-
 .flag::after {
     content: '';
     position: absolute;
@@ -111,4 +110,42 @@ body {
     border-right: 500px solid #70452e;
     padding-left: 0;
     margin-left: 0;
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+    #scroll-parent {
+        width: 100vw;
+    }
+
+    .scroll-element {
+        margin-top: 10px;
+    }
+
+    .container {
+        height: auto;
+    }
+
+    .card {
+        width: 90%;
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    .flag {
+        margin-top: 50px;
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        transform: none;
+        letter-spacing: 0.1em;
+    }
+
+    .flag::after {
+        width: 100%;
+        height: auto;
+        border-bottom: none;
+        border-left: 0;
+        border-right: 0;
+    }
 }
