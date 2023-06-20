@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -94,8 +95,11 @@ public class UserController {
     public String viewLeaderboard(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
+        users.sort(Comparator.comparing(User::getTotalBreweries).reversed());
         List<Driver> drivers = driverDao.findAll();
         model.addAttribute("drivers", drivers);
+        drivers.sort(Comparator.comparing(Driver::getTotalPassengers).reversed());
+
         return "leaderboard";
     }
 
