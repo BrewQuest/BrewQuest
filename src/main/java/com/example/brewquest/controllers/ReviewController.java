@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ReviewController {
-    private final ReviewRepository ReviewDaos;
-    private final UserRepository UsersDaos;
+    private final ReviewRepository reviewDaos;
+    private final UserRepository usersDaos;
 
     public ReviewController(ReviewRepository reviewDaos, UserRepository usersDaos) {
-        ReviewDaos = reviewDaos;
-        UsersDaos = usersDaos;
+        this.reviewDaos = reviewDaos;
+        this.usersDaos = usersDaos;
     }
     @GetMapping("/create-review")
     public String showCreateForm(Model model){
@@ -27,27 +27,27 @@ public class ReviewController {
     }
 @PostMapping("/create-review")
     public String CreateFormProcess(@ModelAttribute Review review){
-    User user = UsersDaos.findById(1L).get();
+    User user = usersDaos.findById(1L).get();
     review.setUser(user);
     review.setBreweryId(review.getBreweryId());
     review.setRating(review.getRating());
     review.setDescription(review.getDescription());
     review.setPassengers(review.getPassengers());
 
-    ReviewDaos.save(review);
+    reviewDaos.save(review);
     return "redirect:/";
 }
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
-        if (ReviewDaos.findById(id).isPresent()) {
-            Review reviewToEdit = ReviewDaos.findById(id).get();
+        if (reviewDaos.findById(id).isPresent()) {
+            Review reviewToEdit = reviewDaos.findById(id).get();
             model.addAttribute("driver", reviewToEdit);
         }
         return "/Reviews/Edit-Review";
 }
 @PostMapping("/review/{id}/edit")
     public String updateReview(@PathVariable long id, @ModelAttribute Review review){
-        User user = UsersDaos.findById(id).get();
+        User user = usersDaos.findById(id).get();
         review.setUser(user);
         review.setBreweryId(review.getBreweryId());
         review.setRating(review.getRating());
@@ -55,4 +55,9 @@ public class ReviewController {
         review.setPassengers(review.getPassengers());
         return "/";
 }
+    @PostMapping("/review/{id}/delete")
+    public String deleteReview(@PathVariable("id") long id) {
+        reviewDaos.deleteById(id);
+        return "users/profile";
+    }
 }
