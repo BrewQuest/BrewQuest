@@ -1,23 +1,36 @@
-// Sample data for the leaderboards
-const breweryData = [
-	{ username: 'Brewer1', score: 500 },
-	{ username: 'Brewer2', score: 700 },
-	{ username: 'Brewer3', score: 900 },
-];
+// Function to fetch user data from the database
+async function fetchUserData() {
+	try {
+		const response = await fetch('your-user-api-endpoint');
+		const userData = await response.json();
+		return userData;
+	} catch (error) {
+		console.error('Error fetching user data:', error);
+		return []; // Return an empty array or handle the error as needed
+	}
+}
 
-const passengerData = [
-	{ username: 'Passenger1', score: 1000 },
-	{ username: 'Passenger2', score: 800 },
-	{ username: 'Passenger3', score: 600 },
-];
+// Function to fetch driver data from the database
+async function fetchDriverData() {
+	try {
+		const response = await fetch('your-driver-api-endpoint');
+		const driverData = await response.json();
+		return driverData;
+	} catch (error) {
+		console.error('Error fetching driver data:', error);
+		return []; // Return an empty array or handle the error as needed
+	}
+}
 
 // Function to update the brewery leaderboard
-function updateBreweryLeaderboard() {
+async function updateBreweryLeaderboard() {
 	const breweryTable = document.getElementById('breweryTable');
 	const tbody = breweryTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	breweryData.forEach((entry, index) => {
+	const userData = await fetchUserData();
+
+	userData.forEach((entry, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
@@ -38,12 +51,14 @@ function updateBreweryLeaderboard() {
 }
 
 // Function to update the passenger leaderboard
-function updatePassengerLeaderboard() {
+async function updatePassengerLeaderboard() {
 	const passengerTable = document.getElementById('passengerTable');
 	const tbody = passengerTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	passengerData.forEach((entry, index) => {
+	const driverData = await fetchDriverData();
+
+	driverData.forEach((entry, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
