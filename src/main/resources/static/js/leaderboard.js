@@ -17,7 +17,7 @@ function updateBreweryLeaderboard() {
 	const tbody = breweryTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	breweryData.forEach((entry) => {
+	breweryData.forEach((entry, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
@@ -28,6 +28,11 @@ function updateBreweryLeaderboard() {
 		row.appendChild(usernameCell);
 		row.appendChild(scoreCell);
 		tbody.appendChild(row);
+
+		// Add color to the row
+		if (index % 2 === 0) {
+			row.classList.add('alternate-row');
+		}
 	});
 }
 
@@ -37,7 +42,7 @@ function updatePassengerLeaderboard() {
 	const tbody = passengerTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	passengerData.forEach((entry) => {
+	passengerData.forEach((entry, index) => {
 		const row = document.createElement('tr');
 		const usernameCell = document.createElement('td');
 		const scoreCell = document.createElement('td');
@@ -48,6 +53,11 @@ function updatePassengerLeaderboard() {
 		row.appendChild(usernameCell);
 		row.appendChild(scoreCell);
 		tbody.appendChild(row);
+
+		// Add color to the row
+		if (index % 2 === 0) {
+			row.classList.add('alternate-row');
+		}
 	});
 }
 

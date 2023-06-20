@@ -45,3 +45,7 @@ th {
 tbody tr:hover {
     background-color: #f9f9f9;
 }
+.alternate-row {
+    background-color: #70452e;
+    color: #ffffff;
+}
