@@ -40,30 +40,19 @@ public class ReviewController {
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
         if (ReviewDaos.findById(id).isPresent()) {
-            Review reviewtoEdit = ReviewDaos.findById(id).get();
-            model.addAttribute("driver", reviewtoEdit);
+            Review reviewToEdit = ReviewDaos.findById(id).get();
+            model.addAttribute("driver", reviewToEdit);
         }
         return "/Reviews/Edit-Review";
 }
-
+@PostMapping("/review/{id}/edit")
+    public String updateReview(@PathVariable long id, @ModelAttribute Review review){
+        User user = UsersDaos.findById(id).get();
+        review.setUser(user);
+        review.setBreweryId(review.getBreweryId());
+        review.setRating(review.getRating());
+        review.setDescription(review.getDescription());
+        review.setPassengers(review.getPassengers());
+        return "/";
 }
-// @GetMapping("/driver/{id}/edit")
-//    public String showEditForm(@PathVariable long id, Model model) {
-//        if (driversDao.findById(id).isPresent()) {
-//            Driver driverToEdit = driversDao.findById(id).get();
-//            model.addAttribute("driver", driverToEdit);  // Make sure the attribute name is "driver"
-//        }
-//        return "Driver/edit-driver";
-//    }
-//
-//    @PostMapping("/driver/{id}/edit")
-//    public String updateDriver(@PathVariable long id, @ModelAttribute Driver driver) {
-//        User user = usersDao.findById(id).get();
-//        driver.setUser(user);
-//        driver.setCarMake(driver.getCarMake());
-//        driver.setCarModel(driver.getCarModel());
-//        driver.setLicensePlateNum(driver.getLicensePlateNum());
-//        driver.setDriversLicenseNum(driver.getDriversLicenseNum());
-//        driversDao.save(driver);
-//        return "users/profile";
-//    }
+}
