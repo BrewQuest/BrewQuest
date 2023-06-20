@@ -29,10 +29,11 @@ function updateBreweryLeaderboard() {
 		row.appendChild(scoreCell);
 		tbody.appendChild(row);
 
-		// Add color to the row
+		// Add classes to the row
 		if (index % 2 === 0) {
 			row.classList.add('alternate-row');
 		}
+		row.classList.add('burlywood-text');
 	});
 }
 
@@ -54,10 +55,11 @@ function updatePassengerLeaderboard() {
 		row.appendChild(scoreCell);
 		tbody.appendChild(row);
 
-		// Add color to the row
+		// Add classes to the row
 		if (index % 2 === 0) {
 			row.classList.add('alternate-row');
 		}
+		row.classList.add('burlywood-text');
 	});
 }
 
