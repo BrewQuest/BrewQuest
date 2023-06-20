@@ -4,12 +4,27 @@ body {
     background-repeat: no-repeat;
     text-align: center;
 }
+
 #aboutDiv {
-    width: 500px;
+    max-width: 500px;
     margin: 0 auto;
     text-align: center;
     color: burlywood;
 }
-p{
+
+p {
     font-size: 15px;
 }
+
+/* Mobile responsive styles */
+@media screen and (max-width: 600px) {
+    body {
+        background-size: contain;
+    }
+
+    #aboutDiv {
+        width: 90%;
+    }
+}
+
+
