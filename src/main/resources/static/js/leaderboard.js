@@ -4,7 +4,7 @@ function updateBreweryLeaderboard() {
 	const tbody = breweryTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	fetch('/api/brewery-leaderboard')
+	fetch('/?????????????')
 		.then(response => response.json())
 		.then(data => {
 			data.forEach((entry, index) => {
@@ -37,7 +37,7 @@ function updatePassengerLeaderboard() {
 	const tbody = passengerTable.getElementsByTagName('tbody')[0];
 	tbody.innerHTML = ''; // Clear existing rows
 
-	fetch('/api/passenger-leaderboard')
+	fetch('/?????????')
 		.then(response => response.json())
 		.then(data => {
 			data.forEach((entry, index) => {

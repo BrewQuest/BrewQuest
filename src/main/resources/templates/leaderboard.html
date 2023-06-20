@@ -30,12 +30,20 @@
                 <th>Score</th>
             </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+
+            </tbody>
         </table>
     </div>
 </div>
+<input type="hidden" id="users" th:value="${users}">
+<input type="hidden" id="drivers" th:value="${drivers}">
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
-<script src="script.js"></script>
+<script th:src="@{leaderboard.js}"></script>
+<!--<script>-->
+<!--    console.log(document.querySelector("#users").value)-->
+<!--    console.log(document.querySelector("#drivers").value)-->
+<!--</script>-->
 </body>
 </html>
 

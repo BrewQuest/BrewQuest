@@ -96,7 +96,7 @@ public class UserController {
         model.addAttribute("users", users);
         List<Driver> drivers = driverDao.findAll();
         model.addAttribute("drivers", drivers);
-        return "/leaderboard";
+        return "leaderboard";
     }
 
 
