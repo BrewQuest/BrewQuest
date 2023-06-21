@@ -46,6 +46,8 @@ public class ReviewController {
             Review reviewToEdit = reviewDaos.findById(id).get();
             model.addAttribute("driver", reviewToEdit);
         }
+        String reviewDescription= reviewDaos.findById(id).get().getDescription();
+        model.addAttribute("description", reviewDescription);
         return "/Reviews/Edit-Review";
 }
 @PostMapping("/review/{id}/edit")
@@ -61,7 +63,7 @@ public class ReviewController {
     @PostMapping("/review/{id}/delete")
     public String deleteReview(@PathVariable("id") long id) {
         reviewDaos.deleteById(id);
-        return "users/profile";
+        return "redirect:/profile/" + id + "/reviews";
     }
 
     @GetMapping("profile/{id}/reviews")

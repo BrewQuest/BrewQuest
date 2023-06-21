@@ -1,5 +1,4 @@
 body {
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -32,6 +31,9 @@ body {
     margin-right: 5px;
     cursor: pointer;
     border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .delete-btn {
@@ -43,4 +45,15 @@ body {
     font-size: 20px;
     color: gold;
     cursor: pointer;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #f2f2f2;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
 }

@@ -1,178 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Review Page</title>
+    <title>My Reviews</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-image: url("/img/bw-homepage.webp");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
         .review-card {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
-            background-color: rgba(112, 69, 46, 0.8);
-        }
-
-        .review-content {
-            margin-bottom: 10px;
-        }
-
-        .edit-btn,
-        .delete-btn {
-            background-color: burlywood;
-            color: #70452e;
-            border: none;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin-right: 5px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .delete-btn {
-            background-color: burlywood;
-        }
-
-        .star-rating {
-            display: inline-block;
-            font-size: 20px;
-            color: gold;
-            cursor: pointer;
         }
     </style>
-
-    <th:block th:replace="partials/Navbar :: styles"></th:block>
 </head>
 <body>
-<nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>Reviews</h1>
-<div id="review-container"></div>
+<h1>My Reviews</h1>
 
-<!-- Add review form -->
-<form id="review-form">
-    <textarea id="review-content" rows="4" cols="50" placeholder="Enter your review"></textarea>
-    <br>
-    <div class="star-rating-container">
-        <span class="star-rating" data-rating="1">&#9733;</span>
-        <span class="star-rating" data-rating="2">&#9733;</span>
-        <span class="star-rating" data-rating="3">&#9733;</span>
-        <span class="star-rating" data-rating="4">&#9733;</span>
-        <span class="star-rating" data-rating="5">&#9733;</span>
-    </div>
+<div th:if="${reviews.empty}">
+    <p>No reviews found.</p>
+</div>
 
-    <br>
-    <button type="submit">Add Review</button>
-</form>
+<div th:each="review : ${reviews}" class="review-card">
+    <h3>Rating: <span th:text="${review.rating}"></span></h3>
+    <p>Description: <span th:text="${review.description}"></span></p>
+    <p>Passengers: <span th:text="${review.passengers}"></span></p>
 
-<!-- JavaScript code -->
-<script>
-	// Handle review form submission
-	document.getElementById("review-form").addEventListener("submit", function(event) {
-		event.preventDefault(); // Prevent form submission
-
-		// Get the review content
-		var reviewContent = document.getElementById("review-content").value;
-
-		// Get the selected star rating
-		var selectedRating = document.querySelector(".star-rating.selected");
-		var rating = selectedRating ? parseInt(selectedRating.getAttribute("data-rating")) : 0;
-
-		// Create a new review card
-		var reviewCard = document.createElement("div");
-		reviewCard.className = "review-card";
-
-		// Create the review content paragraph
-		var reviewContentElement = document.createElement("p");
-		reviewContentElement.textContent = reviewContent;
-		reviewContentElement.className = "review-content";
-		reviewCard.appendChild(reviewContentElement);
-
-		// Create the star rating element
-		var starRatingElement = document.createElement("div");
-		starRatingElement.className = "star-rating-container";
-		for (var i = 1; i <= 5; i++) {
-			var star = document.createElement("span");
-			star.className = "star-rating" + (i <= rating ? " selected" : "");
-			star.setAttribute("data-rating", i);
-			star.innerHTML = "&#9733;";
-			starRatingElement.appendChild(star);
-		}
-		reviewCard.appendChild(starRatingElement);
-
-		// Create the edit button
-		var editButton = document.createElement("button");
-		editButton.textContent = "Edit";
-		editButton.className = "edit-btn";
-		reviewCard.appendChild(editButton);
-
-		// Create the delete button
-		var deleteButton = document.createElement("button");
-		deleteButton.textContent = "Delete";
-		deleteButton.className = "delete-btn";
-		reviewCard.appendChild(deleteButton);
-
-		// Add event listener for the edit button
-		editButton.addEventListener("click", function() {
-			// Enable editing of the review content
-			reviewContentElement.contentEditable = true;
-			reviewContentElement.focus();
-		});
-
-		// Add event listener for the delete button
-		deleteButton.addEventListener("click", function() {
-			// Handle the delete functionality here
-			console.log("Delete button clicked");
-			reviewCard.remove(); // Remove the review card from the DOM
-		});
-
-		// Add the review card to the review container
-		var reviewContainer = document.getElementById("review-container");
-		reviewContainer.appendChild(reviewCard);
-
-		// Reset the review form
-		document.getElementById("review-content").value = "";
-		resetStarRating();
-	});
-
-	// Handle star rating selection
-	var starRatingElements = document.querySelectorAll(".star-rating");
-	starRatingElements.forEach(function(star) {
-		star.addEventListener("click", function() {
-			var rating = parseInt(star.getAttribute("data-rating"));
-			selectStarRating(rating);
-		});
-	});
-
-	// Reset star rating selection
-	function resetStarRating() {
-		starRatingElements.forEach(function(star) {
-			star.classList.remove("selected");
-		});
-	}
-
-	// Select star rating
-	function selectStarRating(rating) {
-		resetStarRating();
-		for (var i = 0; i < starRatingElements.length; i++) {
-			if (i < rating) {
-				starRatingElements[i].classList.add("selected");
-			}
-		}
-	}
-</script>
-
-<th:block th:replace="partials/Navbar :: scripts"></th:block>
-
+    <form action="#" th:action="@{/review/{id}/edit(review.id)}" method="get">
+        <button type="submit">Edit</button>
+    </form>
+    <form action="#" th:action="@{/review/{id}/delete(review.id)}" method="post">
+        <button type="submit">Delete</button>
+    </form>
+</div>
 </body>
 </html>
