@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +23,10 @@ public class FriendsController {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
     }
-    @PostMapping("/addfriends")
+    @PostMapping("/addFriends")
     public String addFriend(Model model) {
         Long userId = (Long) model.getAttribute("userId");
-        User newAddfriend = usersDao.findById(userId).get();
+        User newAddFriend = usersDao.findById(userId).get();
 
         Friend newFriend = new Friend(gathering session user, newAddfriend);
         return
