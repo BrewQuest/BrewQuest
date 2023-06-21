@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/img/bw-homepage.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.review-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(112, 69, 46, 0.8);
+}
+
+.review-content {
+    margin-bottom: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: burlywood;
+    color: #70452e;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.delete-btn {
+    background-color: burlywood;
+}
+
+.star-rating {
+    display: inline-block;
+    font-size: 20px;
+    color: gold;
+    cursor: pointer;
+}
