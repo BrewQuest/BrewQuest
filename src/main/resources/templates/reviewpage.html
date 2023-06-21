@@ -6,18 +6,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            background-image: url("/img/bw-homepage.webp");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
+
         .review-card {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 10px;
+            background-color: rgba(112, 69, 46, 0.8);
         }
 
         .review-content {
             margin-bottom: 10px;
         }
 
-        .edit-btn, .delete-btn {
+        .edit-btn,
+        .delete-btn {
             background-color: burlywood;
             color: #70452e;
             border: none;
@@ -27,26 +35,122 @@
             display: inline-block;
             margin-right: 5px;
             cursor: pointer;
-            border-radius: 50%; /* Added property */
+            border-radius: 50%;
         }
 
         .delete-btn {
             background-color: burlywood;
         }
+
+        .star-rating {
+            display: inline-block;
+            font-size: 20px;
+            color: gold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <h1>My Reviews</h1>
-<div class="review-card">
-    <div class="review-content">
-        <p>This is the review content.</p>
-    </div>
-    <div class="btn-container">
-        <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-    </div>
-</div>
+<div id="review-container"></div>
 
-<!-- Add more review cards here -->
+<!-- Add review form -->
+<form id="review-form">
+    <textarea id="review-content" rows="4" cols="50" placeholder="Enter your review"></textarea>
+    <br>
+    <div class="star-rating-container">
+        <span class="star-rating" data-rating="1">&#9733;</span>
+        <span class="star-rating" data-rating="2">&#9733;</span>
+        <span class="star-rating" data-rating="3">&#9733;</span>
+        <span class="star-rating" data-rating="4">&#9733;</span>
+        <span class="star-rating" data-rating="5">&#9733;</span>
+    </div>
+
+    <br>
+    <button type="submit">Add Review</button>
+</form>
+
+<!-- JavaScript code -->
+<script>
+	// Handle review form submission
+	document.getElementById("review-form").addEventListener("submit", function(event) {
+		event.preventDefault(); // Prevent form submission
+
+		// Get the review content
+		var reviewContent = document.getElementById("review-content").value;
+
+		// Get the selected star rating
+		var selectedRating = document.querySelector(".star-rating.selected");
+		var rating = selectedRating ? parseInt(selectedRating.getAttribute("data-rating")) : 0;
+
+		// Create a new review card
+		var reviewCard = document.createElement("div");
+		reviewCard.className = "review-card";
+
+		// Create the review content paragraph
+		var reviewContentElement = document.createElement("p");
+		reviewContentElement.textContent = reviewContent;
+		reviewContentElement.className = "review-content";
+		reviewCard.appendChild(reviewContentElement);
+
+		// Create the star rating element
+		var starRatingElement = document.createElement("div");
+		starRatingElement.className = "star-rating-container";
+		for (var i = 1; i <= 5; i++) {
+			var star = document.createElement("span");
+			star.className = "star-rating" + (i <= rating ? " selected" : "");
+			star.setAttribute("data-rating", i);
+			star.innerHTML = "&#9733;";
+			starRatingElement.appendChild(star);
+		}
+		reviewCard.appendChild(starRatingElement);
+
+		// Create the edit button
+		var editButton = document.createElement("button");
+		editButton.textContent = "Edit";
+		editButton.className = "edit-btn";
+		reviewCard.appendChild(editButton);
+
+		// Create the delete button
+		var deleteButton = document.createElement("button");
+		deleteButton.textContent = "Delete";
+		deleteButton.className = "delete-btn";
+		reviewCard.appendChild(deleteButton);
+
+		// Add the review card to the review container
+		var reviewContainer = document.getElementById("review-container");
+		reviewContainer.appendChild(reviewCard);
+
+		// Reset the review form
+		document.getElementById("review-content").value = "";
+		resetStarRating();
+	});
+
+	// Handle star rating selection
+	var starRatingElements = document.querySelectorAll(".star-rating");
+	starRatingElements.forEach(function(star) {
+		star.addEventListener("click", function() {
+			var rating = parseInt(star.getAttribute("data-rating"));
+			selectStarRating(rating);
+		});
+	});
+
+	// Reset star rating selection
+	function resetStarRating() {
+		starRatingElements.forEach(function(star) {
+			star.classList.remove("selected");
+		});
+	}
+
+	// Select star rating
+	function selectStarRating(rating) {
+		resetStarRating();
+		for (var i = 0; i < starRatingElements.length; i++) {
+			if (i < rating) {
+				starRatingElements[i].classList.add("selected");
+			}
+		}
+	}
+</script>
 </body>
 </html>
