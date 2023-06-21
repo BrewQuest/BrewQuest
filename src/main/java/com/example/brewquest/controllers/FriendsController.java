@@ -23,7 +23,7 @@ public class FriendsController {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
     }
-<<<<<<< HEAD
+
 //    @PostMapping("/addfriends")
 //    public String addFriend(Model model) {
 //        Long userId = (Long) model.getAttribute("userId");
