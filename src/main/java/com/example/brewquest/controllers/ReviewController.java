@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class ReviewController {
     private final ReviewRepository reviewDaos;
@@ -20,13 +23,13 @@ public class ReviewController {
         this.reviewDaos = reviewDaos;
         this.usersDaos = usersDaos;
     }
-    @GetMapping("/create-review")
+    @GetMapping("/brewery/{id}/create-review")
     public String showCreateForm(Model model){
     model.addAttribute("review", new Review());
     return "/Reviews/Create-Review";
     }
-@PostMapping("/create-review")
-    public String CreateFormProcess(@ModelAttribute Review review){
+@PostMapping("/brewery/{id}/create-review")
+    public String CreateFormProcess(@PathVariable long id, @ModelAttribute Review review){
     User user = usersDaos.findById(1L).get();
     review.setUser(user);
     review.setBreweryId(review.getBreweryId());
@@ -35,7 +38,7 @@ public class ReviewController {
     review.setPassengers(review.getPassengers());
 
     reviewDaos.save(review);
-    return "redirect:/";
+    return "redirect:/brewery/" + id;
 }
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
@@ -59,5 +62,21 @@ public class ReviewController {
     public String deleteReview(@PathVariable("id") long id) {
         reviewDaos.deleteById(id);
         return "users/profile";
+    }
+
+    @GetMapping("profile/{id}/reviews")
+    public String viewReviews(@PathVariable long id, Model model) {
+        User user = usersDaos.findById(id).get();
+        Long userId = user.getId();
+        List<Review> reviews = reviewDaos.findAll();
+        List<Review> userReviews = new ArrayList<>();
+
+        for (Review review : reviews) {
+            if (review.getUser().getId().equals(userId)) {
+                userReviews.add(review);
+            }
+        }
+        model.addAttribute("reviews", userReviews);
+        return"reviewpage";
     }
 }
