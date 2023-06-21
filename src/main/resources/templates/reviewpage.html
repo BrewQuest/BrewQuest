@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="UTF-8"/>
+    <title>Review Page</title>
     <style>
         body {
             display: flex;
@@ -49,9 +51,12 @@
             cursor: pointer;
         }
     </style>
+
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
 </head>
 <body>
-<h1>My Reviews</h1>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
+<h1>Reviews</h1>
 <div id="review-container"></div>
 
 <!-- Add review form -->
@@ -117,6 +122,20 @@
 		deleteButton.className = "delete-btn";
 		reviewCard.appendChild(deleteButton);
 
+		// Add event listener for the edit button
+		editButton.addEventListener("click", function() {
+			// Enable editing of the review content
+			reviewContentElement.contentEditable = true;
+			reviewContentElement.focus();
+		});
+
+		// Add event listener for the delete button
+		deleteButton.addEventListener("click", function() {
+			// Handle the delete functionality here
+			console.log("Delete button clicked");
+			reviewCard.remove(); // Remove the review card from the DOM
+		});
+
 		// Add the review card to the review container
 		var reviewContainer = document.getElementById("review-container");
 		reviewContainer.appendChild(reviewCard);
@@ -152,5 +171,8 @@
 		}
 	}
 </script>
+
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
+
 </body>
 </html>
