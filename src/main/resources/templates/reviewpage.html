@@ -28,13 +28,16 @@
 
         .edit-btn,
         .delete-btn {
-            background-color: transparent;
+            background-color: burlywood;
             color: #70452e;
             border: none;
-            padding: 0;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
             margin-right: 5px;
             cursor: pointer;
-            text-decoration: underline;
+            border-radius: 50%;
         }
 
         .delete-btn {
@@ -45,6 +48,10 @@
             display: inline-block;
             font-size: 20px;
             color: gold;
+            cursor: default;
+        }
+
+        .star-rating.selectable {
             cursor: pointer;
         }
 
@@ -56,8 +63,7 @@
     <th:block th:replace="partials/Navbar :: styles"></th:block>
 </head>
 <body>
-<nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>Reviews</h1>
+<h1>My Reviews</h1>
 <div id="review-container"></div>
 
 <!-- Add review form -->
@@ -128,6 +134,15 @@
 			// Enable editing of the review content
 			reviewContentElement.contentEditable = true;
 			reviewContentElement.focus();
+
+			// Enable star rating selection
+			starRatingElements.forEach(function(star) {
+				star.addEventListener("click", function() {
+					var rating = parseInt(star.getAttribute("data-rating"));
+					selectStarRating(rating);
+				});
+				star.classList.add("selectable");
+			});
 		});
 
 		// Add event listener for the delete button
@@ -172,6 +187,7 @@
 		}
 	}
 </script>
+
 
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 

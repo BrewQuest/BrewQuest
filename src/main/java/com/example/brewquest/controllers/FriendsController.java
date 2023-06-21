@@ -18,14 +18,14 @@ public class FriendsController {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
     }
-    @PostMapping("/addfriends")
-    public String addFriend(Model model) {
-        Long userId = (Long) model.getAttribute("userId");
-        User newAddfriend = usersDao.findById(userId).get();
-
-        Friend newFriend = new Friend(gathering session user, newAddfriend);
-        return
-    }
+//    @PostMapping("/addfriends")
+//    public String addFriend(Model model) {
+//        Long userId = (Long) model.getAttribute("userId");
+//        User newAddfriend = usersDao.findById(userId).get();
+//
+//        Friend newFriend = new Friend(gathering session user, newAddfriend);
+//        return
+//    }
 
 
 }
