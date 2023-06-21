@@ -1,46 +1,59 @@
-/*body {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    background-image: url("/img/bw-homepage.webp");*/
-/*    background-size: cover;*/
-/*    background-position: center;*/
-/*    background-attachment: fixed;*/
-/*}*/
+body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("/img/bw-homepage.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 
-/*.review-card {*/
-/*    border: 1px solid #ccc;*/
-/*    padding: 10px;*/
-/*    margin-bottom: 10px;*/
-/*    background-color: rgba(112, 69, 46, 0.8);*/
-/*}*/
+.review-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(112, 69, 46, 0.8);
+}
 
-/*.review-content {*/
-/*    margin-bottom: 10px;*/
-/*}*/
+.review-content {
+    margin-bottom: 10px;
+}
 
-/*.edit-btn,*/
-/*.delete-btn {*/
-/*    background-color: burlywood;*/
-/*    color: #70452e;*/
-/*    border: none;*/
-/*    padding: 5px 10px;*/
-/*    text-align: center;*/
-/*    text-decoration: none;*/
-/*    display: inline-block;*/
-/*    margin-right: 5px;*/
-/*    cursor: pointer;*/
-/*    border-radius: 50%;*/
-/*}*/
+.edit-btn,
+.delete-btn {
+    background-color: burlywood;
+    color: #70452e;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
 
-/*.delete-btn {*/
-/*    background-color: burlywood;*/
-/*}*/
+.delete-btn {
+    background-color: burlywood;
+}
 
-/*.star-rating {*/
-/*    display: inline-block;*/
-/*    font-size: 20px;*/
-/*    color: gold;*/
-/*    cursor: pointer;*/
-/*}*/
+.star-rating {
+    display: inline-block;
+    font-size: 20px;
+    color: gold;
+    cursor: pointer;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #f2f2f2;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
