@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,7 +27,7 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light" style="background-color: black">
-    <a class="navbar-brand" href="#"style="color: burlywood">BREWQUEST</a>
+    <a class="navbar-brand" href="/home"style="color: burlywood">BREWQUEST</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,23 +35,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: burlywood">Home</a>
+                <a class="nav-link" href="/aboutus"style="color: burlywood">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"style="color: burlywood">About</a>
+                <a class="nav-link" href="/leaderboard"style="color: burlywood">Leaderboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"style="color: burlywood">Leaderboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"style="color: burlywood">Search</a>
+                <a class="nav-link" href="/search"style="color: burlywood">Search</a>
             </li>
         </ul>
     </div>
     <div class="nav-right">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#"style="color: burlywood">Login/Signup</a>
+            <li th:if="!${#authentication.principal.id}"class="nav-item">
+                <a class="nav-link" href="login"style="color: burlywood">Login/Signup</a>
+            </li>
+            <li>
+            <form th:if="${#authentication.principal.id}"th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
             </li>
         </ul>
     </div>

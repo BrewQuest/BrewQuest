@@ -32,10 +32,10 @@ public class ReviewController {
     public String CreateFormProcess(@PathVariable long id, @ModelAttribute Review review){
     User user = usersDaos.findById(1L).get();
     review.setUser(user);
-    review.setBreweryId(review.getBreweryId());
     review.setRating(review.getRating());
     review.setDescription(review.getDescription());
     review.setPassengers(review.getPassengers());
+    review.setBreweryId((int) id);
 
     reviewDaos.save(review);
     return "redirect:/brewery/" + id;

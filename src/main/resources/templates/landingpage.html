@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Landing Page</title>
+  <th:block th:replace="partials/header :: font"></th:block>
  <link rel="stylesheet" th:href="@{/css/landing.css}" type="text/css">
 </head>
 <body>
 <div class="card">
   <h1><span class="white-text">ARE YOU</span> <span class="red-text">21?</span></h1>
   <br>
-  <button class="white-button">YES</button><br><button class="red-button">NO</button>
+  <a href="/home"><button class="white-button">YES</button></a><br>
+  <a href="https://www.liquor.com/best-nonalcoholic-beers-5078321"><button class="red-button">NO</button></a>
 </div>
 <div id="breweries"></div>
 </body>
