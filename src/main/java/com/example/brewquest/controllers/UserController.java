@@ -37,7 +37,7 @@ public class UserController {
         return "users/sign-up";
     }
 
-    @GetMapping("/about-us")
+    @GetMapping("/aboutus")
     public String aboutUs() {
         return "aboutUs";
     }
