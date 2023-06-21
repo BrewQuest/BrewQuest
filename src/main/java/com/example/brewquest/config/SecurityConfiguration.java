@@ -38,16 +38,10 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests((requests) -> requests
                         /* Pages that require authentication
                          * only authenticated users can create and edit ads */
-                        .requestMatchers("/reviews/create", "/reviews/*/edit", "/reviews/*/delete", "/profile/*", "/profile/*/edit", "/profile/*/delete").authenticated()
+                        .requestMatchers("/review/*/edit", "/review/*/delete", "/profile/*/edit", "/profile/*/delete", "profile/*/reviews","/brewery/*/create-review", "/driver/*/edit", "/driver/*/delete", "/addFriends", "/profile/*/friends", "/signup-driver").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
-
-                        
-
-
-                        .requestMatchers("/", "/posts", "/posts/*", "/sign-up", "/login", "profile/*", "profile/*/edit", "/signup-driver", "/driver/*/edit", "/driver/*/delete", "/reviews/*", "/home", "/leaderboard", "brewery/*","/create-review", "/search").permitAll()
-
-
+                        .requestMatchers("/", "/sign-up", "/login", "profile/*", "/home", "/leaderboard", "brewery/*", "/search").permitAll()
 
          // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
