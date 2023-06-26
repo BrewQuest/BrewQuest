@@ -5,10 +5,9 @@
     <title>Create Review</title>
 </head>
 <body>
-<h1>Create Review</h1>
-
+<h1>Edit Review</h1>
 <div id="review-form">
-    <form method="post" th:action="@{/reviews}" th:object="${review}">
+    <form method="post" th:action="@{/review/{id}/edit(id=${review.user.id})}" th:method="post" th:object="${review}">
         <input type="hidden" th:field="*{breweryId}">
 
         <label for="rating">Rating:</label>
