@@ -11,16 +11,16 @@
     position: absolute;
     left: 0;
     top: 0;
-    animation: primary 10s linear infinite;
+    animation: primary 20s linear infinite;
     margin-top: 5%;
 }
 
 .primary {
-    animation: primary 10s linear infinite;
+    animation: primary 20s linear infinite;
 }
 
 .secondary {
-    animation: secondary 10s linear infinite;
+    animation: secondary 20s linear infinite;
 }
 
 @keyframes primary {
@@ -111,11 +111,22 @@ body {
     padding-left: 0;
     margin-left: 0;
 }
+body {
+    font-family: 'Rubik Dirt', cursive;
+}
 
 /* Mobile responsive styles */
 @media screen and (max-width: 768px) {
     #scroll-parent {
         width: 100vw;
+    }
+
+    .primary {
+        animation: primary 10s linear infinite;
+    }
+
+    .secondary {
+        animation: secondary 10s linear infinite;
     }
 
     .scroll-element {
@@ -148,4 +159,5 @@ body {
         border-left: 0;
         border-right: 0;
     }
+
 }

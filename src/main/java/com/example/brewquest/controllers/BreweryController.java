@@ -101,6 +101,6 @@ public class BreweryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "landingpage";
+        return "brewery";
     }
 }
