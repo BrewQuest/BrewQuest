@@ -2,32 +2,48 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Review</title>
+    <title>Edit Review</title>
+    <link rel="stylesheet" th:href="@{/css/editreview.css}" type="text/css">
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+</head>
 </head>
 <body>
-<h1>Create Review</h1>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
+<div id="card-container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Edit Review</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" th:action="@{/review/{id}/edit(id=${review.user.id})}" th:method="post" th:object="${review}">
+                <input type="hidden" th:field="*{breweryId}">
 
-<div id="review-form">
-    <form method="post" th:action="@{/reviews}" th:object="${review}">
-        <input type="hidden" th:field="*{breweryId}">
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating" th:field="*{rating}">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
 
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating" th:field="*{rating}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select><br><br>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" th:field="*{description}"></textarea>
+                </div>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" th:field="*{description}"></textarea><br><br>
+                <div class="form-group">
+                    <label for="passengers">Number of Passengers:</label>
+                    <input type="number" id="passengers" name="passengers" min="0" th:field="*{passengers}">
+                </div>
 
-        <label for="passengers">Number of Passengers:</label>
-        <input type="number" id="passengers" name="passengers" min="0" th:field="*{passengers}"><br><br>
-
-        <input type="submit" value="Submit Review">
-    </form>
+                <input type="submit" value="Submit Review">
+            </form>
+        </div>
+    </div>
 </div>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>

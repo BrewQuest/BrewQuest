@@ -43,8 +43,8 @@ public class ReviewController {
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
         if (reviewDaos.findById(id).isPresent()) {
-            Review reviewToEdit = reviewDaos.findById(id).get();
-            model.addAttribute("driver", reviewToEdit);
+            Review review = reviewDaos.findById(id).get();
+            model.addAttribute("review", review);
         }
         String reviewDescription= reviewDaos.findById(id).get().getDescription();
         model.addAttribute("description", reviewDescription);

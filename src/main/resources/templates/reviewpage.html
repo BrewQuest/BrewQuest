@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<<<<<<< HEAD
     <title>My Reviews</title>
-=======
     <meta charset="UTF-8"/>
     <title>Review Page</title>
     <th:block th:replace="partials/header :: font"></th:block>
->>>>>>> 4e3586c (updating href for nav)
+
     <style>
         .review-card {
             border: 1px solid #ccc;
@@ -15,25 +13,31 @@
             margin-bottom: 10px;
         }
     </style>
+    <link rel="stylesheet" th:href="@{/css/reviewpage.css}" type="text/css">
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
 </head>
 <body>
-<h1>My Reviews</h1>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
+<h1 style="color: #ffffff">My Reviews</h1>
 
 <div th:if="${reviews.empty}">
     <p>No reviews found.</p>
 </div>
-
+<div class="button-containerb">
 <div th:each="review : ${reviews}" class="review-card">
     <h3>Rating: <span th:text="${review.rating}"></span></h3>
     <p>Description: <span th:text="${review.description}"></span></p>
     <p>Passengers: <span th:text="${review.passengers}"></span></p>
 
-    <form action="#" th:action="@{/review/{id}/edit(review.id)}" method="get">
-        <button type="submit">Edit</button>
+    <form th:action="@{/review/{id}/edit(id=${review.id})}" method="get">
+        <button class="edit-btn" type="submit">Edit</button>
+        <input type="hidden" name="reviewId" th:value="${review.id}" />
     </form>
-    <form action="#" th:action="@{/review/{id}/delete(review.id)}" method="post">
-        <button type="submit">Delete</button>
+    <form action="#" th:action="@{/review/{id}/delete(id=${review.id})}" method="post">
+        <button class="delete-btn" type="submit">Delete</button>
     </form>
 </div>
+</div>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
