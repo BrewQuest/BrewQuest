@@ -51,7 +51,6 @@ public class BreweryController {
             String breweryCity = null;
             String breweryZipcode = null;
             String breweryCountry = null;
-            String breweryWebsite = null;
 
 
 
@@ -76,7 +75,6 @@ public class BreweryController {
                         breweryState = jsonObject.getString("state_province");
                         breweryCity = jsonObject.getString("city");
                         breweryStreet = jsonObject.getString("street");
-                        breweryWebsite = jsonObject.getString("website_url");
                         breweryCountry = jsonObject.getString("country");
                         breweryZipcode = jsonObject.getString("postal_code");
 
@@ -87,7 +85,6 @@ public class BreweryController {
                         model.addAttribute("city",breweryCity);
                         model.addAttribute("zipcode",breweryZipcode);
                         model.addAttribute("country",breweryCountry);
-                        model.addAttribute("website",breweryWebsite);
                     } else {
                         System.out.println("No data found.");
                     }

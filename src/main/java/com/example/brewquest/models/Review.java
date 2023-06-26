@@ -26,13 +26,12 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private int breweryId;
+    private String breweryId;
     @Column(nullable = false)
     private int rating;
     @Column(columnDefinition = "text")
     private String description;
-    @Column(nullable = false, columnDefinition = "timestamp default current_timestamp")
-    private LocalDateTime date;
+
     @Column
     private int passengers;
 

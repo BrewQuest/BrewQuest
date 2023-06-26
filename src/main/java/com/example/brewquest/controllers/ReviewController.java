@@ -4,6 +4,7 @@ import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.ReviewRepository;
 import com.example.brewquest.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +25,22 @@ public class ReviewController {
         this.reviewDaos = reviewDaos;
         this.usersDaos = usersDaos;
     }
+    // using string of id due to API "id"
     @GetMapping("/brewery/{id}/create-review")
-    public String showCreateForm(Model model){
+    public String showCreateForm(@PathVariable String id, Model model){
+        model.addAttribute("breweryId", id);
     model.addAttribute("review", new Review());
     return "/Reviews/Create-Review";
     }
+    // using string of id due to API "id"
 @PostMapping("/brewery/{id}/create-review")
-    public String CreateFormProcess(@PathVariable long id, @ModelAttribute Review review){
-    User user = usersDaos.findById(1L).get();
+    public String CreateFormProcess(@PathVariable String id, @ModelAttribute Review review){
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     review.setUser(user);
     review.setRating(review.getRating());
     review.setDescription(review.getDescription());
     review.setPassengers(review.getPassengers());
-    review.setBreweryId((int) id);
+    review.setBreweryId(id);
 
     reviewDaos.save(review);
     return "redirect:/brewery/" + id;

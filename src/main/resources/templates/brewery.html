@@ -14,18 +14,28 @@
 
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <style>
-        #map {
-            height: 500px;
-            width: 500px;
+        #mapContainer {
+            height: 100vh;
+            width: 75%;
         }
+        #map {
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+        }
+
+
     </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1><span th:text="${name}"></span></h1>
-<th:block id="city" th:value="${city}"></th:block>
 
-<div id='map'></div>
+<h1><span th:text="${name}"></span></h1>
+<input type="hidden" id="city" th:value="${city}"/>
+<div id="mapContainer">
+    <div id='map'></div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
@@ -46,7 +56,7 @@
     geocode(city, MAPBOX_TOKEN).then(function(result) {
         console.log
         $('#weather').empty();
-        map.flyTo({
+        map.jumpTo({
             center: [result[0], result[1]],
             essential: true,
         });
