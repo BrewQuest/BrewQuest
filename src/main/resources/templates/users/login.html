@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
     <style>
         body {
             background-image: url("/img/review-img.jpeg");
             background-size: cover;
             background-repeat: no-repeat;
             text-align: center;
+            font-family: 'Rubik Dirt', cursive;
+            color: burlywood;
         }
     </style>
+    <th:block th:replace="partials/header :: font"></th:block>
 </head>
 <body>
+
     <h1>BrewQuest</h1>
 
     <form th:action="@{/login}" method="post">

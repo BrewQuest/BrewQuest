@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/review/*/edit", "/review/*/delete", "/profile/*/edit", "/profile/*/delete", "profile/*/reviews","/brewery/*/create-review", "/driver/*/edit", "/driver/*/delete", "/addFriends", "/profile/*/friends", "/signup-driver").authenticated()
                         /* Pages that do not require authentication
                          * anyone can visit the home page, register, login, and view ads */
-                        .requestMatchers("/", "/sign-up", "/login", "profile/*", "/home", "/leaderboard", "brewery/*", "/search").permitAll()
+                        .requestMatchers("/", "/sign-up", "/login", "profile/*", "/home", "/leaderboard", "brewery/*", "/search", "/aboutus").permitAll()
 
          // allow loading of static resources
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()

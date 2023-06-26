@@ -1,7 +1,12 @@
 package com.example.brewquest.controllers;
 
+import com.example.brewquest.models.User;
+import com.example.brewquest.repositories.Driver_repository;
+import com.example.brewquest.repositories.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +21,18 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+    private final UserRepository userDao;
+    private final PasswordEncoder passwordEncoder;
+
+    private final Driver_repository driverDao;
+
+    public HomeController(UserRepository userDao, PasswordEncoder passwordEncoder, Driver_repository driverDao) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.driverDao = driverDao;
+    }
+
+
     @GetMapping("/")
     public String home() {
         return "landingpage";
@@ -23,6 +40,7 @@ public class HomeController {
 
     @GetMapping("/home")
         public String homePage(Model model){
+
         try {
             // Create the URL object with the API endpoint
             URL url = new URL("https://api.openbrewerydb.org/v1/breweries/random?size=10");
