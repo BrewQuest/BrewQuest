@@ -1,4 +1,7 @@
+/* Global styles */
 body {
+    margin: 0;
+    padding: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -8,11 +11,44 @@ body {
     background-attachment: fixed;
 }
 
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p {
+    margin: 0;
+}
+
+/* Review card styles */
 .review-card {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
     background-color: rgba(112, 69, 46, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.review-card h3 {
+    font-size: 18px;
+    color: white;
+}
+
+.review-card p {
+    margin-top: 5px;
+    color: white;
+}
+
+.review-card button {
+    margin-top: 10px;
 }
 
 .review-content {
@@ -21,39 +57,35 @@ body {
 
 .edit-btn,
 .delete-btn {
-    background-color: burlywood;
+    background-color: burlywood !important;
     color: #70452e;
     border: none;
-    padding: 5px 10px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 5px;
     cursor: pointer;
     border-radius: 50%;
-    width: 30px;
+    width: 50px;
     height: 30px;
     line-height: 30px;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
-.delete-btn {
-    background-color: burlywood;
+/* Media queries */
+@media only screen and (max-width: 600px) {
+    .review-card {
+        max-width: 90%; /* Adjust as needed */
+    }
 }
 
-.star-rating {
-    display: inline-block;
-    font-size: 20px;
-    color: gold;
-    cursor: pointer;
-}
-h1 {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    color: #f2f2f2;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+@media only screen and (max-width: 400px) {
+    .review-card {
+        max-width: 80%; /* Adjust as needed */
+    }
 }
