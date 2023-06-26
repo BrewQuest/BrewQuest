@@ -23,8 +23,41 @@ public class FriendsController {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
     }
+    @GetMapping
+    public String getFriends(Model model) {
+        List<Friend> friends = friendsDao.findAll();
+        model.addAttribute("friends", friends);
+        return "friend";
+    }
 
-//    @PostMapping("/addfriends")
+    @GetMapping("addFriend")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @PostMapping("/addFriends")
 //    public String addFriend(Model model) {
 //        Long userId = (Long) model.getAttribute("userId");
 //        User newAddfriend = usersDao.findById(userId).get();
@@ -34,21 +67,21 @@ public class FriendsController {
 //    }
 
 
-    @GetMapping("/profile/{id}/friends")
-    public String viewFriends(@PathVariable long id, Model model) {
-        User user = usersDao.findById(id).get();
-        Long userId = user.getId();
-        List<Friend> friends = friendsDao.findAll();
-        List<Friend> userFriends = new ArrayList<>();
-
-        for (Friend friend : friends) {
-            if (friend.getUser().getId().equals(userId)) {
-                userFriends.add(friend);
-            }
-        }
-        model.addAttribute("friends", userFriends);
-        return "users/friends";
-    }
+//    @GetMapping("/profile/{id}/friends")
+//    public String viewFriends(@PathVariable long id, Model model) {
+//        User user = usersDao.findById(id).get();
+//        Long userId = user.getId();
+//        List<Friend> friends = friendsDao.findAll();
+//        List<Friend> userFriends = new ArrayList<>();
+//
+//        for (Friend friend : friends) {
+//            if (friend.getUser().getId().equals(userId)) {
+//                userFriends.add(friend);
+//            }
+//        }
+//        model.addAttribute("friends", userFriends);
+//        return "users/friends";
+//    }
 
 
 }
