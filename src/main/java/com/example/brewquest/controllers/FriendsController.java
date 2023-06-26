@@ -1,7 +1,6 @@
 package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.Friend;
-import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.FriendsRepository;
 import com.example.brewquest.repositories.UserRepository;
@@ -23,65 +22,42 @@ public class FriendsController {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
     }
-    @GetMapping
+
+    @GetMapping("/friends")
     public String getFriends(Model model) {
         List<Friend> friends = friendsDao.findAll();
         model.addAttribute("friends", friends);
-        return "friend";
+        return "friends";
     }
 
-    @GetMapping("addFriend")
+    @GetMapping("/addFriend")
+    public String showAddFriendsForm(Model model) {
+        model.addAttribute("friend", new Friend());
+        return "addFriend";
+    }
 
+    @PostMapping("/addFriend")
+    public String addFriend(Friend friend) {
+        friendsDao.save(friend);
+        return "redirect:/friends";
+    }
 
+    @GetMapping("/profile/{id}/friends")
+    public String viewFriends(@PathVariable long id, Model model) {
+        User user = usersDao.findById(id).orElse(null);
+        if (user == null) {
+            return "error";
+        }
 
+        List<Friend> friends = friendsDao.findAll();
+        List<Friend> userFriends = new ArrayList<>();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    @PostMapping("/addFriends")
-//    public String addFriend(Model model) {
-//        Long userId = (Long) model.getAttribute("userId");
-//        User newAddfriend = usersDao.findById(userId).get();
-//
-//        Friend newFriend = new Friend(gathering session user, newAddfriend);
-//        return
-//    }
-
-
-//    @GetMapping("/profile/{id}/friends")
-//    public String viewFriends(@PathVariable long id, Model model) {
-//        User user = usersDao.findById(id).get();
-//        Long userId = user.getId();
-//        List<Friend> friends = friendsDao.findAll();
-//        List<Friend> userFriends = new ArrayList<>();
-//
-//        for (Friend friend : friends) {
-//            if (friend.getUser().getId().equals(userId)) {
-//                userFriends.add(friend);
-//            }
-//        }
-//        model.addAttribute("friends", userFriends);
-//        return "users/friends";
-//    }
-
-
+        for (Friend friend : friends) {
+            if (friend.getUser().getId().equals(id)) {
+                userFriends.add(friend);
+            }
+        }
+        model.addAttribute("friends", userFriends);
+        return "users/friends";
+    }
 }
