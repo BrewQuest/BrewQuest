@@ -39,7 +39,7 @@ public class FriendsController {
     @PostMapping("/addFriend")
     public String addFriend(Friend friend) {
         friendsDao.save(friend);
-        return "redirect:/friends";
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile/{id}/friends")
@@ -58,6 +58,12 @@ public class FriendsController {
             }
         }
         model.addAttribute("friends", userFriends);
-        return "users/friends";
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/deleteFriend/{id}")
+    public String deleteFriend(@PathVariable long id) {
+        friendsDao.deleteById(id);
+        return "redirect:/profile";
     }
 }
