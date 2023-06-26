@@ -82,7 +82,7 @@ public class UserController {
         editUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userDao.save(editUser);
-        return "redirect:/profile/1";
+        return "redirect:/profile/" + id;
     }
 
     @PostMapping("/profile/{id}/delete")

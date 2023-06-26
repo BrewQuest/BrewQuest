@@ -8,8 +8,7 @@
 <h1>Create Review</h1>
 
 <div id="review-form">
-    <form method="post" th:action="@{/review/{id}/edit(id=${review.getBreweryId()+1})}" th:object="${review}">
-        <input type="hidden" th:field="*{breweryId}">
+    <form method="post" th:action="@{/brewery/{id}/create-review(id=${breweryId})}" th:object="${review}">
 
         <label for="rating">Rating:</label>
         <select id="rating" name="rating" th:field="*{rating}">
