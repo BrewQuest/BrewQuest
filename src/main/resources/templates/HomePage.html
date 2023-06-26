@@ -19,13 +19,15 @@
 
         <div class="col scroll-element primary">
             <th:block th:each="brewery :${breweries}">
-                <div class="card">
+                <a th:href="@{/brewery/{id}(id=${brewery.id})}">
+                    <div class="card">
                     <h3 th:text="${brewery.name}"></h3>
                     <p th:text="${brewery.street}"></p>
                     <p th:text="${brewery.city}"></p>
                     <p th:text="${brewery.state}"></p>
                     <a th:href="${brewery.website_url}"><p th:text="${brewery.website_url}"></p></a>
-                </div>
+                    </div>
+                </a>
             </th:block>
         </div>
 
