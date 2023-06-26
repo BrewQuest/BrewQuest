@@ -47,11 +47,11 @@
     </div>
     <div class="nav-right">
         <ul class="navbar-nav">
-            <li th:if="!${#authentication.principal.id}"class="nav-item">
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" href="login"style="color: burlywood">Login/Signup</a>
             </li>
             <li>
-            <form th:if="${#authentication.principal.id}"th:action="@{/logout}" th:method="post">
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
                 <button class="btn-link btn" style="margin-top: 8px">Logout</button>
             </form>
             </li>
