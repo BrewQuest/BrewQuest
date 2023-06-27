@@ -75,11 +75,12 @@ public class ReviewController {
         editReview.setPassengers(review.getPassengers());
         reviewDaos.save(editReview);
         return "/profile/" + user.getId() + "/reviews";
+
 }
     @PostMapping("/review/{id}/delete")
     public String deleteReview(@PathVariable("id") long id) {
         reviewDaos.deleteById(id);
-        return "redirect:/profile/" + id + "/reviews";
+        return "redirect:/profile/" + reviewDaos.findById(id).get().getUser().getId() + "/reviews";
     }
 
     @GetMapping("profile/{id}/reviews")
