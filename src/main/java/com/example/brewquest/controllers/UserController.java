@@ -5,10 +5,12 @@ import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.Driver_repository;
 import com.example.brewquest.repositories.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,12 +44,28 @@ public class UserController {
         return "aboutUs";
     }
 
+//    @PostMapping("/sign-up")
+//    public String saveUser(@ModelAttribute User user){
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        user.setPassword(hash);
+//        userDao.save(user);
+//        return "redirect:/login";
+//    }
+
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
+    public String signUp(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "users/sign-up";
+        } else {
+            String hash = passwordEncoder.encode(user.getPassword());
+            user.setPassword(hash);
+            userDao.save(user);
+            return "redirect:/login";
+        }
+
+        // Save the user and perform further processing
+        // ...
+
     }
 
     @GetMapping("/profile/{id}")
