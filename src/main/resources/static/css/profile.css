@@ -1,3 +1,58 @@
-body{
+/* Add your custom styles here */
+body {
     font-family: 'Rubik Dirt', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+button:hover, a:hover {
+    background-color: #666;
+}
+
+/* Additional styles for favorites and wishlist */
+.favorites-section {
+    margin-top: 20px;
+}
+
+.wishlist-section {
+    margin-top: 20px;
+}
+
+.upload-section {
+    margin-top: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 20px;
 }

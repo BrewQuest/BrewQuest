@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>profile</title>
+    <title>Profile</title>
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
@@ -13,8 +13,27 @@
 <form th:if="${#authentication.principal.id == user.getId()}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
     <button type="submit">Edit Profile</button>
 </form>
+<div class="favorites-section">
+    <h3>Favorites</h3>
+    <!-- Add your favorites functionality here -->
+    <!-- Example: Display a list of favorite items -->
+    <ul>
+        <li>Favorite item 1</li>
+        <li>Favorite item 2</li>
+        <li>Favorite item 3</li>
+    </ul>
+</div>
+<div class="wishlist-section">
+    <h3>Wishlist</h3>
+    <!-- Add your wishlist functionality here -->
+    <!-- Example: Display a list of wishlist items -->
+    <ul>
+        <li>Wishlist item 1</li>
+        <li>Wishlist item 2</li>
+        <li>Wishlist item 3</li>
+    </ul>
+</div>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
-
 </body>
 </html>
