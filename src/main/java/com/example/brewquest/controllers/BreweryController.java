@@ -1,14 +1,21 @@
 package com.example.brewquest.controllers;
 
+import com.example.brewquest.models.Favorite;
+import com.example.brewquest.models.User;
+import com.example.brewquest.models.Wishlist;
+import com.example.brewquest.repositories.FavoriteRepository;
 import com.example.brewquest.repositories.UserRepository;
+import com.example.brewquest.repositories.WishlistRepository;
 import com.mysql.cj.xdevapi.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,9 +31,36 @@ public class BreweryController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
-    public BreweryController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    private final FavoriteRepository favoriteDao;
+    private final WishlistRepository wishlistDao;
+
+    public BreweryController(UserRepository userDao, PasswordEncoder passwordEncoder, FavoriteRepository favoriteDao, WishlistRepository wishlistDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.favoriteDao = favoriteDao;
+        this.wishlistDao = wishlistDao;
+    }
+    //save brewery to users wishlist
+    @PostMapping("/brewery/{id}/wishlist")
+    public String saveBrewery(@PathVariable String id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Wishlist wishlist = new Wishlist();
+        wishlist.setUser(user);
+        wishlist.setBreweryId(id);
+        wishlistDao.save(wishlist);
+        return "redirect:/brewery/" + id;
+    }
+
+    //save brewery to users favorites
+    @PostMapping("/brewery/{id}/favorite")
+    public String favBrewery(@PathVariable String id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Favorite favorite = new Favorite();
+        favorite.setUser(user);
+        favorite.setBreweryId(id);
+        favoriteDao.save(favorite);
+        return "redirect:/brewery/" + id;
+
     }
 
     @GetMapping("/brewery/{id}")
@@ -51,6 +85,8 @@ public class BreweryController {
             String breweryCity = null;
             String breweryZipcode = null;
             String breweryCountry = null;
+            String breweryId = null;
+            String breweryWebsite = null;
 
 
 
@@ -77,6 +113,8 @@ public class BreweryController {
                         breweryStreet = jsonObject.getString("street");
                         breweryCountry = jsonObject.getString("country");
                         breweryZipcode = jsonObject.getString("postal_code");
+                        breweryId = jsonObject.getString("id");
+                        breweryWebsite = jsonObject.getString("website_url");
 
 
                         model.addAttribute("name", breweryName);
@@ -85,6 +123,8 @@ public class BreweryController {
                         model.addAttribute("city",breweryCity);
                         model.addAttribute("zipcode",breweryZipcode);
                         model.addAttribute("country",breweryCountry);
+                        model.addAttribute("website",breweryWebsite);
+                        model.addAttribute("id",breweryId);
                     } else {
                         System.out.println("No data found.");
                     }

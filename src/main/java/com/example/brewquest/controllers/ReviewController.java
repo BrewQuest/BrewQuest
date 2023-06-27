@@ -2,6 +2,7 @@ package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
+import com.example.brewquest.repositories.Driver_repository;
 import com.example.brewquest.repositories.ReviewRepository;
 import com.example.brewquest.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +19,12 @@ public class ReviewController {
     private final ReviewRepository reviewDaos;
     private final UserRepository usersDaos;
 
-    public ReviewController(ReviewRepository reviewDaos, UserRepository usersDaos) {
+    private final Driver_repository driverDao;
+
+    public ReviewController(ReviewRepository reviewDaos, UserRepository usersDaos, Driver_repository driverDao) {
         this.reviewDaos = reviewDaos;
         this.usersDaos = usersDaos;
+        this.driverDao = driverDao;
     }
     // using string of id due to API "id"
     @GetMapping("/brewery/{id}/create-review")
@@ -46,6 +50,9 @@ public class ReviewController {
         newReview.setBreweryId(review.getBreweryId());
         System.out.println("New Review Object: " + newReview.getBreweryId());
         reviewDaos.save(newReview);
+        user.setTotalBreweries(user.getTotalBreweries());
+        usersDaos.save(user);
+
         return "redirect:/brewery/" + newReview.getBreweryId();
     }
 @GetMapping("/review/{id}/edit")
@@ -61,12 +68,13 @@ public class ReviewController {
 @PostMapping("/review/{id}/edit")
     public String updateReview(@PathVariable long id, @ModelAttribute Review review){
         User user = usersDaos.findById(id).get();
-        review.setUser(user);
-        review.setBreweryId(review.getBreweryId());
-        review.setRating(review.getRating());
-        review.setDescription(review.getDescription());
-        review.setPassengers(review.getPassengers());
-        return "/";
+        Review editReview = reviewDaos.findById(id).get();
+        editReview.setBreweryId(review.getBreweryId());
+        editReview.setRating(review.getRating());
+        editReview.setDescription(review.getDescription());
+        editReview.setPassengers(review.getPassengers());
+        reviewDaos.save(editReview);
+        return "/profile/" + user.getId() + "/reviews";
 }
     @PostMapping("/review/{id}/delete")
     public String deleteReview(@PathVariable("id") long id) {
