@@ -11,25 +11,25 @@
 <body>
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="firstName">First Name</label>
+    <label for="firstName" style="color: #D9740F">First Name</label>
     <input id="firstName" th:field="*{firstName}">
 
-    <label for="lastName">Last Name</label>
+    <label for="lastName" style="color: #D9740F">Last Name</label>
     <input id="lastName" th:field="*{lastName}">
 
-    <label for="birthDate">BirthDate</label>
+    <label for="birthDate" style="color: #D9740F">BirthDate</label>
     <input id="birthDate" th:field="*{birthDate}" />
 
-    <label for="email">Email</label>
+    <label for="email" style="color: #D9740F">Email</label>
     <input id="email" th:field="*{email}" />
 
-    <label for="zipcode">Zipcode</label>
+    <label for="zipcode" style="color: #D9740F">Zipcode</label>
     <input id="zipcode" th:field="*{zipcode}"/>
 
-    <label for="username">Username</label>
+    <label for="username" style="color: #D9740F">Username</label>
     <input id="username" th:field="*{username}" />
 
-    <label for="password">Password</label>
+    <label for="password" style="color: #D9740F">Password</label>
     <input id="password" type="password" th:field="*{password}" />
     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 

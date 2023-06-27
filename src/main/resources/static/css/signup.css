@@ -1,5 +1,10 @@
 body {
-    font-family: Arial, sans-serif;
+    background-image: url("/img/review-img.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-family: 'Rubik Dirt', cursive;
+    color: burlywood;
     margin: 0;
     padding: 0;
 }
@@ -42,4 +47,28 @@ input[type="submit"] {
 
 span {
     color: red;
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+    }
+
+    form {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-size: 400px 915px;
+    }
+
+    form {
+        width: 80%;
+        max-width: 300px;
+    }
 }

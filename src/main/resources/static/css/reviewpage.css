@@ -1,4 +1,7 @@
 /* Global styles */
+html{
+    font-family: 'Rubik Dirt', cursive;
+}
 body {
     margin: 0;
     padding: 0;
@@ -9,6 +12,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+
 }
 
 h1 {

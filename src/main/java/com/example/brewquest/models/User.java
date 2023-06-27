@@ -65,5 +65,7 @@ public class User {
         email = copy.email;
         password = copy.password;
         totalBreweries = copy.totalBreweries;
+
     }
+
 }
