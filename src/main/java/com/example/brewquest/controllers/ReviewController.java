@@ -60,18 +60,17 @@ public class ReviewController {
 }
 @PostMapping("/review/{id}/edit")
     public String updateReview(@PathVariable long id, @ModelAttribute Review review){
-        User user = usersDaos.findById(id).get();
-        review.setUser(user);
-        review.setBreweryId(review.getBreweryId());
-        review.setRating(review.getRating());
-        review.setDescription(review.getDescription());
-        review.setPassengers(review.getPassengers());
-        return "/";
+    Review reviewToEdit = reviewDaos.findById(id).get();
+    reviewToEdit.setRating(review.getRating());
+    reviewToEdit.setDescription(review.getDescription());
+    reviewToEdit.setPassengers(review.getPassengers());
+        reviewDaos.save(reviewToEdit);
+        return "redirect:/profile/" + review.getUser().getId() + "/reviews";
 }
     @PostMapping("/review/{id}/delete")
     public String deleteReview(@PathVariable("id") long id) {
         reviewDaos.deleteById(id);
-        return "redirect:/profile/" + id + "/reviews";
+        return "redirect:/profile/" + reviewDaos.findById(id).get().getUser().getId() + "/reviews";
     }
 
     @GetMapping("profile/{id}/reviews")
