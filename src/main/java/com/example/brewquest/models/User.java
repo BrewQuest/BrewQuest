@@ -1,6 +1,9 @@
 package com.example.brewquest.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +33,10 @@ public class User {
     private String username;
     @Column(nullable = false, length=100)
     private String email;
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, max = 16, message = "Password must be at least 8-16 characters long")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).*$",
+            message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
     @Column(nullable = false)
     private String password;
     @Column
