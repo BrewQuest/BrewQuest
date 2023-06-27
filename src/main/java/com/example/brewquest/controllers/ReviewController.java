@@ -7,10 +7,7 @@ import com.example.brewquest.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,23 +25,29 @@ public class ReviewController {
     // using string of id due to API "id"
     @GetMapping("/brewery/{id}/create-review")
     public String showCreateForm(@PathVariable String id, Model model){
-        model.addAttribute("breweryId", id);
-    model.addAttribute("review", new Review());
-    return "/Reviews/Create-Review";
+        String brewId = id;
+        model.addAttribute("brewId", brewId);
+        System.out.println(brewId);
+        model.addAttribute("review", new Review());
+        return "/Reviews/Create-Review";
     }
-    // using string of id due to API "id"
-@PostMapping("/brewery/{id}/create-review")
-    public String CreateFormProcess(@PathVariable String id, @ModelAttribute Review review){
-    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    review.setUser(user);
-    review.setRating(review.getRating());
-    review.setDescription(review.getDescription());
-    review.setPassengers(review.getPassengers());
-    review.setBreweryId(id);
+    // create the new review and send back to brewery page
+    @PostMapping("/brewery/create-review")
+    public String CreateFormProcess(@ModelAttribute Review review) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-    reviewDaos.save(review);
-    return "redirect:/brewery/" + id;
-}
+        System.out.println("Brewery ID Only: " + review.getBreweryId());
+
+        Review newReview = new Review();
+        newReview.setUser(user);
+        newReview.setRating(review.getRating());
+        newReview.setDescription(review.getDescription());
+        newReview.setPassengers(review.getPassengers());
+        newReview.setBreweryId(review.getBreweryId());
+        System.out.println("New Review Object: " + newReview.getBreweryId());
+        reviewDaos.save(newReview);
+        return "redirect:/brewery/" + newReview.getBreweryId();
+    }
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
         if (reviewDaos.findById(id).isPresent()) {
