@@ -45,12 +45,15 @@
             overflow: auto;
         }
 
-        .SearchCard {
+        #SearchCard {
             background: white;
-            height: 150px;
-            width: 150px;
-            margin-top:20px;
-            margin-bottom:20px;
+            height: 261px;
+            width: 261px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 25px;
         }
 
 
@@ -59,12 +62,6 @@
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div id="scrollbox">
-    <div class="SearchCard"></div>
-    <div class="SearchCard"></div>
-    <div class="SearchCard"></div>
-    <div class="SearchCard"></div>
-    <div class="SearchCard"></div>
-    <div class="SearchCard"></div>
 
 </div>
 
@@ -81,6 +78,7 @@
 <script th:src="@{js/geocoder.js}"></script>
 
 <script>
+
     mapboxgl.accessToken = MAPBOX_TOKEN;
     var map = new mapboxgl.Map({
         container: 'map',
@@ -99,49 +97,67 @@
             });
         });
 
-        fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}&per_page=3`)
+        const cardContainer = document.getElementById("scrollbox");
+        let cardHTML = "";
+
+        fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}`)
             .then(res => res.json())
-            // .then(data => console.log(data))
             .then(function (data) {
                 data.forEach(brewery => {
-                    console.log("Latitude: " + brewery.latitude, "Longitude: " + brewery.longitude)
-                    brewery.appendto.card
+                    // const cardElement = document.getElementById('SearchCard');
+                    // /*cardElement.classList.add('SearchCard');*/
+                    // const baradd = document.createElement('p');
+                    // baradd.textContent = brewery.address_1;
+                    // SearchCard.appendChild(baradd);
+                    // const barname = document.createElement('p');
+                    // barname.textContent = brewery.name;
+                    // SearchCard.appendChild(barname);
+                    // const barcity = document.createElement('p');
+                    // barcity.textContent = brewery.city;
+                    // SearchCard.appendChild(barcity);
+                    // const barphone = document.createElement('p');
+                    // barphone.textContent = brewery.phone;
+                    // SearchCard.appendChild(barphone);
+
+
+                    /*const breweryname = brewery.name
+                    const breweryadd = brewery.address_1
+                    document.getElementById("SearchCard")
+                    document.getElementById("SearchCard")
+                    SearchCard.document.innerHTML = brewery.name
+                    SearchCard.document.innerHTML = address_1*/
+
+
+                    /*const cardElement = document.createElement('div');
+                    cardElement.classList.add('SearchCard');
+                    const Barname = document.createElement('p');*/
+
+                    cardHTML += `<div class="card"> <h4>${brewery.name}</h4></div>`
+                    cardHTML += `<div class="card"> <p>${brewery.address_1}</p></div>`
+                    cardHTML += `<div class="card"> <p>${brewery.phone}</p></div>`
+                    cardHTML += `<div class="card"> <p>${brewery.city}</p></div>`
+                    /*cardHTML += `<div class="card"> <p>${} </p></div>`
+                    cardHTML += `<div class="card"> <p>${} </p></div>`
+                    cardHTML += `<div class="card"> <p> </p></div>`
+                    cardHTML += `<div class="card"> <p> </p></div>`*/
+
+
+
+
+
+
+
+                    /*cardHTML += `<div></div>`*/
+
+
                 })
+
+                cardContainer.innerHTML = cardHTML;
+
             })
-        // {
-        //     const name = document.createElement('p');
-        //     name.textContent = data.name;
-        //     card.append(name);
-        //
-        //
-        // }
+        /*console.log("Latitude: " + brewery.latitude, "Longitude: " + brewery.longitude)*/
     })
 </script>
 
-<script>
-    // const SearchBarInput = document.getElementById("searchInput");
-    //     SearchBarInput.addEventListener("keydown", function () {
-    //         console.log(SearchBarInput.value)
-    // })
-
-    // SearchBarInput.addEventListener("input", function(){
-    //     console.log(SearchBarInput)
-    // })
-    /*console.log(inputVal)*/
-
-    // function inputVal(e) {
-    //     fetch("https://api.openbrewerydb.org/v1/breweries?by_city=san_diego&per_page=3")
-    // console.log(e.target.value)
-    //         // .then(res => res.json())
-    //         // .then(data => data.forEach(data))
-    //     // {
-    //         // const name = document.createElement('p');
-    //         // name.textContent = data.name;
-    //         // card.append(name);
-    //
-    //
-    //     }
-    // }
-</script>
 </body>
 </html>
