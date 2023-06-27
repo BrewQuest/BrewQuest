@@ -39,7 +39,7 @@ Make sure to have a mySQL server running with terminal command
 ```bash
 mySQL.server start
 ```
-Create a Application.properties in the following directory.
+Create an Application.properties in the following directory.
 ```bash
 touch {project directory}/src/main/java/resources/Application.properties
 
