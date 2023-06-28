@@ -100,7 +100,7 @@ public class ReviewController {
         Integer totalReviews = userReviews.size();
         user.setTotalBreweries(totalReviews);
         model.addAttribute("reviews", userReviews);
-        if(user == driver.getUser()) {
+        if(driver != null) {
             driver.setTotalPassengers(passengers);
             driverDao.save(driver);
         }
