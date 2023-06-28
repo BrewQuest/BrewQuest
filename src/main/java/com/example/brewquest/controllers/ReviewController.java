@@ -2,7 +2,7 @@ package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
-import com.example.brewquest.repositories.Driver_repository;
+import com.example.brewquest.repositories.DriverRepository;
 import com.example.brewquest.repositories.ReviewRepository;
 import com.example.brewquest.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +19,9 @@ public class ReviewController {
     private final ReviewRepository reviewDaos;
     private final UserRepository usersDaos;
 
-    private final Driver_repository driverDao;
+    private final DriverRepository driverDao;
 
-    public ReviewController(ReviewRepository reviewDaos, UserRepository usersDaos, Driver_repository driverDao) {
+    public ReviewController(ReviewRepository reviewDaos, UserRepository usersDaos, DriverRepository driverDao) {
         this.reviewDaos = reviewDaos;
         this.usersDaos = usersDaos;
         this.driverDao = driverDao;

@@ -3,7 +3,7 @@ package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.User;
-import com.example.brewquest.repositories.Driver_repository;
+import com.example.brewquest.repositories.DriverRepository;
 import com.example.brewquest.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,9 +25,9 @@ public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
-    private final Driver_repository driverDao;
+    private final DriverRepository driverDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, Driver_repository driverDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.driverDao = driverDao;

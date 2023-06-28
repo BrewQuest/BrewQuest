@@ -1,7 +1,7 @@
 package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.User;
-import com.example.brewquest.repositories.Driver_repository;
+import com.example.brewquest.repositories.DriverRepository;
 import com.example.brewquest.repositories.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,9 +24,9 @@ public class HomeController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
 
-    private final Driver_repository driverDao;
+    private final DriverRepository driverDao;
 
-    public HomeController(UserRepository userDao, PasswordEncoder passwordEncoder, Driver_repository driverDao) {
+    public HomeController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.driverDao = driverDao;

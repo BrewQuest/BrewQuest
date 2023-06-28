@@ -3,5 +3,5 @@ package com.example.brewquest.repositories;
 import com.example.brewquest.models.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Driver_repository extends JpaRepository <Driver, Long> {
+public interface DriverRepository extends JpaRepository <Driver, Long> {
 }
