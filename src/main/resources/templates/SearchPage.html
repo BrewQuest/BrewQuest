@@ -26,6 +26,7 @@
             bottom: 0;
             right: 450px;
             width: 80%;
+            height: 900px;
         }
 
 
@@ -39,7 +40,7 @@
             position: absolute;
             top: 120px;
             margin-left: 1300px;
-            height: 87%;
+            height: 900px;
             width: 20%;
             padding: 2%;
             overflow: auto;
@@ -90,7 +91,6 @@
         .setLngLat([12.554729, 55.70651])
         .addTo(map);
 
-    marker1
 
     $('#searchForm').submit(function (e) {
         e.preventDefault();
@@ -115,16 +115,29 @@
             .then(function (data) {
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
-                    cardHTML += `<span class="SearchCard"> <h3>${brewery.name}</h3></span>`
-                    cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
-                    cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
-                    cardHTML += `<span class="SearchCard"> <p>${brewery.phone}</p></span>`
-                    cardHTML += `<span class="SearchCard"> <p><a href='brewery.website_url'>${brewery.website_url}</a></p>`
+                    if (brewery.name != null) {
+                        cardHTML += `<span class="SearchCard"> <h3>${brewery.name}</h3></span>`
+                    }
+                    if (brewery.address_1 != null) {
+                        cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
+                    }
+                    if (brewery.city != null) {
+                        cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
+                    }
+                    if (brewery.phone != null) {
+                        cardHTML += `<span class="SearchCard"> <p>${brewery.phone}</p></span>`
+                    }
+                    if (brewery.website_url != null) {
+                        cardHTML += `<span class="SearchCard"> <p><a href='brewery.website_url'>${brewery.website_url}</a></p>`
+                    }
                     cardHTML += `</div>`
+
+                    new mapboxgl.Marker()
+                        .setLngLat([brewery.longitude, brewery.latitude])
+                        .addTo(map);
 
 
                 })
-                for(let = marker1;i<=300; i++)
 
                 cardContainer.innerHTML = cardHTML;
 
