@@ -1,5 +1,6 @@
 package com.example.brewquest.controllers;
 
+import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.DriverRepository;
@@ -50,10 +51,8 @@ public class ReviewController {
         newReview.setBreweryId(review.getBreweryId());
         System.out.println("New Review Object: " + newReview.getBreweryId());
         reviewDaos.save(newReview);
-        user.setTotalBreweries(user.getTotalBreweries());
-        usersDaos.save(user);
 
-        return "redirect:/brewery/" + newReview.getBreweryId();
+        return "redirect:/profile/" + user.getId() + "/reviews";
     }
 @GetMapping("/review/{id}/edit")
     public String showEditForm(@PathVariable long id, Model model){
@@ -86,16 +85,26 @@ public class ReviewController {
     @GetMapping("profile/{id}/reviews")
     public String viewReviews(@PathVariable long id, Model model) {
         User user = usersDaos.findById(id).get();
+        Driver driver = driverDao.findByUser(user);
         Long userId = user.getId();
         List<Review> reviews = reviewDaos.findAll();
         List<Review> userReviews = new ArrayList<>();
+        Integer passengers = 0;
 
         for (Review review : reviews) {
             if (review.getUser().getId().equals(userId)) {
-                userReviews.add(review);
+               passengers += review.getPassengers();
+               userReviews.add(review);
             }
         }
+        Integer totalReviews = userReviews.size();
+        user.setTotalBreweries(totalReviews);
         model.addAttribute("reviews", userReviews);
+        if(user == driver.getUser()) {
+            driver.setTotalPassengers(passengers);
+            driverDao.save(driver);
+        }
+        usersDaos.save(user);
         return"reviewpage";
     }
 }
