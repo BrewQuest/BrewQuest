@@ -5,7 +5,6 @@ body {
     background-position: center;
 }
 
-/* Centering container */
 #card-container {
     display: flex;
     justify-content: center;
@@ -13,7 +12,6 @@ body {
     height: 100vh;
 }
 
-/* Card */
 .card {
     width: 400px;
     border-radius: 10px;
@@ -22,28 +20,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(112, 69, 46, 0); /* Set the background color to transparent */
-    backdrop-filter: blur(5px); /* Adjust the blur effect as desired */
+    background-color: rgba(112, 69, 46, 0);
+    backdrop-filter: blur(5px);
 }
+
 .card .card-body {
-    background-color: rgba(112, 69, 46, 0.6); /* Set the desired transparency */
-    backdrop-filter: blur(10px); /* Add backdrop filter for further visual effect */
+    background-color: rgba(112, 69, 46, 0.6);
+    backdrop-filter: blur(10px);
 }
-
-
-
-/*.card-header {*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-/*.card-body {*/
-/*    background-color: rgba(112, 69, 46, 0.6);*/
-/*    text-align: center;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
 
 .form-group {
     margin-bottom: 10px;
@@ -54,7 +38,22 @@ body {
 input[type="submit"] {
     margin-top: 20px;
     width: 100%;
-    border-radius: 50px; /* Make the button oval */
+    border-radius: 50px;
     background-color: burlywood;
     color: #70452e;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    /* Styles for screens up to 768px wide */
+    .card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+    body {
+        background-size: contain;
+    }
 }

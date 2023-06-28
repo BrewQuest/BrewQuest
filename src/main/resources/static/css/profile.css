@@ -6,11 +6,11 @@ body {
     background-color: #333333;
 }
 
-
 h1 {
     color: burlywood;
 }
-h3{
+
+h3 {
     color: burlywood;
 }
 
@@ -31,7 +31,8 @@ a {
     color: #333;
 }
 
-button:hover, a:hover {
+button:hover,
+a:hover {
     background-color: #666;
 }
 
@@ -46,4 +47,43 @@ button:hover, a:hover {
 
 .upload-section {
     margin-top: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    /* Styles for screens up to 768px wide */
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    form {
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+    h1 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    form {
+        margin-top: 5px;
+    }
+
+    button {
+        padding: 6px 12px;
+    }
 }

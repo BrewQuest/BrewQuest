@@ -1,0 +1,39 @@
+body {
+    background-image: url("/img/review-img.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-family: 'Rubik Dirt', cursive;
+    color: burlywood;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
