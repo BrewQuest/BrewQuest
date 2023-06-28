@@ -58,6 +58,8 @@ h1 {
     right: 10px;
     background-size: cover;
     display: flex;
+    border: 2px black solid;
+    border-radius: 10px;
 }
 
 span {

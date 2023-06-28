@@ -19,10 +19,10 @@
         <th:block th:each="brewery :${breweries}">
                 <div class="carousel__face">
                     <a th:href="@{/brewery/{id}(id=${brewery.id})}">
-                    <h3 th:text="${brewery.name}"></h3>
-                    <p th:text="${brewery.street}"></p>
-                    <p th:text="${brewery.city}"></p>
-                    <p th:text="${brewery.state}"></p>
+                        <h3 th:text="${brewery.name}"></h3>
+                        <p th:text="${brewery.street}"></p>
+                        <p th:text="${brewery.city}"></p>
+                        <p th:text="${brewery.state}"></p>
                     </a>
                 </div>
         </th:block>

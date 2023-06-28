@@ -31,10 +31,33 @@
 
     <label for="password" style="color: #D9740F">Password</label>
     <input id="password" type="password" th:field="*{password}" />
+
+    <label for="passwordConfirm" style="color: #D9740F">Confirm Password</label>
+    <input id="passwordConfirm" type="password"/>
+    <span id="alert">! Your password does not match !</span>
     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
-    <input value="Sign me up!" type="submit" />
+    <input type="submit" value="Sign me up!" id = "submitButton" style="visibility: hidden">
 </form>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $('#password, #passwordConfirm').on('input', function () {
+            let password = $('#password').val();
+            let passwordConfirm = $('#passwordConfirm').val();
+
+            if (password === passwordConfirm) {
+                $('#submitButton').css('visibility', 'visible');
+                $('#alert').css('visibility', 'hidden');
+            } else {
+                $('#submitButton').css('visibility', 'hidden');
+                $('#alert').css('visibility', 'visible')
+            }
+        })
+    });
+</script>
 </body>
 </html>
