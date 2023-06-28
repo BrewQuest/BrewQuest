@@ -20,7 +20,11 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}" th:sort="${user.totalBreweries}">
-                <td th:text="${user.username}"></td>
+                <td>
+                    <a th:href="@{'/profile/' + ${user.id}}">
+                        <span th:text="${user.username}"></span>
+                    </a>
+                </td>
                 <td th:text="${user.totalBreweries}"></td>
             </tr>
             </tbody>
@@ -38,7 +42,11 @@
             </thead>
             <tbody>
             <tr th:each="driver : ${drivers}">
-                <td th:text="${driver.user.username}"></td>
+                <td>
+                    <a th:href="@{'/profile/' + ${driver.user.id}}"> <!-- Link to user's profile -->
+                        <span th:text="${driver.user.username}"></span>
+                    </a>
+                </td>
                 <td th:text="${driver.totalPassengers}"></td>
             </tr>
             </tbody>

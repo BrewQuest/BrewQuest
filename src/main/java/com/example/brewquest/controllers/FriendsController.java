@@ -6,10 +6,8 @@ import com.example.brewquest.repositories.FriendsRepository;
 import com.example.brewquest.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -29,40 +27,26 @@ public class FriendsController {
         return "friends";
     }
 
-    @GetMapping("/addFriend")
-    public String showAddFriendsForm(Model model) {
-        model.addAttribute("friend", new Friend());
-        return "addFriend";
-    }
-
-    @PostMapping("/addFriend")
-    public String addFriend(Friend friend) {
-        friendsDao.save(friend);
-        return "redirect:/profile";
-    }
-
-    @GetMapping("/profile/{id}/friends")
-    public String viewFriends(@PathVariable long id, Model model) {
+    @GetMapping("/addFriend/{id}")
+    public String addFriend(@PathVariable long id, Model model) {
         User user = usersDao.findById(id).orElse(null);
         if (user == null) {
             return "error";
         }
 
-        List<Friend> friends = friendsDao.findAll();
-        List<Friend> userFriends = new ArrayList<>();
+        Friend newFriend = new Friend();
+        newFriend.setUser(user);
+        User friendUser = usersDao.findById(id).orElse(null);
+        newFriend.setFriend(friendUser);
 
-        for (Friend friend : friends) {
-            if (friend.getUser().getId().equals(id)) {
-                userFriends.add(friend);
-            }
-        }
-        model.addAttribute("friends", userFriends);
-        return "redirect:/profile";
+        friendsDao.save(newFriend);
+
+        return "redirect:/profile/" + id;
     }
 
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable long id) {
         friendsDao.deleteById(id);
-        return "redirect:/profile";
+        return "redirect:/friends";
     }
 }
