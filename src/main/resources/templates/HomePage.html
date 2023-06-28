@@ -3,51 +3,33 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Home Page</title>
+
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/homepage.css}" type="text/css">
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<div id="scroll-parent" class="container-fluid">
-    <!--    <div class = "row">-->
-    <!--    <div class="flag">-->
-    <div class="row">
-        <div class="col">
-            <div class="flag"></div>
-        </div>
-
-        <div class="col scroll-element primary">
-            <th:block th:each="brewery :${breweries}">
-                <a th:href="@{/brewery/{id}(id=${brewery.id})}">
-                    <div class="card">
+<h1 th:fragment="header">Welcome to BrewQuest!</h1>
+<p class="intro">Where taste and discovery intertwine! Embark on an unforgettable journey through the world of brewing, where captivating aromas and flavors await. Let us guide you in unlocking the secrets of exceptional beverages, whether you're a seasoned connoisseur or a curious novice. Prepare for an adventure that awakens your senses and leaves you with a deep appreciation for the art and science of brewing. Cheers to the start of your BrewQuest!</p>
+<div class="container">
+    <div class="col">
+        <div class="flag"></div>
+    <div class="carousel">
+        <th:block th:each="brewery :${breweries}">
+                <div class="carousel__face">
+                    <a th:href="@{/brewery/{id}(id=${brewery.id})}">
                     <h3 th:text="${brewery.name}"></h3>
                     <p th:text="${brewery.street}"></p>
                     <p th:text="${brewery.city}"></p>
                     <p th:text="${brewery.state}"></p>
-                    <a th:href="${brewery.website_url}"><p th:text="${brewery.website_url}"></p></a>
-                    </div>
-                </a>
-            </th:block>
-        </div>
-
-        <div class="row scroll-element secondary">
-            <th:block th:each="brewery :${breweries}">
-                <div class="card">
-                    <h3 th:text="${brewery.name}"></h3>
-                    <p th:text="${brewery.street}"></p>
-                    <p th:text="${brewery.city}"></p>
-                    <p th:text="${brewery.state}"></p>
-                    <a th:href="${brewery.website_url}"><p th:text="${brewery.website_url}"></p></a>
+                    </a>
                 </div>
-            </th:block>
-        </div>
-
+        </th:block>
+    </div>
     </div>
 </div>
-<!--</div>-->
 
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
-

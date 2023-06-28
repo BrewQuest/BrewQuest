@@ -43,7 +43,7 @@ public class HomeController {
 
         try {
             // Create the URL object with the API endpoint
-            URL url = new URL("https://api.openbrewerydb.org/v1/breweries/random?size=10");
+            URL url = new URL("https://api.openbrewerydb.org/v1/breweries/random?size=9");
 
             // Create the HttpURLConnection object
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
