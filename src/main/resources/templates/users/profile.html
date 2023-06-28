@@ -35,5 +35,8 @@
 </div>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
+<a th:href="@{/signup-driver}"><button>Sign Up to be a Driver!</button></a>
+<a th:href="@{/driver/{id}/edit(id=${user.id})}"><button>Edit Driver profile</button></a>
+
 </body>
 </html>

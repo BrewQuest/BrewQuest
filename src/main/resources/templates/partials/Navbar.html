@@ -55,6 +55,9 @@
                 <button class="btn-link btn" style="margin-top: 8px">Logout</button>
             </form>
             </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/profile/{id}(id = ${#authentication.principal.id})}"style="color: burlywood">My Profile</a>
+            </li>
         </ul>
     </div>
 </nav>
