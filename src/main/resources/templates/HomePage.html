@@ -9,45 +9,24 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<div id="scroll-parent" class="container-fluid">
-    <!--    <div class = "row">-->
-    <!--    <div class="flag">-->
-    <div class="row">
-        <div class="col">
-            <div class="flag"></div>
-        </div>
-
-        <div class="col scroll-element primary">
-            <th:block th:each="brewery :${breweries}">
-                <a th:href="@{/brewery/{id}(id=${brewery.id})}">
-                    <div class="card">
+<div class="container">
+    <div class="col">
+        <div class="flag"></div>
+    <div class="carousel">
+        <th:block th:each="brewery :${breweries}">
+                <div class="carousel__face">
+                    <a th:href="@{/brewery/{id}(id=${brewery.id})}">
                     <h3 th:text="${brewery.name}"></h3>
                     <p th:text="${brewery.street}"></p>
                     <p th:text="${brewery.city}"></p>
                     <p th:text="${brewery.state}"></p>
-                    <a th:href="${brewery.website_url}"><p th:text="${brewery.website_url}"></p></a>
-                    </div>
-                </a>
-            </th:block>
-        </div>
-
-        <div class="row scroll-element secondary">
-            <th:block th:each="brewery :${breweries}">
-                <div class="card">
-                    <h3 th:text="${brewery.name}"></h3>
-                    <p th:text="${brewery.street}"></p>
-                    <p th:text="${brewery.city}"></p>
-                    <p th:text="${brewery.state}"></p>
-                    <a th:href="${brewery.website_url}"><p th:text="${brewery.website_url}"></p></a>
+                    </a>
                 </div>
-            </th:block>
-        </div>
-
+        </th:block>
+    </div>
     </div>
 </div>
-<!--</div>-->
 
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
-

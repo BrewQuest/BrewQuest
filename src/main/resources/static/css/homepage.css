@@ -1,163 +1,88 @@
-/*infinity scroll */
-#scroll-parent {
-    display: flex;
-    position: relative;
-    width: 280vw;
-    overflow-x: hidden;
+body {
+    margin: 0;
+    background-image: url("/img/newHP.jpg");
+    text-align: center;
+    font-family: sans-serif;
+    color: #fefefe;
 }
 
-.scroll-element {
-    width: auto;
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: primary 20s linear infinite;
-    margin-top: 5%;
-}
-
-.primary {
-    animation: primary 20s linear infinite;
-}
-
-.secondary {
-    animation: secondary 20s linear infinite;
-}
-
-@keyframes primary {
-    from {
-        left: 0%;
-    }
-    to {
-        left: -100%;
-    }
-}
-
-@keyframes secondary {
-    from {
-        left: 100%;
-    }
-    to {
-        left: 0%;
-    }
-}
-
-/* Existing CSS code... */
 .container {
-    width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
+    position: relative;
+    width: 320px;
+    margin: 100px auto;
+    perspective: 1000px;
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
-    height: 100vh;
+    align-items: center;
 }
 
-.row {
-    display: flex;
-    vertical-align: top;
+.carousel {
+    position: relative;
     width: 100%;
-    margin-left: 0;
-    padding-left: 0;
-    margin-bottom: 20px;
-    text-align: center;
-    flex-wrap: nowrap;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: rotate360 60s infinite forwards linear;
 }
 
-.card {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin-right: 10px;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    /*margin-left: 200px;*/
-}
-
-body {
-    background-image: url("/img/bw-homepage.webp");
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.flag {
-    margin-top: 200px;
-    width: 700px;
-    height: 500px;
-    box-sizing: content-box;
-    padding-top: 15px;
-    /*position: relative;*/
-    padding-left: 0;
-    margin-left: 0;
-    font-size: 11px;
-    transform: rotate(-90deg);
-    letter-spacing: 0.2em;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.flag::after {
-    content: '';
+.carousel__face {
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 500px;
-    height: 700px;
-    border-bottom: 500px solid transparent;
-    border-left: 500px solid #70452e;
-    border-right: 500px solid #70452e;
-    padding-left: 0;
-    margin-left: 0;
-}
-body {
-    font-family: 'Rubik Dirt', cursive;
+    width: 350px;
+    height: 220px;
+    top: 20px;
+    left: 10px;
+    right: 10px;
+    background-size: cover;
+    display: flex;
 }
 
-/* Mobile responsive styles */
-@media screen and (max-width: 768px) {
-    #scroll-parent {
-        width: 100vw;
-    }
-
-    .primary {
-        animation: primary 10s linear infinite;
-    }
-
-    .secondary {
-        animation: secondary 10s linear infinite;
-    }
-
-    .scroll-element {
-        margin-top: 10px;
-    }
-
-    .container {
-        height: auto;
-    }
-
-    .card {
-        width: 90%;
-        margin-right: 0;
-        margin-left: auto;
-    }
-
-    .flag {
-        margin-top: 50px;
-        width: 100%;
-        height: auto;
-        padding-top: 10px;
-        transform: none;
-        letter-spacing: 0.1em;
-    }
-
-    .flag::after {
-        width: 100%;
-        height: auto;
-        border-bottom: none;
-        border-left: 0;
-        border-right: 0;
-    }
-
+span {
+    margin: auto;
+    font-size: 2rem;
 }
+
+.carousel__face:nth-child(1) {
+    background-image: url("/img/hops.jpg");
+    transform: rotateY(0deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(2) {
+    background-image: url("/img/beer2.jpg");
+    transform: rotateY(40deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(3) {
+    background-image: url("/img/beer4.jpg");
+    transform: rotateY(80deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(4) {
+    background-image: url("/img/cheers.jpg");
+    transform: rotateY(120deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(5) {
+    background-image: url("/img/beer3.jpg");
+    transform: rotateY(160deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(6) {
+    background-image: url("/img/beer6.jpg");
+    transform: rotateY(200deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(7) {
+    background-image: url("/img/beer5.jpg");
+    transform: rotateY(240deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(8) {
+    background-image: url("/img/still.jpg");
+    transform: rotateY(280deg) translateZ(600px); /* Adjusted translateZ */
+}
+.carousel__face:nth-child(9) {
+    background-image: url("/img/beer1.jpg");
+    transform: rotateY(320deg) translateZ(600px); /* Adjusted translateZ */
+}
+
+@keyframes rotate360 {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(-360deg);
+    }
+}
+
