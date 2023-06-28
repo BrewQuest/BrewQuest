@@ -6,6 +6,7 @@ import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.Driver_repository;
 import com.example.brewquest.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class DriverController {
 
     @PostMapping("/signup-driver")
     public String processSignupForm(@ModelAttribute Driver driver) {
-        User user = usersDao.findById(1L).get();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         driver.setUser(user);
         driver.setCarMake(driver.getCarMake());
         driver.setCarModel(driver.getCarModel());
