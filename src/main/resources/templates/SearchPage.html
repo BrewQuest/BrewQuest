@@ -29,7 +29,7 @@
         }
 
 
-        #search {
+        #searchForm {
             position: absolute;
             width: 20%;
             margin-left: 1300px;
@@ -54,6 +54,7 @@
             margin-left: auto;
             margin-right: auto;
             border-radius: 25px;
+            text-align: center;
         }
 
 
@@ -61,14 +62,12 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<div id="scrollbox">
+<div id="scrollbox"></div>
 
-</div>
-
-<div id="search" class="d-flex">
+<form id="searchForm" class="d-flex">
     <input id="searchInput" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
-    <button id="submitSearch" class="btn btn-outline-success" type="submit">Find</button>
-</div>
+    <input id="submitSearch" class="btn btn-outline-success" type="submit" value="Find" onclick="brewSearch()">
+</form>
 
 <div id='map'></div>
 
@@ -84,19 +83,30 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         zoom: 12,
-        center: [-96.4558196, 32.6279113],
+        center: [-96.80294985008125, 32.777609251915024],
         cooperativeGestures: true
     });
+    const marker1 = new mapboxgl.Marker()
+        .setLngLat([12.554729, 55.70651])
+        .addTo(map);
 
-    $('#submitSearch').click(function () {
+    marker1
+
+    $('#searchForm').submit(function (e) {
+        e.preventDefault();
+        brewSearch();
+    })
+
+    function brewSearch() {
+        console.log($('#searchInput').val());
+
         geocode($('#searchInput').val(), MAPBOX_TOKEN).then(function (result) {
-            $('#weather').empty();
+            $('#x').empty();
             map.flyTo({
                 center: [result[0], result[1]],
                 essential: true,
             });
         });
-
         const cardContainer = document.getElementById("scrollbox");
         let cardHTML = "";
 
@@ -104,59 +114,24 @@
             .then(res => res.json())
             .then(function (data) {
                 data.forEach(brewery => {
-                    // const cardElement = document.getElementById('SearchCard');
-                    // /*cardElement.classList.add('SearchCard');*/
-                    // const baradd = document.createElement('p');
-                    // baradd.textContent = brewery.address_1;
-                    // SearchCard.appendChild(baradd);
-                    // const barname = document.createElement('p');
-                    // barname.textContent = brewery.name;
-                    // SearchCard.appendChild(barname);
-                    // const barcity = document.createElement('p');
-                    // barcity.textContent = brewery.city;
-                    // SearchCard.appendChild(barcity);
-                    // const barphone = document.createElement('p');
-                    // barphone.textContent = brewery.phone;
-                    // SearchCard.appendChild(barphone);
-
-
-                    /*const breweryname = brewery.name
-                    const breweryadd = brewery.address_1
-                    document.getElementById("SearchCard")
-                    document.getElementById("SearchCard")
-                    SearchCard.document.innerHTML = brewery.name
-                    SearchCard.document.innerHTML = address_1*/
-
-
-                    /*const cardElement = document.createElement('div');
-                    cardElement.classList.add('SearchCard');
-                    const Barname = document.createElement('p');*/
-
-                    cardHTML += `<div class="card"> <h4>${brewery.name}</h4></div>`
-                    cardHTML += `<div class="card"> <p>${brewery.address_1}</p></div>`
-                    cardHTML += `<div class="card"> <p>${brewery.phone}</p></div>`
-                    cardHTML += `<div class="card"> <p>${brewery.city}</p></div>`
-                    /*cardHTML += `<div class="card"> <p>${} </p></div>`
-                    cardHTML += `<div class="card"> <p>${} </p></div>`
-                    cardHTML += `<div class="card"> <p> </p></div>`
-                    cardHTML += `<div class="card"> <p> </p></div>`*/
-
-
-
-
-
-
-
-                    /*cardHTML += `<div></div>`*/
+                    cardHTML += `<div id="SearchCard">`
+                    cardHTML += `<span class="SearchCard"> <h3>${brewery.name}</h3></span>`
+                    cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
+                    cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
+                    cardHTML += `<span class="SearchCard"> <p>${brewery.phone}</p></span>`
+                    cardHTML += `<span class="SearchCard"> <p><a href='brewery.website_url'>${brewery.website_url}</a></p>`
+                    cardHTML += `</div>`
 
 
                 })
+                for(let = marker1;i<=300; i++)
 
                 cardContainer.innerHTML = cardHTML;
 
             })
-        /*console.log("Latitude: " + brewery.latitude, "Longitude: " + brewery.longitude)*/
-    })
+
+
+    }
 </script>
 
 </body>
