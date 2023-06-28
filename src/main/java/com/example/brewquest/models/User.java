@@ -33,14 +33,15 @@ public class User {
     private String username;
     @Column(nullable = false, length=100)
     private String email;
+    @Column
+    private int totalBreweries;
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 8 characters long")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).*$",
             message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
     @Column(nullable = false, length=255)
     private String password;
-    @Column
-    private int totalBreweries;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Review> reviews;
