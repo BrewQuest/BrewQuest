@@ -3,17 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
-    <style>
-        body {
-            background-image: url("/img/review-img.jpeg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            text-align: center;
-            font-family: 'Rubik Dirt', cursive;
-            color: burlywood;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
     <th:block th:replace="partials/header :: font"></th:block>
 </head>
 <body>
@@ -30,5 +20,6 @@
 
     <h3>Not a Member?</h3>
     <a th:href="@{/sign-up}"><button>Sign-up</button></a>
+
 </body>
 </html>

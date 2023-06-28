@@ -120,3 +120,38 @@ span {
         transform: rotateY(-360deg);
     }
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    body {
+        font-size: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 400px;
+        margin: 50px auto;
+    }
+
+    .carousel__face {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 48px;
+    }
+
+    .intro {
+        font-size: 20px;
+    }
+
+    .container {
+        margin: 30px auto;
+    }
+
+    .carousel__face {
+        height: 150px;
+    }
+}
