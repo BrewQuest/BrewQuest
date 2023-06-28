@@ -41,37 +41,37 @@ public class DriverController {
         driver.setDriversLicenseNum(driver.getDriversLicenseNum());
 
         driversDao.save(driver);
-        return "redirect:/";
+        return "redirect:/profile/" + user.getId();
     }
 
     @GetMapping("/driver/{id}/edit")
-    public String showEditForm(@PathVariable long id, Model model) {
-        if (driversDao.findById(id).isPresent()) {
-            Driver driverToEdit = driversDao.findById(id).get();
-            model.addAttribute("driver", driverToEdit);
+    public String showEditForm(Model model, @PathVariable("id") String id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Driver driver = driversDao.findByUser(user);
+        if (driver != null) {
+            model.addAttribute("driver", driver);
         }
         return "Driver/edit-driver";
     }
 
+
     @PostMapping("/driver/{id}/edit")
     public String updateDriver(@PathVariable long id, @ModelAttribute Driver driver) {
-        User user = usersDao.findById(id).get();
-        driver.setUser(user);
-        driver.setCarMake(driver.getCarMake());
-        driver.setCarModel(driver.getCarModel());
-        driver.setLicensePlateNum(driver.getLicensePlateNum());
-        driver.setDriversLicenseNum(driver.getDriversLicenseNum());
-        driversDao.save(driver);
-        return "users/profile";
+       User user = usersDao.findById(id).get();
+        Driver editDriver = driversDao.findByUser(user);
+        editDriver.setCarMake(driver.getCarMake());
+        editDriver.setCarModel(driver.getCarModel());
+        editDriver.setLicensePlateNum(driver.getLicensePlateNum());
+        editDriver.setDriversLicenseNum(driver.getDriversLicenseNum());
+        driversDao.save(editDriver);
+        return "redirect:/profile/" + id;
     }
 
     @PostMapping("/driver/{id}/delete")
     public String deleteDriver(@PathVariable("id") long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user.getId() == usersDao.findById(id).get().getId()){
             driversDao.deleteById(id);
-        }
-        return "users/profile";
+        return "redirect:/profile/" + user.getId();
     }
 }
 
