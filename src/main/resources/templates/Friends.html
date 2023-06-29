@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Friends List</title>
+</head>
+<body>
+<h1>Friends List</h1>
+<table>
+    <tr>
+        <th>User</th>
+        <th>Friend</th>
+    </tr>
+    <tr th:each="friend : ${friends}">
+        <td th:text="${friend.user.username}"></td>
+        <td th:text="${friend.friend.username}"></td>
+    </tr>
+</table>
+</body>
+</html>
+
