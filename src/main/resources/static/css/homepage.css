@@ -14,6 +14,7 @@ body{
 .intro, h1{
     text-align: center;
     background-color: #70452e;
+    font-weight: lighter;
 }
 
 h1 {

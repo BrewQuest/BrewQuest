@@ -10,8 +10,10 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1 th:fragment="header">Welcome to BrewQuest!</h1>
-<p class="intro">Where taste and discovery intertwine! Embark on an unforgettable journey through the world of brewing, where captivating aromas and flavors await. Let us guide you in unlocking the secrets of exceptional beverages, whether you're a seasoned connoisseur or a curious novice. Prepare for an adventure that awakens your senses and leaves you with a deep appreciation for the art and science of brewing. Cheers to the start of your BrewQuest!</p>
+<div class="intro">
+    <h1 th:fragment="header">Welcome to BrewQuest!</h1>
+        <p>Where taste and discovery intertwine! Embark on an unforgettable journey through the world of brewing, where captivating aromas and flavors await. Let us guide you in unlocking the secrets of exceptional beverages, whether you're a seasoned connoisseur or a curious novice. Prepare for an adventure that awakens your senses and leaves you with a deep appreciation for the art and science of brewing. Cheers to the start of your BrewQuest!</p>
+</div>
 <div class="wrapper">
     <div class="cols">
         <div class="col" ontouchstart="this.classList.toggle('hover');">
