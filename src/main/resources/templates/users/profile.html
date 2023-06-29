@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -25,7 +26,7 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1 style="text-align: center">Champions: <span th:text="${user.username}"></span></h1>
+<h1 style="text-align: center">Champion: <span th:text="${user.username}"></span></h1>
 
 <div id = "favorites" class="favorites-section">
     <h3>Favorites</h3>
@@ -52,10 +53,13 @@
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
 <form th:if="${driver == null}" th:action="@{/signup-driver}" th:method="get">
+
 <button type=“submit”>Sign Up to be a Driver!</button>
 </form>
 <form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
     <button type=“submit”>Edit Driver</button>
+
+
 </form>
 <a th:if="${!isMyProfile && friend == null}" th:href="@{/addFriend/{id}(id=${user.id})}">
     <button>Add Friend</button>

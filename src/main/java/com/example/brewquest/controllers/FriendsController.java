@@ -4,6 +4,7 @@ import com.example.brewquest.models.Friend;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.FriendsRepository;
 import com.example.brewquest.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class FriendsController {
     }
 
     @GetMapping("/addFriend/{id}")
-    public String addFriend(@PathVariable long id, Model model) {
+    public String addFriend(@PathVariable("id") long id, Model model) {
         User user = usersDao.findById(id).orElse(null);
 
         if (user == null) {
@@ -36,9 +37,9 @@ public class FriendsController {
         }
 
         Friend newFriend = new Friend();
-        newFriend.setUser(user);
-        User friendUser = usersDao.findById(id).orElse(null);
-        newFriend.setFriend(friendUser);
+        User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newFriend.setUser(authenticatedUser);
+        newFriend.setFriend(user);
 
         friendsDao.save(newFriend);
 
@@ -46,8 +47,17 @@ public class FriendsController {
     }
 
     @GetMapping("/deleteFriend/{id}")
-    public String deleteFriend(@PathVariable long id) {
-        friendsDao.deleteById(id);
-        return "redirect:/friends";
+    public String deleteFriend(@PathVariable("id") long id) {
+        User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User friendUser = usersDao.findById(id).orElse(null);
+
+        if (friendUser != null) {
+            Friend friend = friendsDao.findByUserAndFriend(authenticatedUser, friendUser);
+            if (friend != null) {
+                friendsDao.delete(friend);
+            }
+        }
+
+        return "redirect:/profile/" + id;
     }
 }
