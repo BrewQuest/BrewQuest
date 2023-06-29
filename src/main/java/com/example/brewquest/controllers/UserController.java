@@ -1,6 +1,11 @@
 package com.example.brewquest.controllers;
 
 
+
+import com.example.brewquest.models.*;
+import com.example.brewquest.repositories.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.Friend;
 import com.example.brewquest.models.User;
@@ -28,11 +33,21 @@ public class UserController {
 private final FriendsRepository friendsDao;
     private final DriverRepository driverDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, FriendsRepository friendsDao, DriverRepository driverDao) {
+    private final FavoriteRepository favoriteDao;
+
+    private final WishlistRepository wishlistDao;
+
+    private final FriendsRepository friendsDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao, FavoriteRepository favoriteDao, WishlistRepository wishlistDao, FriendsRepository friendsDao) {
+
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.friendsDao = friendsDao;
         this.driverDao = driverDao;
+        this.favoriteDao = favoriteDao;
+        this.wishlistDao = wishlistDao;
+
     }
 
     @GetMapping("/sign-up")
@@ -76,6 +91,65 @@ private final FriendsRepository friendsDao;
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Driver driver = driverDao.findByUser(user);
         Friend friend = friendsDao.findByUserAndFriend(loggedInUser, user);
+        model.addAttribute("friend", friend);
+        model.addAttribute("driver", driver);
+        model.addAttribute("user", user);
+        boolean isMyProfile = loggedInUser.getId().equals(user.getId());
+        boolean isFriend = friend != null;
+        model.addAttribute("isMyProfile", isMyProfile);
+        model.addAttribute("isFriend", isFriend);
+
+        List<Favorite> favorites = favoriteDao.findByUser(user);
+        List<Wishlist> wishlists = wishlistDao.findByUser(user);
+        List<String> favId = new ArrayList<>();
+        List<String> wishId = new ArrayList<>();
+        for(Favorite favorite : favorites) {
+            favId.add(favorite.getBreweryId());
+        }
+        for(Wishlist wishlist : wishlists) {
+            wishId.add(wishlist.getBreweryId());
+        }
+        String ids = "";
+        String wishids = "";
+        for(String fav : favId) {
+            ids += fav + ",";
+        }
+        for(String wish : wishId) {
+            wishids += wish + ",";
+        }
+
+
+        String modifiedIds = ids.substring(0, ids.length() - 1);
+        System.out.println(modifiedIds);
+        try {
+            // Create the URL object with the API endpoint
+            URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + wishids);
+
+            // Create the HttpURLConnection object
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            // Set the "Accept" header to request JSON response
+            connection.setRequestProperty("Accept", "application/json");
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+
+
+            // If the response code indicates success, read the response
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                // Parse the JSON response
+                ObjectMapper objectMapper = new ObjectMapper();
+                List<Map<String, Object>> wishBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {});
+
 
         model.addAttribute("friend", friend);
         model.addAttribute("driver", driver);
