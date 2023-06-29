@@ -22,11 +22,11 @@
 
         #map {
             position: absolute;
-            top: 60px;
-            bottom: 0;
+            top: 57px;
+            bottom: 20px;
             right: 450px;
             width: 80%;
-            height: 900px;
+            height: 940px;
         }
 
 
@@ -40,22 +40,31 @@
             position: absolute;
             top: 120px;
             margin-left: 1300px;
-            height: 900px;
+            height: 850px;
             width: 20%;
             padding: 2%;
-            overflow: auto;
+            overflow: scroll;
+        }
+
+        #scrollbox::-webkit-scrollbar {
+            display: none;
         }
 
         #SearchCard {
             background: white;
             height: 261px;
-            width: 261px;
+            width: 250px;
             margin-top: 20px;
             margin-bottom: 20px;
             margin-left: auto;
             margin-right: auto;
             border-radius: 25px;
             text-align: center;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
 
@@ -87,9 +96,6 @@
         center: [-96.80294985008125, 32.777609251915024],
         cooperativeGestures: true
     });
-    const marker1 = new mapboxgl.Marker()
-        .setLngLat([12.554729, 55.70651])
-        .addTo(map);
 
 
     $('#searchForm').submit(function (e) {
@@ -113,22 +119,23 @@
         fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}`)
             .then(res => res.json())
             .then(function (data) {
+                console.log(data)
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
                     if (brewery.name != null) {
-                        cardHTML += `<span class="SearchCard"> <h3>${brewery.name}</h3></span>`
+                        cardHTML += `<span class="SearchCard" style="font-size:20px"> <p>${brewery.name}</p></span>`
                     }
                     if (brewery.address_1 != null) {
-                        cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
+                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.address_1}</p></span>`
                     }
                     if (brewery.city != null) {
-                        cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
+                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.city}</p></span>`
                     }
                     if (brewery.phone != null) {
-                        cardHTML += `<span class="SearchCard"> <p>${brewery.phone}</p></span>`
+                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.phone}</p></span>`
                     }
                     if (brewery.website_url != null) {
-                        cardHTML += `<span class="SearchCard"> <p><a href='brewery.website_url'>${brewery.website_url}</a></p>`
+                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p><a ${brewery.website_url}" ></a></p></span>`
                     }
                     cardHTML += `</div>`
 

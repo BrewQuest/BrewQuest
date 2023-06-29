@@ -7,32 +7,48 @@
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
+    <style>
+        .favCard {
+            background-color: white;
+            border: 2px black solid;
+            border-radius: 10px;
+        }
+
+        #favorites {
+            width: 50%;
+            max-height: 50vh;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>Champion: <span th:text="${user.username}"></span></h1>
-<form th:if="${#authentication.principal.id == user.getId()}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
-    <button type="submit">Edit Profile</button>
-</form>
-<div class="favorites-section">
+<h1 style="text-align: center">Champion: <span th:text="${user.username}"></span></h1>
+
+<div id = "favorites" class="favorites-section">
     <h3>Favorites</h3>
-    <!-- Add your favorites functionality here -->
-    <!-- Example: Display a list of favorite items -->
-    <ul>
-        <li>Favorite item 1</li>
-        <li>Favorite item 2</li>
-        <li>Favorite item 3</li>
-    </ul>
+    <th:block th:each="favorite : ${favorites}">
+        <div class="favCard">
+            <a th:href="@{/brewery/{id}(id = ${favorite.id})}">
+                <h4 th:text="${favorite.name}"></h4>
+                <p><span th:text="${favorite.city}"></span><span th:text="', ' + ${favorite.state}"></span></p>
+            </a>
+        </div>
+    </th:block>
 </div>
-<div class="wishlist-section">
+<div id = "wishlist" class="wishlist-section">
     <h3>Wishlist</h3>
-    <!-- Add your wishlist functionality here -->
-    <!-- Example: Display a list of wishlist items -->
-    <ul>
-        <li>Wishlist item 1</li>
-        <li>Wishlist item 2</li>
-        <li>Wishlist item 3</li>
-    </ul>
+    <th:block th:each="wishlist : ${wishlists}">
+        <div class="favCard">
+            <a th:href="@{/brewery/{id}(id = ${wishlist.id})}">
+                <h4 th:text="${wishlist.name}"></h4>
+                <p><span th:text="${wishlist.city}"></span><span th:text="', ' + ${wishlist.state}"></span></p>
+            </a>
+        </div>
+    </th:block>
 </div>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>

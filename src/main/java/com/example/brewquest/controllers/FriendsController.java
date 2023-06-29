@@ -31,6 +31,7 @@ public class FriendsController {
     @GetMapping("/addFriend/{id}")
     public String addFriend(@PathVariable("id") long id, Model model) {
         User user = usersDao.findById(id).orElse(null);
+
         if (user == null) {
             return "error";
         }

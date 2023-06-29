@@ -67,6 +67,10 @@
             center: [result[0], result[1]],
             essential: true,
         });
+
+        new mapboxgl.Marker()
+            .setLngLat([result[0], result[1]])
+            .addTo(map);
     });
 
 </script>
