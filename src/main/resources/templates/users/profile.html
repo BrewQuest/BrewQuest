@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -41,7 +42,11 @@
 <form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
     <button type="submit">Edit Driver</button>
 </form>
-<a th:href="@{/addFriend/{id}(id=${user.id})}"><button>Add Friend</button></a>
-<a th:href="@{/deleteFriend/{id}(id=${user.id})}"><button>Delete Friend</button></a>
+<a th:if="${!isMyProfile && friend == null}" th:href="@{/addFriend/{id}(id=${user.id})}">
+    <button>Add Friend</button>
+</a>
+<a th:if="${!isMyProfile && friend != null}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
+    <button>Delete Friend</button>
+</a>
 </body>
 </html>

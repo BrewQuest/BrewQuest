@@ -2,8 +2,10 @@ package com.example.brewquest.controllers;
 
 
 import com.example.brewquest.models.Driver;
+import com.example.brewquest.models.Friend;
 import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.DriverRepository;
+import com.example.brewquest.repositories.FriendsRepository;
 import com.example.brewquest.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,12 +25,13 @@ import java.util.List;
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
-
+private final FriendsRepository friendsDao;
     private final DriverRepository driverDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, FriendsRepository friendsDao, DriverRepository driverDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.friendsDao = friendsDao;
         this.driverDao = driverDao;
     }
 
@@ -70,10 +72,25 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(@PathVariable Long id, Model model) {
-        User user = userDao.findById(id).get();
+        User user = userDao.findById(id).orElse(null);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Driver driver = driverDao.findByUser(user);
+        Friend friend = friendsDao.findByUserAndFriend(loggedInUser, user);
+
+        model.addAttribute("friend", friend);
+        model.addAttribute("driver", driver);
         model.addAttribute("user", user);
+
+        boolean isMyProfile = loggedInUser.getId().equals(user.getId());
+        
+        boolean isFriend = friend != null;
+
+        model.addAttribute("isMyProfile", isMyProfile);
+        model.addAttribute("isFriend", isFriend);
+
         return "users/profile";
     }
+
 
     @GetMapping("/profile/{id}/edit")
     public String showEditProfile(@PathVariable Long id, Model model) {

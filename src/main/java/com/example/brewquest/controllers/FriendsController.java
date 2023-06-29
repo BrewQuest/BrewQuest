@@ -47,7 +47,16 @@ public class FriendsController {
 
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable("id") long id) {
-        friendsDao.deleteById(id);
+        User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User friendUser = usersDao.findById(id).orElse(null);
+
+        if (friendUser != null) {
+            Friend friend = friendsDao.findByUserAndFriend(authenticatedUser, friendUser);
+            if (friend != null) {
+                friendsDao.delete(friend);
+            }
+        }
+
         return "redirect:/profile/" + id;
     }
 }
