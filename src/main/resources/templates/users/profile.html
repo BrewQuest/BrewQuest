@@ -52,10 +52,13 @@
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
 <form th:if="${driver == null}" th:action="@{/signup-driver}" th:method="get">
-    <button type="submit">Sign Up to be a Driver!</button>
+
+<button type=“submit”>Sign Up to be a Driver!</button>
 </form>
 <form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
-    <button type="submit">Edit Driver</button>
+    <button type=“submit”>Edit Driver</button>
+
+
 </form>
 <a th:if="${!isMyProfile && friend == null}" th:href="@{/addFriend/{id}(id=${user.id})}">
     <button>Add Friend</button>
