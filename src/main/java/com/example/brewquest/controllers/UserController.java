@@ -1,12 +1,10 @@
 package com.example.brewquest.controllers;
 
 
-import com.example.brewquest.models.Driver;
-import com.example.brewquest.models.Friend;
-import com.example.brewquest.models.User;
-import com.example.brewquest.repositories.DriverRepository;
-import com.example.brewquest.repositories.FriendsRepository;
-import com.example.brewquest.repositories.UserRepository;
+import com.example.brewquest.models.*;
+import com.example.brewquest.repositories.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,21 +16,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
-private final FriendsRepository friendsDao;
+
     private final DriverRepository driverDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, FriendsRepository friendsDao, DriverRepository driverDao) {
+    private final FavoriteRepository favoriteDao;
+
+    private final WishlistRepository wishlistDao;
+
+    private final FriendsRepository friendsDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao, FavoriteRepository favoriteDao, WishlistRepository wishlistDao, FriendsRepository friendsDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        this.friendsDao = friendsDao;
         this.driverDao = driverDao;
+        this.favoriteDao = favoriteDao;
+        this.wishlistDao = wishlistDao;
+        this.friendsDao = friendsDao;
     }
 
     @GetMapping("/sign-up")
@@ -76,21 +89,123 @@ private final FriendsRepository friendsDao;
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Driver driver = driverDao.findByUser(user);
         Friend friend = friendsDao.findByUserAndFriend(loggedInUser, user);
-
         model.addAttribute("friend", friend);
         model.addAttribute("driver", driver);
         model.addAttribute("user", user);
-
         boolean isMyProfile = loggedInUser.getId().equals(user.getId());
-        
         boolean isFriend = friend != null;
-
         model.addAttribute("isMyProfile", isMyProfile);
         model.addAttribute("isFriend", isFriend);
 
+        List<Favorite> favorites = favoriteDao.findByUser(user);
+        List<Wishlist> wishlists = wishlistDao.findByUser(user);
+        List<String> favId = new ArrayList<>();
+        List<String> wishId = new ArrayList<>();
+        for(Favorite favorite : favorites) {
+            favId.add(favorite.getBreweryId());
+        }
+        for(Wishlist wishlist : wishlists) {
+            wishId.add(wishlist.getBreweryId());
+        }
+        String ids = "";
+        String wishids = "";
+        for(String fav : favId) {
+            ids += fav + ",";
+        }
+        for(String wish : wishId) {
+            wishids += wish + ",";
+        }
+
+
+        String modifiedIds = ids.substring(0, ids.length() - 1);
+        System.out.println(modifiedIds);
+        try {
+            // Create the URL object with the API endpoint
+            URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + wishids);
+
+            // Create the HttpURLConnection object
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            // Set the "Accept" header to request JSON response
+            connection.setRequestProperty("Accept", "application/json");
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+
+
+            // If the response code indicates success, read the response
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                // Parse the JSON response
+                ObjectMapper objectMapper = new ObjectMapper();
+                List<Map<String, Object>> wishBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {});
+
+                // Add the breweries to the model
+                model.addAttribute("wishlists", wishBrews);
+
+            } else {
+                System.out.println("API request failed with response code: " + responseCode);
+            }
+
+            // Disconnect the connection
+            connection.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            // Create the URL object with the API endpoint
+            URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + modifiedIds);
+
+            // Create the HttpURLConnection object
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            // Set the "Accept" header to request JSON response
+            connection.setRequestProperty("Accept", "application/json");
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+
+
+            // If the response code indicates success, read the response
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                // Parse the JSON response
+                ObjectMapper objectMapper = new ObjectMapper();
+                List<Map<String, Object>> favBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {});
+
+                // Add the breweries to the model
+                model.addAttribute("favorites", favBrews);
+
+            } else {
+                System.out.println("API request failed with response code: " + responseCode);
+            }
+
+            // Disconnect the connection
+            connection.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("user", user);
         return "users/profile";
     }
-
 
     @GetMapping("/profile/{id}/edit")
     public String showEditProfile(@PathVariable Long id, Model model) {
