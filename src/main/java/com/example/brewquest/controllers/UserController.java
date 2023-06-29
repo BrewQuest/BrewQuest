@@ -1,14 +1,8 @@
 package com.example.brewquest.controllers;
 
 
-import com.example.brewquest.models.Driver;
-import com.example.brewquest.models.Favorite;
-import com.example.brewquest.models.User;
-import com.example.brewquest.models.Wishlist;
-import com.example.brewquest.repositories.DriverRepository;
-import com.example.brewquest.repositories.FavoriteRepository;
-import com.example.brewquest.repositories.UserRepository;
-import com.example.brewquest.repositories.WishlistRepository;
+import com.example.brewquest.models.*;
+import com.example.brewquest.repositories.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
@@ -43,12 +37,15 @@ public class UserController {
 
     private final WishlistRepository wishlistDao;
 
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao, FavoriteRepository favoriteDao, WishlistRepository wishlistDao) {
+    private final FriendsRepository friendsDao;
+
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, DriverRepository driverDao, FavoriteRepository favoriteDao, WishlistRepository wishlistDao, FriendsRepository friendsDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.driverDao = driverDao;
         this.favoriteDao = favoriteDao;
         this.wishlistDao = wishlistDao;
+        this.friendsDao = friendsDao;
     }
 
     @GetMapping("/sign-up")
@@ -88,7 +85,18 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(@PathVariable Long id, Model model) {
-        User user = userDao.findById(id).get();
+        User user = userDao.findById(id).orElse(null);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Driver driver = driverDao.findByUser(user);
+        Friend friend = friendsDao.findByUserAndFriend(loggedInUser, user);
+        model.addAttribute("friend", friend);
+        model.addAttribute("driver", driver);
+        model.addAttribute("user", user);
+        boolean isMyProfile = loggedInUser.getId().equals(user.getId());
+        boolean isFriend = friend != null;
+        model.addAttribute("isMyProfile", isMyProfile);
+        model.addAttribute("isFriend", isFriend);
+
         List<Favorite> favorites = favoriteDao.findByUser(user);
         List<Wishlist> wishlists = wishlistDao.findByUser(user);
         List<String> favId = new ArrayList<>();
