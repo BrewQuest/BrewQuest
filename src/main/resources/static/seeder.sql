@@ -1,3 +1,4 @@
+use BrewQuest_db;
 INSERT INTO users (first_name, last_name, birth_date, zipcode, username, email, password, total_breweries)
 VALUES
     ('John', 'Doe', '1990-01-01', 12345, 'johndoe', 'john@example.com', '$2a$12$SeEcwNyruDM/iZsa1dqXfu7s/D./vTHxYNEgkJjh9tBh3vnWOdbcq
