@@ -16,126 +16,131 @@
 </div>
 <div class="wrapper">
     <div class="cols">
+        <th:block th:each="brewery :${breweries}">
         <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
+                <div class="container">
+                    <div class="front">
+                        <div class="inner">
+                            <h4 th:text="${brewery.name}"></h4>
+                            <p>
+                                <span th:text="${brewery.city}"></span>
+                                <span th:text="', ' + ${brewery.state}"></span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
+                    <div class="back">
+                        <div class="inner">
+                            <a th:href="@{/brewery/{id}(id=${brewery.id})}"><button>View Details</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-            <div class="container">
-                <div class="front">
-                    <div class="inner">
-                        <p>In work</p>
-                        <span>more detail</span>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="inner">
-                        <p>brewery details.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </th:block>
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col" ontouchstart="this.classList.toggle('hover');">-->
+<!--            <div class="container">-->
+<!--                <div class="front">-->
+<!--                    <div class="inner">-->
+<!--                        <p>In work</p>-->
+<!--                        <span>more detail</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="back">-->
+<!--                    <div class="inner">-->
+<!--                        <p>brewery details.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 

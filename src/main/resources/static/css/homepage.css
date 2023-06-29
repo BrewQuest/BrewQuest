@@ -11,10 +11,13 @@ body{
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
 }
-.intro, h1{
+.intro{
     text-align: center;
     background-color: #70452e;
     font-weight: lighter;
+    border: white 3px solid;
+    border-radius: 15px;
+    margin: 8px;
 }
 
 h1 {
@@ -53,7 +56,7 @@ h1 {
     transform-style: preserve-3d;
     -webkit-perspective: 1000px;
     perspective: 1000px;
-    width: 250px;
+    width: 300px;
 
 }
 
@@ -77,6 +80,7 @@ h1 {
     color: #fff;
     font-size: 1.5rem;
     padding: 1.5rem;
+    border: white 3px solid;
 }
 
 .back, .front {
