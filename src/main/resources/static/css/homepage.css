@@ -4,14 +4,16 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-body{
+
+body {
     background-image: url("/img/homepage1.webp");
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
 }
-.intro{
+
+.intro {
     text-align: center;
     background-color: #70452e;
     font-weight: lighter;
@@ -25,7 +27,6 @@ h1 {
     font-weight: normal;
     color: burlywood;
     text-align: center;
-    /*margin: 2rem 0;*/
 }
 
 .wrapper {
@@ -57,7 +58,6 @@ h1 {
     -webkit-perspective: 1000px;
     perspective: 1000px;
     width: 300px;
-
 }
 
 .front,
@@ -83,8 +83,8 @@ h1 {
     border: white 3px solid;
 }
 
-.back, .front {
-    /*color: #333333;*/
+.back,
+.front {
     background: burlywood;
     background: -webkit-linear-gradient(45deg, burlywood 0%, #70452e 100%);
     background: -o-linear-gradient(45deg, burlywood 0%, #70452e 100%);
@@ -192,7 +192,7 @@ h1 {
     font-weight: 300;
 }
 
-/*media queries*/
+/* Media Queries */
 @media screen and (max-width: 64rem) {
     .col {
         width: calc(33.333333% - 2rem);

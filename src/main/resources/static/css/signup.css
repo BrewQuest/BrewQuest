@@ -1,3 +1,4 @@
+/* Global styles */
 body {
     background-image: url("/img/review-img.jpeg");
     background-size: cover;
@@ -49,10 +50,10 @@ span {
     color: red;
     background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
 }
-#“passwordRequirements”{
-    background-color: rgba(0,0,0,.5);
-}
 
+#passwordRequirements {
+    background-color: rgba(0, 0, 0, .5);
+}
 
 /* Media Queries for Responsive Design */
 
