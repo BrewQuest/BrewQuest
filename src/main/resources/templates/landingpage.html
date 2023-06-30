@@ -5,6 +5,7 @@
   <title>Landing Page</title>
   <th:block th:replace="partials/header :: font"></th:block>
  <link rel="stylesheet" th:href="@{/css/landing.css}" type="text/css">
+  <script type="text/javascript" th:src="@{/keys.js}"></script>
 </head>
 <body>
 <div class="card">
@@ -14,5 +15,8 @@
   <a href="https://www.liquor.com/best-nonalcoholic-beers-5078321"><button class="red-button">NO</button></a>
 </div>
 <div id="breweries"></div>
+<script>
+  console.log(MAPBOX_TOKEN)
+</script>
 </body>
 </html>
