@@ -107,14 +107,14 @@ public class BreweryController {
                     JSONArray jsonArray = new JSONArray(jsonResponse);
                     if (jsonArray.length() > 0) {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        breweryName = jsonObject.getString("name");
-                        breweryState = jsonObject.getString("state_province");
-                        breweryCity = jsonObject.getString("city");
-                        breweryStreet = jsonObject.getString("street");
-                        breweryCountry = jsonObject.getString("country");
-                        breweryZipcode = jsonObject.getString("postal_code");
+                        breweryName = jsonObject.optString("name", "");
+                        breweryState = jsonObject.optString("state_province", "");
+                        breweryCity = jsonObject.optString("city");
+                        breweryStreet = jsonObject.optString("street", "");
+                        breweryCountry = jsonObject.optString("country");
+                        breweryZipcode = jsonObject.optString("postal_code", "");
                         breweryId = jsonObject.getString("id");
-                        breweryWebsite = jsonObject.getString("website_url");
+                        breweryWebsite = jsonObject.optString("website_url", "");
 
 
                         model.addAttribute("name", breweryName);
