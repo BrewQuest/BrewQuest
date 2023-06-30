@@ -10,7 +10,7 @@
         <th>User</th>
         <th>Friend</th>
     </tr>
-    <tr th:each="friend : ${friends}">
+    <tr th:each="friend : ${friend}">
         <td th:text="${friend.user.username}"></td>
         <td th:text="${friend.friend.username}"></td>
     </tr>

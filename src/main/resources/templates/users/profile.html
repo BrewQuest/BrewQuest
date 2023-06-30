@@ -58,10 +58,10 @@
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
 <form th:if="${driver == null}" th:action="@{/signup-driver}" th:method="get">
 
-<button type=“submit”>Sign Up to be a Driver!</button>
+<button>Sign Up to be a Driver!</button>
 </form>
 <form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
-    <button type=“submit”>Edit Driver</button>
+    <button>Edit Driver</button>
 
 
 </form>
@@ -71,6 +71,5 @@
 <a th:if="${!isMyProfile && friend != null}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
     <button>Delete Friend</button>
 </a>
-
 </body>
 </html>
