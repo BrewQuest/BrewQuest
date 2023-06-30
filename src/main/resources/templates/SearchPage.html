@@ -97,6 +97,20 @@
         cooperativeGestures: true
     });
 
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+// When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+// Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+
+
+
 
     $('#searchForm').submit(function (e) {
         e.preventDefault();
@@ -139,8 +153,13 @@
                     }
                     cardHTML += `</div>`
 
+                    popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        brewery.name
+                    );
+
                     new mapboxgl.Marker()
                         .setLngLat([brewery.longitude, brewery.latitude])
+                        .setPopup(popup)
                         .addTo(map);
 
 
