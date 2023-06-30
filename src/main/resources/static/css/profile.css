@@ -67,6 +67,19 @@ a:hover {
     button {
         padding: 8px 16px;
     }
+
+    /* Additional styles for favorites and wishlist */
+    .favorites-section {
+        margin-top: 15px;
+    }
+
+    .wishlist-section {
+        margin-top: 15px;
+    }
+
+    .upload-section {
+        margin-top: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -85,5 +98,18 @@ a:hover {
 
     button {
         padding: 6px 12px;
+    }
+
+    /* Additional styles for favorites and wishlist */
+    .favorites-section {
+        margin-top: 10px;
+    }
+
+    .wishlist-section {
+        margin-top: 10px;
+    }
+
+    .upload-section {
+        margin-top: 10px;
     }
 }

@@ -12,7 +12,7 @@ body {
     background-image: url("/img/landing-page.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
-    text-align: center;
+    background-position: center;
     font-family: 'Rubik Dirt', cursive;
 }
 
@@ -20,22 +20,22 @@ body {
     background-color: rgba(127, 76, 7, 0.5);
     padding: 20px;
     border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
 }
-
-.white-button {
+.white-button{
     background-color: white;
-    color: black;
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 10px 20px;
 }
-
-.red-button {
+.red-button{
     background-color: red;
+}
+.white-button,
+.red-button {
     color: black;
     border: 2px solid black;
     border-radius: 20px;
     padding: 10px 20px;
+    margin-top: 10px;
 }
 
 .red-text {
@@ -46,32 +46,22 @@ body {
     color: white;
 }
 
-.white-button,
-.red-button {
-    margin-top: 10px;
-}
-
 h1 {
     text-align: center;
     font-size: 30px;
 }
 
+/* Mobile and tablet responsive styles */
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 24px;
+    }
+}
+
 /* Mobile responsive styles */
 @media screen and (max-width: 768px) {
-    body {
-        background-position: center;
-    }
-
-    .card {
-        max-width: 90%;
-    }
-
     .white-button,
     .red-button {
         margin-top: 20px;
-    }
-
-    h1 {
-        font-size: 24px;
     }
 }
