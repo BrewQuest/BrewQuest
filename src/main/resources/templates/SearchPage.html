@@ -68,6 +68,7 @@
         }
 
 
+
     </style>
 </head>
 <body>
@@ -86,6 +87,7 @@
 <script th:src="@{js/keys.js}"></script>
 <script th:src="@{js/geocoder.js}"></script>
 
+
 <script>
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -96,6 +98,8 @@
         center: [-96.80294985008125, 32.777609251915024],
         cooperativeGestures: true
     });
+
+
 
 
     $('#searchForm').submit(function (e) {
@@ -119,7 +123,6 @@
         fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}`)
             .then(res => res.json())
             .then(function (data) {
-                console.log(data)
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
                     if (brewery.name != null) {
@@ -139,9 +142,16 @@
                     }
                     cardHTML += `</div>`
 
+                    var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        brewery.name
+                    );
+
+
                     new mapboxgl.Marker()
                         .setLngLat([brewery.longitude, brewery.latitude])
+                        .setPopup(popup)
                         .addTo(map);
+
 
 
                 })
