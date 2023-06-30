@@ -25,6 +25,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.http.HttpRequest;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class BreweryController {
@@ -60,7 +63,20 @@ public class BreweryController {
         favorite.setBreweryId(id);
         favoriteDao.save(favorite);
         return "redirect:/brewery/" + id;
+    }
 
+    @PostMapping("/deletewishlist/{userid}/{id}")
+    public String deleteWishlist(@PathVariable String id, Long userid) {
+        User user = userDao.findById(userid).get();
+        List<Wishlist> wishlists = wishlistDao.findByUser(user);
+        Wishlist deleteWishlist = null;
+        for( Wishlist wishlist : wishlists) {
+            if(wishlist.getBreweryId() == id) {
+                deleteWishlist = wishlist;
+            }
+        }
+        wishlistDao.delete(deleteWishlist);
+        return "redirect:/home";
     }
 
     @GetMapping("/brewery/{id}")
@@ -107,14 +123,14 @@ public class BreweryController {
                     JSONArray jsonArray = new JSONArray(jsonResponse);
                     if (jsonArray.length() > 0) {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        breweryName = jsonObject.getString("name");
-                        breweryState = jsonObject.getString("state_province");
-                        breweryCity = jsonObject.getString("city");
-                        breweryStreet = jsonObject.getString("street");
-                        breweryCountry = jsonObject.getString("country");
-                        breweryZipcode = jsonObject.getString("postal_code");
+                        breweryName = jsonObject.optString("name", "");
+                        breweryState = jsonObject.optString("state_province", "");
+                        breweryCity = jsonObject.optString("city");
+                        breweryStreet = jsonObject.optString("street", "");
+                        breweryCountry = jsonObject.optString("country");
+                        breweryZipcode = jsonObject.optString("postal_code", "");
                         breweryId = jsonObject.getString("id");
-                        breweryWebsite = jsonObject.getString("website_url");
+                        breweryWebsite = jsonObject.optString("website_url", "");
 
 
                         model.addAttribute("name", breweryName);
