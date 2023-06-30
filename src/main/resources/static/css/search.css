@@ -40,6 +40,7 @@ body {
     background: -o-linear-gradient(45deg, burlywood 0%, #70452e 100%);
     background: linear-gradient(45deg, burlywood 0%, #70452e 100%);
     border: white 3px solid;
+    color: white;
     height: 261px;
     width: 300px;
     margin-top: 20px;
