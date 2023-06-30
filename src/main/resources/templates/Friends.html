@@ -5,16 +5,17 @@
 </head>
 <body>
 <h1>Friends List</h1>
-<table>
-    <tr>
-        <th>User</th>
-        <th>Friend</th>
-    </tr>
-    <tr th:each="friend : ${friend}">
-        <td th:text="${friend.user.username}"></td>
-        <td th:text="${friend.friend.username}"></td>
-    </tr>
-</table>
+<!-- ... -->
+<tbody>
+<!-- Iterate over the friends and display their data -->
+<tr th:each="friend : ${friends}">
+    <td th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></td>
+    <td th:text="${friend.friend.breweriesVisited()}"></td>
+    <td th:text="${friend.friend.passengerCount()}"></td>
+</tr>
+</tbody>
+<!-- ... -->
+
 </body>
 </html>
 

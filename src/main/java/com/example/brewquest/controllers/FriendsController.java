@@ -22,8 +22,9 @@ public class FriendsController {
     }
 
     @GetMapping("/friends")
-    public String getFriends(Model model) {
-        List<Friend> friends = friendsDao.findAll();
+    public String showFriends(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Friend> friends = friendsDao.findByUser(loggedInUser);
         model.addAttribute("friends", friends);
         return "friends";
     }
