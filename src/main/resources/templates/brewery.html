@@ -33,13 +33,15 @@
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 
 <h1><span th:text="${name}"></span></h1>
-<a th:href="@{/brewery/{id}/create-review(id=${id})}"><button>Create Review</button></a>
-<form th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
-    <button type="submit">Add to Favorites</button>
-</form>
-<form th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
-    <button type="submit">Add to Wishlist</button>
-</form>
+<th:block sec:authorize="isAuthenticated()">
+    <a th:href="@{/brewery/{id}/create-review(id=${id})}"><button>Create Review</button></a>
+    <form th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
+        <button type="submit">Add to Favorites</button>
+    </form>
+    <form th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
+        <button type="submit">Add to Wishlist</button>
+    </form>
+</th:block>
 <input type="hidden" id="city" th:value="${city}"/>
 <div id="mapContainer">
     <div id='map'></div>

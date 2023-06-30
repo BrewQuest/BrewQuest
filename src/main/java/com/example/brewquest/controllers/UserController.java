@@ -85,18 +85,28 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(@PathVariable Long id, Model model) {
-        User user = userDao.findById(id).orElse(null);
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findById(id).get();
         Driver driver = driverDao.findByUser(user);
-        Friend friend = friendsDao.findByUserAndFriend(loggedInUser, user);
-        model.addAttribute("friend", friend);
-        model.addAttribute("driver", driver);
-        model.addAttribute("user", user);
-        boolean isMyProfile = loggedInUser.getId().equals(user.getId());
-        boolean isFriend = friend != null;
-        model.addAttribute("isMyProfile", isMyProfile);
-        model.addAttribute("isFriend", isFriend);
+        Friend friendYes = null;
+        String friendCheck = null;
 
+        if(user == SecurityContextHolder.getContext().getAuthentication().getPrincipal()) {
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            if(driver.getUser() != loggedInUser) {
+                driver = null;
+            }
+            System.out.println(loggedInUser.getId());
+            List<Friend> userFriends = friendsDao.findByUser(loggedInUser);
+
+            for(Friend friend : userFriends) {
+                if(friend.getUser() == user) {
+                    friendYes = friend;
+                    friendCheck = "true";
+                }
+            }
+
+        }
         List<Favorite> favorites = favoriteDao.findByUser(user);
         List<Wishlist> wishlists = wishlistDao.findByUser(user);
         List<String> favId = new ArrayList<>();
@@ -117,93 +127,108 @@ public class UserController {
         }
 
 
-        String modifiedIds = ids.substring(0, ids.length() - 1);
-        System.out.println(modifiedIds);
-        try {
-            // Create the URL object with the API endpoint
-            URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + wishids);
 
-            // Create the HttpURLConnection object
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+        if(wishids != "") {
+            String modifiedWishIds = ids.substring(0, ids.length() - 1);
+            System.out.println(modifiedWishIds);
 
-            // Set the "Accept" header to request JSON response
-            connection.setRequestProperty("Accept", "application/json");
+            try {
+                // Create the URL object with the API endpoint
+                URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + modifiedWishIds);
 
-            // Get the response code
-            int responseCode = connection.getResponseCode();
+                // Create the HttpURLConnection object
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                // Set the "Accept" header to request JSON response
+                connection.setRequestProperty("Accept", "application/json");
+
+                // Get the response code
+                int responseCode = connection.getResponseCode();
 
 
-            // If the response code indicates success, read the response
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                StringBuilder response = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
+                // If the response code indicates success, read the response
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line;
+                    StringBuilder response = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    // Parse the JSON response
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    List<Map<String, Object>> wishBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {
+                    });
+
+                    // Add the breweries to the model
+                    model.addAttribute("wishlists", wishBrews);
+
+                } else {
+                    System.out.println("API request failed with response code: " + responseCode);
                 }
-                reader.close();
 
-                // Parse the JSON response
-                ObjectMapper objectMapper = new ObjectMapper();
-                List<Map<String, Object>> wishBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {});
-
-                // Add the breweries to the model
-                model.addAttribute("wishlists", wishBrews);
-
-            } else {
-                System.out.println("API request failed with response code: " + responseCode);
+                // Disconnect the connection
+                connection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            // Disconnect the connection
-            connection.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-        try {
-            // Create the URL object with the API endpoint
-            URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + modifiedIds);
+        if(ids != "") {
 
-            // Create the HttpURLConnection object
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            String modifiedIds = ids.substring(0, ids.length() - 1);
+            System.out.println(modifiedIds);
 
-            // Set the "Accept" header to request JSON response
-            connection.setRequestProperty("Accept", "application/json");
+            try {
+                // Create the URL object with the API endpoint
+                URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + modifiedIds);
 
-            // Get the response code
-            int responseCode = connection.getResponseCode();
+                // Create the HttpURLConnection object
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                // Set the "Accept" header to request JSON response
+                connection.setRequestProperty("Accept", "application/json");
+
+                // Get the response code
+                int responseCode = connection.getResponseCode();
 
 
-            // If the response code indicates success, read the response
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                StringBuilder response = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
+                // If the response code indicates success, read the response
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String line;
+                    StringBuilder response = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+
+                    // Parse the JSON response
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    List<Map<String, Object>> favBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {
+                    });
+
+                    // Add the breweries to the model
+                    model.addAttribute("favorites", favBrews);
+
+                } else {
+                    System.out.println("API request failed with response code: " + responseCode);
                 }
-                reader.close();
 
-                // Parse the JSON response
-                ObjectMapper objectMapper = new ObjectMapper();
-                List<Map<String, Object>> favBrews = objectMapper.readValue(response.toString(), new TypeReference<List<Map<String, Object>>>() {});
-
-                // Add the breweries to the model
-                model.addAttribute("favorites", favBrews);
-
-            } else {
-                System.out.println("API request failed with response code: " + responseCode);
+                // Disconnect the connection
+                connection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            // Disconnect the connection
-            connection.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
+        model.addAttribute("friend", friendYes);
+        model.addAttribute("friendCheck", friendCheck);
         model.addAttribute("user", user);
+        model.addAttribute("user", user);
+        model.addAttribute("driver", driver);
         return "users/profile";
     }
 
