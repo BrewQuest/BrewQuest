@@ -11,65 +11,8 @@
     <link th:fragment="styles" rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <th:block th:replace="partials/header :: font"></th:block>
     <link rel="stylesheet" th:href="@{/css/search.css}" type="text/css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        #map {
-            position: absolute;
-            top: 57px;
-            bottom: 20px;
-            right: 450px;
-            width: 80%;
-            height: 940px;
-        }
-
-
-        #searchForm {
-            position: absolute;
-            width: 20%;
-            margin-left: 1300px;
-        }
-
-        #scrollbox {
-            position: absolute;
-            top: 120px;
-            margin-left: 1300px;
-            height: 850px;
-            width: 20%;
-            padding: 2%;
-            overflow: scroll;
-        }
-
-        #scrollbox::-webkit-scrollbar {
-            display: none;
-        }
-
-        #SearchCard {
-            background: white;
-            height: 261px;
-            width: 250px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 25px;
-            text-align: center;
-            flex-wrap: wrap;
-            padding-top: 20px;
-            padding-bottom: 15px;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-
-
-    </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>

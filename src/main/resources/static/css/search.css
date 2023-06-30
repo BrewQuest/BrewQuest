@@ -1,0 +1,134 @@
+body {
+    background-image: url("/img/newHP.jpg");
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 57px;
+    bottom: 20px;
+    left: 0;
+    right: 20%;
+    height: calc(100vh - 77px);
+}
+
+#searchForm {
+    position: absolute;
+    width: 20%;
+    right: 0;
+    top: 57px;
+}
+
+#scrollbox {
+    position: absolute;
+    top: 120px;
+    right: 0;
+    width: 20%;
+    bottom: 20px;
+    overflow: auto;
+}
+
+#scrollbox::-webkit-scrollbar {
+    display: none;
+}
+
+#SearchCard {
+    background: burlywood;
+    background: -webkit-linear-gradient(45deg, burlywood 0%, #70452e 100%);
+    background: -o-linear-gradient(45deg, burlywood 0%, #70452e 100%);
+    background: linear-gradient(45deg, burlywood 0%, #70452e 100%);
+    border: white 3px solid;
+    height: 261px;
+    width: 300px;
+    margin-top: 20px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+/* Media queries for responsive design */
+
+/* Small devices (up to 768px) */
+@media (max-width: 768px) {
+    #map {
+        top: 57px;
+        bottom: 50%;
+        left: 0;
+        right: 0;
+        height: calc(50vh - 57px);
+    }
+
+    #searchForm {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #scrollbox {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        height: 300px;
+    }
+
+    #SearchCard {
+        width: 100%;
+    }
+}
+
+/* Medium devices (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #map {
+        top: 57px;
+        bottom: 50%;
+        left: 0;
+        right: 30%;
+        height: calc(50vh - 57px);
+    }
+
+    #searchForm {
+        position: static;
+        width: 30%;
+        margin-top: 20px;
+    }
+
+    #scrollbox {
+        position: static;
+        width: 30%;
+        margin-top: 20px;
+        height: 500px;
+    }
+
+    #SearchCard {
+        width: 30%;
+    }
+}
+
+/* Large devices (1025px and above) */
+@media (min-width: 1025px) {
+    #map {
+        position: absolute;
+        top: 57px;
+        bottom: 20px;
+        left: 0;
+        right: 30%;
+        height: calc(100vh - 77px);
+    }
+
+    #searchForm {
+        position: absolute;
+        width: 30%;
+        right: 0;
+        top: 57px;
+    }
+
+    #scrollbox {
+        position: absolute;
+        top: 120px;
+        right: 0;
+        width: 30%;
+        bottom: 20px;
+        overflow: auto;
+    }
+
+}
