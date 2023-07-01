@@ -88,24 +88,27 @@ public class UserController {
         User user = userDao.findById(id).get();
         Driver driver = driverDao.findByUser(user);
         Friend friendYes = null;
-        String friendCheck = null;
+        String friendCheck = "";
+        String friendNo = "";
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(user == SecurityContextHolder.getContext().getAuthentication().getPrincipal()) {
-            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(user == loggedInUser) {
 
             if(driver.getUser() != loggedInUser) {
                 driver = null;
             }
-            System.out.println(loggedInUser.getId());
-            List<Friend> userFriends = friendsDao.findByUser(loggedInUser);
+        }
+        System.out.println(loggedInUser.getId());
+        List<Friend> userFriends = friendsDao.findByUser(loggedInUser);
 
-            for(Friend friend : userFriends) {
-                if(friend.getUser() == user) {
-                    friendYes = friend;
-                    friendCheck = "true";
-                }
+        for(Friend friend : userFriends) {
+            System.out.println("hasFriends");
+            if(friend.getFriend() == user) {
+                friendYes = friend;
+                friendCheck = "true";
+            } else {
+                friendCheck = "false";
             }
-
         }
         List<Favorite> favorites = favoriteDao.findByUser(user);
         List<Wishlist> wishlists = wishlistDao.findByUser(user);
@@ -127,9 +130,9 @@ public class UserController {
         }
 
 
-
+        System.out.println(wishids);
         if(wishids != "") {
-            String modifiedWishIds = ids.substring(0, ids.length() - 1);
+            String modifiedWishIds = wishids.substring(0, wishids.length() - 1);
             System.out.println(modifiedWishIds);
 
             try {
@@ -224,6 +227,7 @@ public class UserController {
                 e.printStackTrace();
             }
         }
+        model.addAttribute("friendNo", friendNo);
         model.addAttribute("friend", friendYes);
         model.addAttribute("friendCheck", friendCheck);
         model.addAttribute("user", user);

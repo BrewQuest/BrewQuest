@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -65,18 +66,31 @@ public class BreweryController {
         return "redirect:/brewery/" + id;
     }
 
-    @PostMapping("/deletewishlist/{userid}/{id}")
-    public String deleteWishlist(@PathVariable String id, Long userid) {
-        User user = userDao.findById(userid).get();
+    @PostMapping("/deletewishlist/{id}")
+    public String deleteWishlist(@PathVariable String id) {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Wishlist> wishlists = wishlistDao.findByUser(user);
-        Wishlist deleteWishlist = null;
         for( Wishlist wishlist : wishlists) {
-            if(wishlist.getBreweryId() == id) {
-                deleteWishlist = wishlist;
+            if(wishlist.getBreweryId().equals(id)) {
+                wishlistDao.delete(wishlist);
             }
         }
-        wishlistDao.delete(deleteWishlist);
-        return "redirect:/home";
+        return "redirect:/profile/" + user.getId();
+    }
+
+    @PostMapping("/deletefavorite/{id}")
+    public String deletefavorite(@PathVariable String id) {
+        System.out.println(id);
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Favorite> favorites = favoriteDao.findByUser(user);
+        for( Favorite favorite : favorites) {
+            System.out.println(favorite.getBreweryId());
+            System.out.println(id);
+            if(favorite.getBreweryId().equals(id)) {
+                favoriteDao.delete(favorite);
+            }
+        }
+        return "redirect:/profile/" + user.getId();
     }
 
     @GetMapping("/brewery/{id}")
