@@ -68,6 +68,7 @@
         }
 
 
+
     </style>
 </head>
 <body>
@@ -85,6 +86,7 @@
         crossorigin="anonymous"></script>
 <!--<script th:src="@{js/keys.js}"></script>-->
 <script th:src="@{js/geocoder.js}"></script>
+
 
 <script>
 
@@ -112,6 +114,8 @@
 
 
 
+
+
     $('#searchForm').submit(function (e) {
         e.preventDefault();
         brewSearch();
@@ -133,7 +137,6 @@
         fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}`)
             .then(res => res.json())
             .then(function (data) {
-                console.log(data)
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
                     if (brewery.name != null) {
@@ -153,14 +156,23 @@
                     }
                     cardHTML += `</div>`
 
+<<<<<<< HEAD
                     popup = new mapboxgl.Popup({ offset: 25 }).setText(
                         brewery.name
                     );
 
+=======
+                    var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        brewery.name
+                    );
+
+
+>>>>>>> ba04aea (cardsonmarker)
                     new mapboxgl.Marker()
                         .setLngLat([brewery.longitude, brewery.latitude])
                         .setPopup(popup)
                         .addTo(map);
+
 
 
                 })
