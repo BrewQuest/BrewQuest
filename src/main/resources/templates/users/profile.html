@@ -63,14 +63,8 @@
 
 <button>Sign Up to be a Driver!</button>
 </form>
-<<<<<<< HEAD
-<form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
-    <button>Edit Driver</button>
-=======
 <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
     <button type=“submit”>Edit Driver</button>
->>>>>>> 47c37d1 (fixing issues in user controller getmapping for profile)
-
 
 </form>
 <a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == null)}" th:href="@{/addFriend/{id}(id=${user.id})}">

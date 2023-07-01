@@ -97,18 +97,10 @@
                     }
                     cardHTML += `</div>`
 
-<<<<<<< HEAD
+
                     popup = new mapboxgl.Popup({ offset: 25 }).setText(
                         brewery.name
                     );
-
-=======
-                    var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-                        brewery.name
-                    );
-
-
->>>>>>> ba04aea (cardsonmarker)
                     new mapboxgl.Marker()
                         .setLngLat([brewery.longitude, brewery.latitude])
                         .setPopup(popup)
