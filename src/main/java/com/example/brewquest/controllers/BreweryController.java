@@ -25,6 +25,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.http.HttpRequest;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class BreweryController {
@@ -60,7 +63,20 @@ public class BreweryController {
         favorite.setBreweryId(id);
         favoriteDao.save(favorite);
         return "redirect:/brewery/" + id;
+    }
 
+    @PostMapping("/deletewishlist/{userid}/{id}")
+    public String deleteWishlist(@PathVariable String id, Long userid) {
+        User user = userDao.findById(userid).get();
+        List<Wishlist> wishlists = wishlistDao.findByUser(user);
+        Wishlist deleteWishlist = null;
+        for( Wishlist wishlist : wishlists) {
+            if(wishlist.getBreweryId() == id) {
+                deleteWishlist = wishlist;
+            }
+        }
+        wishlistDao.delete(deleteWishlist);
+        return "redirect:/home";
     }
 
     @GetMapping("/brewery/{id}")

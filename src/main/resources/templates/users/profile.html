@@ -27,7 +27,7 @@
 
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Champion: <span th:text="${user.username}"></span></h1>
-<form th:if="${#authentication.principal.id == user.getId()}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
+<form sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
     <button type="submit">Edit Profile</button>
 </form>
 
@@ -50,25 +50,33 @@
                 <h4 th:text="${wishlist.name}"></h4>
                 <p><span th:text="${wishlist.city}"></span><span th:text="', ' + ${wishlist.state}"></span></p>
             </a>
+            <form th:action="@{/deletewishlist/{id}(id=${wishlist.id})}" th:method="post">
+                <button type="submit" th:value="${wishlist.id}">Remove</button>
+            </form>
         </div>
     </th:block>
 </div>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 
 <a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
-<form th:if="${driver == null}" th:action="@{/signup-driver}" th:method="get">
+<form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver == null}" th:action="@{/signup-driver}" th:method="get">
 
 <button>Sign Up to be a Driver!</button>
 </form>
+<<<<<<< HEAD
 <form th:if="${driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
     <button>Edit Driver</button>
+=======
+<form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
+    <button type=“submit”>Edit Driver</button>
+>>>>>>> 47c37d1 (fixing issues in user controller getmapping for profile)
 
 
 </form>
-<a th:if="${!isMyProfile && friend == null}" th:href="@{/addFriend/{id}(id=${user.id})}">
+<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == null)}" th:href="@{/addFriend/{id}(id=${user.id})}">
     <button>Add Friend</button>
 </a>
-<a th:if="${!isMyProfile && friend != null}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
+<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck != null)}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
     <button>Delete Friend</button>
 </a>
 </body>
