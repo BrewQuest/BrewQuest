@@ -63,7 +63,6 @@
 
 <button>Sign Up to be a Driver!</button>
 </form>
-
 <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
     <button type=“submit”>Edit Driver</button>
 
