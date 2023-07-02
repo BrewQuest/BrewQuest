@@ -7,74 +7,119 @@
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
     <style>
+        main {
+            margin: 15px;
+        }
+        #mainContainer {
+            display: flex;
+            justify-content: space-between;
+        }
+        #right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #left {
+            display: flex;
+        }
         .favCard {
             background-color: white;
             border: 2px black solid;
             border-radius: 10px;
+            text-align:  center;
         }
 
-        #favorites {
-            width: 50%;
-            max-height: 50vh;
+        .favorites-section, .wishlist-section {
+            overflow: auto;
         }
+
 
         h3 {
             text-align: center;
         }
+        button, a {
+            border-radius: 15px;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        #pfp {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 4px solid black;
+        }
     </style>
 </head>
 <body>
+    <nav th:replace="~{partials/Navbar::navbar}"></nav>
 
-<nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>Champion: <span th:text="${user.username}"></span></h1>
-<form sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
-    <button type="submit">Edit Profile</button>
-</form>
+    <main>
+    <h1>Champion: <span th:text="${user.username}"></span></h1>
+    <div id="mainContainer">
+        <section id="left">
 
-<div class="favorites-section">
-    <h3>Favorites</h3>
-    <th:block th:each="favorite : ${favorites}">
-        <div class="favCard">
-            <a th:href="@{/brewery/{id}(id = ${favorite.id})}">
-                <h4 th:text="${favorite.name}"></h4>
-                <p><span th:text="${favorite.city}"></span><span th:text="', ' + ${favorite.state}"></span></p>
+            <div class="favorites-section">
+                <h3>Favorites</h3>
+                <th:block th:each="favorite : ${favorites}">
+                    <div class="favCard">
+                        <a th:href="@{/brewery/{id}(id = ${favorite.id})}">
+                            <h4 th:text="${favorite.name}"></h4>
+                            <p><span th:text="${favorite.city}"></span><span th:text="', ' + ${favorite.state}"></span></p>
+                        </a>
+                        <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletefavorite/{id}(id=${favorite.id})}" th:method="post">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </div>
+                </th:block>
+            </div>
+
+            <div id = "wishlist" class="wishlist-section">
+                <h3>Wishlist</h3>
+                <th:block th:each="wishlist : ${wishlists}">
+                    <div class="favCard">
+                        <a th:href="@{/brewery/{id}(id = ${wishlist.id})}">
+                            <h4 th:text="${wishlist.name}"></h4>
+                            <p><span th:text="${wishlist.city}"></span><span th:text="', ' + ${wishlist.state}"></span></p>
+                        </a>
+                        <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletewishlist/{id}(id=${wishlist.id})}" th:method="post">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </div>
+                </th:block>
+            </div>
+        </section>
+
+        <section id="right">
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
+            <a th:href="@{/profile/{id}/reviews(id=${user.id})}">
+                <button>My Reviews</button>
             </a>
-            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletefavorite/{id}(id=${favorite.id})}" th:method="post">
-                <button type="submit">Remove</button>
+
+            <form sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">
+                <button type="submit">Edit Profile</button>
             </form>
-        </div>
-    </th:block>
-</div>
-<div id = "wishlist" class="wishlist-section">
-    <h3>Wishlist</h3>
-    <th:block th:each="wishlist : ${wishlists}">
-        <div class="favCard">
-            <a th:href="@{/brewery/{id}(id = ${wishlist.id})}">
-                <h4 th:text="${wishlist.name}"></h4>
-                <p><span th:text="${wishlist.city}"></span><span th:text="', ' + ${wishlist.state}"></span></p>
+
+            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver == null}" th:action="@{/signup-driver}" th:method="get">
+                <button>Sign Up to be a Driver!</button>
+            </form>
+
+            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
+                <button type=“submit”>Edit Driver</button>
+            </form>
+
+            <a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'false')}" th:href="@{/addFriend/{id}(id=${user.id})}">
+                <button>Add Friend</button>
             </a>
-            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletewishlist/{id}(id=${wishlist.id})}" th:method="post">
-                <button type="submit">Remove</button>
-            </form>
-        </div>
-    </th:block>
-</div>
+
+            <a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'true')}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
+                <button>Delete Friend</button>
+            </a>
+        </section>
+
+    </div>
+</main>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
-
-<a th:href="@{/profile/{id}/reviews(id=${user.id})}"><button>My Reviews</button></a>
-<form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver == null}" th:action="@{/signup-driver}" th:method="get">
-
-<button>Sign Up to be a Driver!</button>
-</form>
-<form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" th:action="@{/driver/{id}/edit(id=${user.id})}" th:method="get">
-    <button type=“submit”>Edit Driver</button>
-
-</form>
-<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'false')}" th:href="@{/addFriend/{id}(id=${user.id})}">
-    <button>Add Friend</button>
-</a>
-<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'true')}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
-    <button>Delete Friend</button>
-</a>
 </body>
 </html>
