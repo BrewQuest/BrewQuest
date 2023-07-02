@@ -9,6 +9,7 @@ import com.example.brewquest.repositories.WishlistRepository;
 import com.mysql.cj.xdevapi.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.net.URL;
 import java.net.http.HttpRequest;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -65,22 +68,78 @@ public class BreweryController {
         return "redirect:/brewery/" + id;
     }
 
-    @PostMapping("/deletewishlist/{userid}/{id}")
-    public String deleteWishlist(@PathVariable String id, Long userid) {
-        User user = userDao.findById(userid).get();
+    @PostMapping("/deletewishlist/{id}")
+    public String deleteWishlist(@PathVariable String id) {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Wishlist> wishlists = wishlistDao.findByUser(user);
-        Wishlist deleteWishlist = null;
         for( Wishlist wishlist : wishlists) {
-            if(wishlist.getBreweryId() == id) {
-                deleteWishlist = wishlist;
+            if(wishlist.getBreweryId().equals(id)) {
+                wishlistDao.delete(wishlist);
             }
         }
-        wishlistDao.delete(deleteWishlist);
-        return "redirect:/home";
+        return "redirect:/profile/" + user.getId();
+    }
+
+    @PostMapping("/deletefavorite/{id}")
+    public String deletefavorite(@PathVariable String id) {
+        System.out.println(id);
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Favorite> favorites = favoriteDao.findByUser(user);
+        for( Favorite favorite : favorites) {
+            System.out.println(favorite.getBreweryId());
+            System.out.println(id);
+            if(favorite.getBreweryId().equals(id)) {
+                favoriteDao.delete(favorite);
+            }
+        }
+        return "redirect:/profile/" + user.getId();
     }
 
     @GetMapping("/brewery/{id}")
     public String viewBrewery(@PathVariable String id, Model model) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user);
+
+        if (user instanceof User) {
+            User authenticatedUser = (User) user;
+            System.out.println("first if");
+            List<User> users = userDao.findAll();
+
+            for(User item : users) {
+                System.out.println(item.getId());
+                System.out.println(authenticatedUser.getId());
+                if(item.getId() == authenticatedUser.getId()) {
+                    model.addAttribute("user", authenticatedUser);
+                    System.out.println("last if");
+                    List<Favorite> favorites = favoriteDao.findByUser(authenticatedUser);
+                    System.out.println(favorites + " favs");
+                    List<Wishlist> wishlists = wishlistDao.findByUser(authenticatedUser);
+                    System.out.println(wishlists + " wishs");
+                    String favCheck = "";
+                    String wishCheck = "";
+
+                    for (Favorite favorite : favorites) {
+                        if (favorite.getBreweryId().equals(id)) {
+                            favCheck = "true";
+                        } else {
+                            favCheck = "false";
+                        }
+                    }
+
+                    for (Wishlist wishlist : wishlists) {
+                        if (wishlist.getBreweryId().equals(id)) {
+                            wishCheck = "true";
+                        } else {
+                            wishCheck = "false";
+                        }
+
+                        model.addAttribute("wishCheck", wishCheck);
+                        model.addAttribute("favCheck", favCheck);
+                    }
+                }
+            }
+
+            }
         try {
             // Create the URL object with the API endpoint
             URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + id);

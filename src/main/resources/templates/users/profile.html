@@ -39,6 +39,9 @@
                 <h4 th:text="${favorite.name}"></h4>
                 <p><span th:text="${favorite.city}"></span><span th:text="', ' + ${favorite.state}"></span></p>
             </a>
+            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletefavorite/{id}(id=${favorite.id})}" th:method="post">
+                <button type="submit">Remove</button>
+            </form>
         </div>
     </th:block>
 </div>
@@ -50,8 +53,8 @@
                 <h4 th:text="${wishlist.name}"></h4>
                 <p><span th:text="${wishlist.city}"></span><span th:text="', ' + ${wishlist.state}"></span></p>
             </a>
-            <form th:action="@{/deletewishlist/{id}(id=${wishlist.id})}" th:method="post">
-                <button type="submit" th:value="${wishlist.id}">Remove</button>
+            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/deletewishlist/{id}(id=${wishlist.id})}" th:method="post">
+                <button type="submit">Remove</button>
             </form>
         </div>
     </th:block>
@@ -67,10 +70,10 @@
     <button type=“submit”>Edit Driver</button>
 
 </form>
-<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == null)}" th:href="@{/addFriend/{id}(id=${user.id})}">
+<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'false')}" th:href="@{/addFriend/{id}(id=${user.id})}">
     <button>Add Friend</button>
 </a>
-<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck != null)}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
+<a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'true')}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
     <button>Delete Friend</button>
 </a>
 </body>
