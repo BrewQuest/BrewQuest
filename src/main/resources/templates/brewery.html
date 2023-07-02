@@ -35,10 +35,10 @@
 <h1><span th:text="${name}"></span></h1>
 <th:block sec:authorize="isAuthenticated()">
     <a th:href="@{/brewery/{id}/create-review(id=${id})}"><button>Create Review</button></a>
-    <form th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
+    <form th:if="${favCheck == 'false'}" th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
         <button type="submit">Add to Favorites</button>
     </form>
-    <form th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
+    <form th:if="${wishCheck == 'false'}" th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
         <button type="submit">Add to Wishlist</button>
     </form>
 </th:block>

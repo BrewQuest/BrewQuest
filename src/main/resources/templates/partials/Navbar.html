@@ -48,7 +48,7 @@
     <div class="nav-right">
         <ul class="navbar-nav">
             <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="login"style="color: burlywood">Login/Signup</a>
+                <a class="nav-link" href="/login"style="color: burlywood">Login/Signup</a>
             </li>
             <li>
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">

@@ -9,6 +9,7 @@ import com.example.brewquest.repositories.WishlistRepository;
 import com.mysql.cj.xdevapi.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import java.net.URL;
 import java.net.http.HttpRequest;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -95,6 +97,49 @@ public class BreweryController {
 
     @GetMapping("/brewery/{id}")
     public String viewBrewery(@PathVariable String id, Model model) {
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user);
+
+        if (user instanceof User) {
+            User authenticatedUser = (User) user;
+            System.out.println("first if");
+            List<User> users = userDao.findAll();
+
+            for(User item : users) {
+                System.out.println(item.getId());
+                System.out.println(authenticatedUser.getId());
+                if(item.getId() == authenticatedUser.getId()) {
+                    model.addAttribute("user", authenticatedUser);
+                    System.out.println("last if");
+                    List<Favorite> favorites = favoriteDao.findByUser(authenticatedUser);
+                    System.out.println(favorites + " favs");
+                    List<Wishlist> wishlists = wishlistDao.findByUser(authenticatedUser);
+                    System.out.println(wishlists + " wishs");
+                    String favCheck = "";
+                    String wishCheck = "";
+
+                    for (Favorite favorite : favorites) {
+                        if (favorite.getBreweryId().equals(id)) {
+                            favCheck = "true";
+                        } else {
+                            favCheck = "false";
+                        }
+                    }
+
+                    for (Wishlist wishlist : wishlists) {
+                        if (wishlist.getBreweryId().equals(id)) {
+                            wishCheck = "true";
+                        } else {
+                            wishCheck = "false";
+                        }
+
+                        model.addAttribute("wishCheck", wishCheck);
+                        model.addAttribute("favCheck", favCheck);
+                    }
+                }
+            }
+
+            }
         try {
             // Create the URL object with the API endpoint
             URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + id);
