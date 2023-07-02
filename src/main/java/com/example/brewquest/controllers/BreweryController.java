@@ -54,7 +54,7 @@ public class BreweryController {
         wishlist.setUser(user);
         wishlist.setBreweryId(id);
         wishlistDao.save(wishlist);
-        return "redirect:/brewery/" + id;
+        return "redirect:/profile/" + user.getId();
     }
 
     //save brewery to users favorites
@@ -65,7 +65,7 @@ public class BreweryController {
         favorite.setUser(user);
         favorite.setBreweryId(id);
         favoriteDao.save(favorite);
-        return "redirect:/brewery/" + id;
+        return "redirect:/profile/" + user.getId();
     }
 
     @PostMapping("/deletewishlist/{id}")
