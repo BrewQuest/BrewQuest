@@ -12,6 +12,14 @@
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <th:block th:replace="partials/header :: font"></th:block>
     <link rel="stylesheet" th:href="@{/css/search.css}" type="text/css">
+
+    <style>
+        #scrollbox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
