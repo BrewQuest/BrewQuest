@@ -74,6 +74,7 @@
         });
         const cardContainer = document.getElementById("scrollbox");
         let cardHTML = "";
+        let popup = "";
 
         fetch(`https://api.openbrewerydb.org/v1/breweries?by_city=${$('#searchInput').val()}`)
             .then(res => res.json())
