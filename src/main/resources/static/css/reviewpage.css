@@ -3,7 +3,7 @@ html {
     font-family: 'Rubik Dirt', cursive;
 }
 
-body {
+main {
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,6 +14,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    font-family: 'Rubik Dirt', cursive;
 }
 
 h1 {
