@@ -16,14 +16,46 @@
 
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <style>
+        body {
+            font-family: 'Rubik Dirt', cursive;
+            background-color: #666666;
+            text-align: center;
+        }
         #mapContainer {
-            height: 100vh;
-            width: 75%;
+            height: 85vh;
+            margin-right: 15px;
         }
         #map {
             height: 100%;
             width: 100%;
             border-radius: 15px;
+            margin-top: 15px;
+        }
+        main {
+            margin: 0 15px;
+            display: flex;
+        }
+        h1 {
+            text-align: center;
+        }
+        #left {
+            width: 75%;
+        }
+        #buttons {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        button {
+            background-color: burlywood;
+            border-radius: 15px;
+            border: none;
+        }
+        .reviewCard {
+            border: 2px black solid;
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            background-color: white;
         }
 
 
@@ -31,21 +63,39 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-
 <h1><span th:text="${name}"></span></h1>
-<th:block sec:authorize="isAuthenticated()">
-    <a th:href="@{/brewery/{id}/create-review(id=${id})}"><button>Create Review</button></a>
-    <form th:if="${favCheck == 'false'}" th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
-        <button type="submit">Add to Favorites</button>
-    </form>
-    <form th:if="${wishCheck == 'false'}" th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
-        <button type="submit">Add to Wishlist</button>
-    </form>
-</th:block>
-<input type="hidden" id="city" th:value="${city}"/>
-<div id="mapContainer">
-    <div id='map'></div>
-</div>
+<h5 th:text="${street}"></h5>
+<h5 th:text="${city} + ', ' + ${state}"></h5>
+<hr>
+<main>
+    <div id="left">
+        <th:block  sec:authorize="isAuthenticated()">
+            <div id="buttons">
+            <a th:href="@{/brewery/{id}/create-review(id=${id})}"><button>Create Review</button></a>
+            <form th:if="${favCheck == 'false'}" th:action="@{/brewery/{id}/favorite(id=${id})}" th:method="post">
+                <button type="submit">Add to Favorites</button>
+            </form>
+            <form th:if="${wishCheck == 'false'}" th:action="@{/brewery/{id}/wishlist(id=${id})}" th:method="post">
+                <button type="submit">Add to Wishlist</button>
+            </form>
+            </div>
+        </th:block>
+        <input type="hidden" id="city" th:value="${city}"/>
+        <div id="mapContainer">
+            <div id='map'></div>
+        </div>
+    </div>
+
+    <div id="right">
+        <h2>Reviews</h2>
+        <th:block th:each="review : ${reviews}">
+            <div class="reviewCard">
+                <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
+                <a th:href="@{/profile/{id}(id=${review.getUser().getId()})}"> <p th:text="'- ' + ${review.getUser().getUsername()}"></p></a>
+            </div>
+        </th:block>
+    </div>
+</main>
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
@@ -59,7 +109,7 @@
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 12,
+        zoom: 15,
         center: [-96.4558196, 32.6279113],
         cooperativeGestures: true
     });
