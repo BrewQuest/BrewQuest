@@ -1,0 +1,113 @@
+/* editprofile.css */
+
+body {
+    background-image: url("/img/review-img.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Rubik Dirt', cursive;
+    color: burlywood;
+}
+
+h1 {
+    text-align: center;
+    color: #D9740F;
+}
+
+/* Styles for the form container */
+.edit {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Styles for form labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
+}
+
+/* Styles for form inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styles for the submit button */
+input[type="submit"] {
+    background-color: burlywood;
+    color: #70452e;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover styles for the submit button */
+input[type="submit"]:hover {
+    background-color: #45a049;
+    color: #f2f2f2;
+}
+
+/* Styles for the delete button */
+button[type="submit"] {
+    background-color: burlywood;
+    color: #70452e;
+    border: none;
+    /*margin-left: 650px;*/
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover styles for the delete button */
+button[type="submit"]:hover {
+    background-color: #d32f2f;
+    color: #f2f2f2;
+}
+
+/* Styles for the message below the form */
+p {
+    margin-top: 20px;
+    margin-left: 585px;
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    color: #ff0000;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+    /* Adjust the form container on smaller screens */
+    .edit {
+        max-width: 300px;
+    }
+
+    /* Adjust the margin of the delete button on smaller screens */
+    button[type="submit"] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Adjust the form container on medium-sized screens */
+    .edit {
+        max-width: 500px;
+    }
+}

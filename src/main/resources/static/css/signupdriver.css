@@ -1,0 +1,61 @@
+/* Styles for the body */
+body {
+    background-image: url("/img/review-img.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Rubik Dirt', cursive;
+    color: #D9740F;
+}
+
+
+/* Styles for the h1 heading */
+h1 {
+    color: #D9740F;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Styles for the form */
+form {
+    width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    color: #f2f2f2;
+    background-color: rgba(112,69,46,0.65); /* Black color with 100% opacity */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: burlywood;
+    color: #70452e;
+    border: solid #f2f2f2 2px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+    color: #f2f2f2;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 480px) {
+    form {
+        width: 100%;
+        padding: 10px;
+    }
+}

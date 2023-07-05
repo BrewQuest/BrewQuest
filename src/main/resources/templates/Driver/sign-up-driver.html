@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Sign-up-Driver</title>
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/signupdriver.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Driver Profile</h1>
 <form th:action="@{/signup-driver}" th:method="post" th:object="${driver}">
     <label for="carMake">Car Make:</label>
@@ -21,5 +25,6 @@
 
     <button type="submit">Sign Up</button>
 </form>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
