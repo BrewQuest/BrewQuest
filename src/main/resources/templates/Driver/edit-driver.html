@@ -24,7 +24,7 @@
     <label for="licensePlate">License Plate:</label>
     <input type="text" id="licensePlate" name="licensePlateNum" required th:value="${driver.licensePlateNum}"><br><br>
 
-    <button type="submit">Edit Driver</button>
+    <button type="submit" class="edit-btn">Edit Driver</button>
 </form>
 
 <form th:action="@{/driver/{id}/delete(id=${driver.id})}" th:method="post">
