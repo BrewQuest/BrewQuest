@@ -1,9 +1,11 @@
 package com.example.brewquest.controllers;
 
 import com.example.brewquest.models.Favorite;
+import com.example.brewquest.models.Review;
 import com.example.brewquest.models.User;
 import com.example.brewquest.models.Wishlist;
 import com.example.brewquest.repositories.FavoriteRepository;
+import com.example.brewquest.repositories.ReviewRepository;
 import com.example.brewquest.repositories.UserRepository;
 import com.example.brewquest.repositories.WishlistRepository;
 import com.mysql.cj.xdevapi.JsonArray;
@@ -39,12 +41,14 @@ public class BreweryController {
 
     private final FavoriteRepository favoriteDao;
     private final WishlistRepository wishlistDao;
+    private final ReviewRepository reviewDao;
 
-    public BreweryController(UserRepository userDao, PasswordEncoder passwordEncoder, FavoriteRepository favoriteDao, WishlistRepository wishlistDao) {
+    public BreweryController(UserRepository userDao, PasswordEncoder passwordEncoder, FavoriteRepository favoriteDao, WishlistRepository wishlistDao, ReviewRepository reviewDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.favoriteDao = favoriteDao;
         this.wishlistDao = wishlistDao;
+        this.reviewDao = reviewDao;
     }
     //save brewery to users wishlist
     @PostMapping("/brewery/{id}/wishlist")
@@ -97,6 +101,8 @@ public class BreweryController {
 
     @GetMapping("/brewery/{id}")
     public String viewBrewery(@PathVariable String id, Model model) {
+        List<Review> reviews = reviewDao.findByBreweryId(id);
+        model.addAttribute("reviews", reviews);
         Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(user);
 
@@ -115,31 +121,25 @@ public class BreweryController {
                     System.out.println(favorites + " favs");
                     List<Wishlist> wishlists = wishlistDao.findByUser(authenticatedUser);
                     System.out.println(wishlists + " wishs");
-                    String favCheck = "";
-                    String wishCheck = "";
+                    String favCheck = "false";
+                    String wishCheck = "false";
 
                     for (Favorite favorite : favorites) {
                         if (favorite.getBreweryId().equals(id)) {
                             favCheck = "true";
-                        } else {
-                            favCheck = "false";
                         }
                     }
 
                     for (Wishlist wishlist : wishlists) {
                         if (wishlist.getBreweryId().equals(id)) {
                             wishCheck = "true";
-                        } else {
-                            wishCheck = "false";
                         }
-
-                        model.addAttribute("wishCheck", wishCheck);
-                        model.addAttribute("favCheck", favCheck);
-                    }
+                   }
+                    model.addAttribute("wishCheck", wishCheck);
+                    model.addAttribute("favCheck", favCheck);
                 }
             }
-
-            }
+        }
         try {
             // Create the URL object with the API endpoint
             URL url = new URL("https://api.openbrewerydb.org/v1/breweries?by_ids=" + id);
