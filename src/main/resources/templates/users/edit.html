@@ -2,11 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Edit Profile</title>
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/editprofile.css}" type="text/css">
 </head>
 <body>
-<h1>this is the edit page</h1>
-<<<<<<< HEAD
+
 <h1>Edit Profile</h1>
 <form th:action="@{/profile/{id}/edit(id=${user.id})}" th:object="${user}" th:method="post">
     <label for="firstName">First Name</label>

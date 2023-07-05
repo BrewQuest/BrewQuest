@@ -1,0 +1,87 @@
+body {
+    background-image: url("/img/homepage1.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Rubik Dirt', cursive;
+    color: burlywood;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the content is centered vertically */
+}
+
+h1 {
+    color: #f2f2f2;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: burlywood;
+    color: #70452e;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #ff0000;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Styles for extra small screens (e.g., smartphones) */
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    form {
+        margin-left: 0;
+    }
+
+    input[type="text"] {
+        width: 100%;
+    }
+}
+
+/* Styles for small screens (e.g., tablets) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+}
+
+/* Styles for medium screens (e.g., smaller laptops) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    h1 {
+        font-size: 36px;
+    }
+}
+
+/* Styles for large screens (e.g., desktops) */
+@media only screen and (min-width: 1025px) {
+    h1 {
+        font-size: 48px;
+    }
+}
