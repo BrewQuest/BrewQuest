@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Edit Driver</title>
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/editdriver.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Edit Driver's Profile</h1>
 
 <form th:action="@{/driver/{id}/edit(id=${driver.user.id})}" th:method="post">
@@ -20,11 +24,12 @@
     <label for="licensePlate">License Plate:</label>
     <input type="text" id="licensePlate" name="licensePlateNum" required th:value="${driver.licensePlateNum}"><br><br>
 
-    <button type="submit">Edit Driver</button>
+    <button type="submit" class="edit-btn">Edit Driver</button>
 </form>
 
 <form th:action="@{/driver/{id}/delete(id=${driver.id})}" th:method="post">
     <button type="submit" class="delete-button">Delete Driver</button>
 </form>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
