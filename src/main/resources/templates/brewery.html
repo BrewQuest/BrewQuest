@@ -50,6 +50,7 @@
             background-color: burlywood;
             border-radius: 15px;
             border: none;
+            box-shadow: black 4px 4px 4px;
         }
         .reviewCard {
             border: 2px black solid;
@@ -91,6 +92,7 @@
 
     <div id="right">
         <h2>Reviews</h2>
+        <hr>
         <th:block th:each="review : ${reviews}">
             <div class="reviewCard">
                 <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
