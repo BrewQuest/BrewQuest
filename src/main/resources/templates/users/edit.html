@@ -32,9 +32,9 @@
     <input value="Update Profile" type="submit" />
 </form>
 
+<p> Looking to delete your Account?</p>
+<form th:action="@{/profile/{id}/delete(id=${user.id})}" method="post" class="delete" style="text-align: center">
 
-<form th:action="@{/profile/{id}/delete(id=${user.id})}" method="post" class="delete">
-    <p>Looking to delete your Account?</p>
     <button type="submit">Delete Account</button>
 </form>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>

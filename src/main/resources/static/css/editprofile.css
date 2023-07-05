@@ -7,7 +7,8 @@ body {
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
 }
-h1{
+
+h1 {
     text-align: center;
     color: #D9740F;
 }
@@ -32,7 +33,7 @@ label {
 /* Styles for form inputs */
 input[type="text"],
 input[type="email"],
-input[type="password"]{
+input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -65,7 +66,7 @@ button[type="submit"] {
     background-color: burlywood;
     color: #70452e;
     border: none;
-    margin-left: 650px;
+    /*margin-left: 650px;*/
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -84,7 +85,45 @@ button[type="submit"]:hover {
 /* Styles for the message below the form */
 p {
     margin-top: 20px;
-    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
     text-align: center;
+    position: relative;
+    display: -webkit-inline-flex;
+    padding: 10px;
+    color: #fff;
 }
 
+p::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    z-index: -1;
+}
+
+
+
+
+
+/* Media Queries */
+@media (max-width: 767px) {
+    /* Adjust the form container on smaller screens */
+    .edit {
+        max-width: 300px;
+    }
+
+    /* Adjust the margin of the delete button on smaller screens */
+    button[type="submit"] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Adjust the form container on medium-sized screens */
+    .edit {
+        max-width: 500px;
+    }
+}
