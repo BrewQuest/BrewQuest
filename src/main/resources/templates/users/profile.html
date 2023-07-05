@@ -5,10 +5,15 @@
     <title>Profile</title>
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
-    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
+<!--    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">-->
     <style>
+        html {
+            background-color: #666666;
+        }
         main {
-            margin: 15px;
+            padding: 15px;
+            background-color: #666666;
+            font-family: 'Rubik Dirt', cursive;
         }
         #mainContainer {
             display: flex;
@@ -18,6 +23,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
         }
         #left-bottom {
             display: flex;
@@ -30,6 +36,7 @@
             width:25vw;
             padding: 10px;
             margin-bottom: 10px;
+            text-decoration: none;
         }
 
         .favorites-section, .wishlist-section {
@@ -47,6 +54,9 @@
         }
         h1 {
             text-align: center;
+            background-color: burlywood;
+            width: 100%;
+            border-radius: 15px;
         }
 
         #pfp {
@@ -104,6 +114,16 @@
         }
         button {
             box-shadow: black 4px 4px 4px;
+            background-color: burlywood;
+            margin: 10px 0;
+        }
+        a {
+            color: inherit;
+        }
+
+        a:hover {
+            color: burlywood;
+            text-decoration: none;
         }
     </style>
 </head>
