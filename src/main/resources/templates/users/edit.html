@@ -8,9 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/editprofile.css}" type="text/css">
 </head>
 <body>
-
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Edit Profile</h1>
-<form th:action="@{/profile/{id}/edit(id=${user.id})}" th:object="${user}" th:method="post">
+<form th:action="@{/profile/{id}/edit(id=${user.id})}" th:object="${user}" th:method="post" class="edit">
     <label for="firstName">First Name</label>
     <input id="firstName" th:field="*{firstName}">
 
@@ -32,31 +32,11 @@
     <input value="Update Profile" type="submit" />
 </form>
 
-<p>Looking to delete your Account?</p>
-<form th:action="@{/profile/{id}/delete(id=${user.id})}" method="post">
+
+<form th:action="@{/profile/{id}/delete(id=${user.id})}" method="post" class="delete">
+    <p>Looking to delete your Account?</p>
     <button type="submit">Delete Account</button>
 </form>
-    <h1>Edit Profile</h1>
-    <form th:action="@{/profile/{id}/edit(id=${user.id})}" th:object="${user}" th:method="post">
-        <label for="firstName">First Name</label>
-        <input id="firstName" th:field="*{firstName}">
-
-        <label for="lastName">Last Name</label>
-        <input id="lastName" th:field="*{lastName}">
-
-        <label for="email">Email</label>
-        <input id="email" th:field="*{email}" />
-
-        <label for="zipcode">Zipcode</label>
-        <input id="zipcode" th:field="*{zipcode}"/>
-
-        <label for="username">Username</label>
-        <input id="username" th:field="*{username}" />
-
-        <label for="password">Password</label>
-        <input id="password" type="password" th:field="*{password}" />
-
-        <input value="Sign me up!" type="submit" />
-    </form>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
