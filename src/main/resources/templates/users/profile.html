@@ -65,7 +65,7 @@
             background: -o-linear-gradient(top, #CD7F32 0%, #BE7023 100%);
             background: -ms-linear-gradient(top, #CD7F32 0%, #BE7023 100%);
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CD7F32', endColorstr='#BE7023', GradientType=0);
-            border: 10px solid #AF6114;
+            border: 10px solid black;
             box-shadow: inset 0 1px 0 #DC8E41;
             -webkit-box-shadow: inset 0 1px 0 #DC8E41;
             -moz-box-shadow: inset 0 1px 0 #DC8E41;
@@ -98,8 +98,9 @@
 
         }
         .tally {
-            color: burlywood;
+            color: black;
             text-align: center;
+
         }
         button {
             box-shadow: black 4px 4px 4px;
@@ -118,10 +119,10 @@
                 <h3>Badges</h3>
                 <div id="badgesContainer">
                     <div id="brewBadge" class="badge">
-                        <div  style="font-size: 50px" class="tally" th:text="${user.totalBreweries}"></div>
+                        <div  style="font-size: 50px" id = "totalBrews" class="tally" th:text="${user.totalBreweries}"></div>
                     </div>
                     <div sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" id="passengerBadge" class="badge" >
-                        <div class="tally" style="font-size: 50px" th:text="${driver.totalPassengers}"></div>
+                        <div class="tally" style="font-size: 50px" id ="totalPassengers" th:text="${driver.totalPassengers}"></div>
                     </div>
                 </div>
             </div>
@@ -194,5 +195,32 @@
     </div>
 </main>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
+<script>
+    let brewsBorder = document.getElementById("brewBadge");
+    let passBorder = document.getElementById("passengerBadge");
+    let totalBrews = document.getElementById("totalBrews").innerHTML;
+    console.log(totalBrews);
+    let totalPassengers = document.getElementById("totalPassengers").innerHTML;
+    console.log(totalPassengers);
+    if(parseInt(totalBrews) >= 100) {
+        brewsBorder.style.borderColor = "#FFD700";
+    } else if (parseInt(totalBrews) >= 25) {
+        brewsBorder.style.borderColor = "#C0C0C0";
+    } else if (parseInt(totalBrews) >= 10) {
+        brewsBorder.style.borderColor = "#AF6114";
+    } else {
+        brewsBorder.style.borderColor = "black";
+    }
+
+    if(parseInt(totalPassengers) >= 250) {
+        passBorder.style.borderColor = "#FFD700";
+    } else if (parseInt(totalPassengers) >= 100) {
+        passBorder.style.borderColor = "#C0C0C0";
+    } else if (parseInt(totalPassengers) >= 25) {
+        passBorder.style.borderColor = "#AF6114";
+    } else {
+        passBorder.style.borderColor = "black";
+    }
+</script>
 </body>
 </html>
