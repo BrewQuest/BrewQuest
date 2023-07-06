@@ -88,7 +88,7 @@ public class UserController {
         User user = userDao.findById(id).get();
         Driver driver = driverDao.findByUser(user);
         Friend friendYes = null;
-        String friendCheck = "";
+        String friendCheck = "false";
         String friendNo = "";
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
