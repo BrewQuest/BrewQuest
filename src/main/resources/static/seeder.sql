@@ -30,7 +30,7 @@ INSERT INTO reviews (brewery_id, rating, description, passengers, user_id)
 VALUES
     ('BREW123', 5, 'Great beer!', 2, 1),
     ('BREW456', 4, 'Nice atmosphere.', 4, 2),
-    ('BREW789', 3, 'Average experience.', 1, 3);
+    ('BREW22', 3, 'Average experience.', 1, 3);
 
 INSERT INTO wishlists (brewery_id, user_id)
 VALUES
