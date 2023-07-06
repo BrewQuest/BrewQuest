@@ -1,35 +1,48 @@
 body {
     background-image: url("/img/bw-homepage.webp");
-    font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    font-family: 'Rubik Dirt', cursive;
+}
+
+main {
+
 }
 
 .container {
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 100vh;
 }
 
 .leaderboard {
     color: #f2a767;
     display: inline-block;
-    margin-right: 50px;
-    background-color: transparent;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+}
+#breweryTable, #passengerTable {
+    background-color: white;
 }
 
 h2 {
     margin-top: 0;
+    text-align: center;
+}
+
+h1 {
+    color: black;
+    background-color: burlywood;
+    border-radius: 15px;
+    margin: 15px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    border-radius: 10px;
+
 }
+
 
 th, td {
     padding: 8px;
@@ -55,19 +68,19 @@ tbody tr:hover {
     color: burlywood;
 }
 
-@media (min-width: 768px) {
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+/*@media (min-width: 768px) {*/
+/*    .container {*/
+/*        display: flex;*/
+/*        flex-wrap: wrap;*/
+/*        justify-content: center;*/
+/*        align-items: center;*/
+/*        height: 100vh;*/
+/*    }*/
 
-    .leaderboard {
-        margin-right: 50px;
-        margin-bottom: 30px;
-        width: 100%;
-        max-width: 400px;
-    }
-}
+/*    .leaderboard {*/
+/*        margin-right: 50px;*/
+/*        margin-bottom: 30px;*/
+/*        width: 100%;*/
+/*        max-width: 400px;*/
+/*    }*/
+/*}*/
