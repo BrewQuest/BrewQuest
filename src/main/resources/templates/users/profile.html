@@ -5,10 +5,15 @@
     <title>Profile</title>
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
-    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
+<!--    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">-->
     <style>
+        html {
+            background-color: #666666;
+        }
         main {
-            margin: 15px;
+            padding: 15px;
+            background-color: #666666;
+            font-family: 'Rubik Dirt', cursive;
         }
         #mainContainer {
             display: flex;
@@ -18,6 +23,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
         }
         #left-bottom {
             display: flex;
@@ -30,6 +36,7 @@
             width:25vw;
             padding: 10px;
             margin-bottom: 10px;
+            text-decoration: none;
         }
 
         .favorites-section, .wishlist-section {
@@ -47,6 +54,9 @@
         }
         h1 {
             text-align: center;
+            background-color: burlywood;
+            width: 100%;
+            border-radius: 15px;
         }
 
         #pfp {
@@ -65,7 +75,7 @@
             background: -o-linear-gradient(top, #CD7F32 0%, #BE7023 100%);
             background: -ms-linear-gradient(top, #CD7F32 0%, #BE7023 100%);
             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CD7F32', endColorstr='#BE7023', GradientType=0);
-            border: 10px solid #AF6114;
+            border: 10px solid black;
             box-shadow: inset 0 1px 0 #DC8E41;
             -webkit-box-shadow: inset 0 1px 0 #DC8E41;
             -moz-box-shadow: inset 0 1px 0 #DC8E41;
@@ -98,11 +108,22 @@
 
         }
         .tally {
-            color: burlywood;
+            color: black;
             text-align: center;
+
         }
         button {
             box-shadow: black 4px 4px 4px;
+            background-color: burlywood;
+            margin: 10px 0;
+        }
+        a {
+            color: inherit;
+        }
+
+        a:hover {
+            color: burlywood;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -118,10 +139,10 @@
                 <h3>Badges</h3>
                 <div id="badgesContainer">
                     <div id="brewBadge" class="badge">
-                        <div  style="font-size: 50px" class="tally" th:text="${user.totalBreweries}"></div>
+                        <div  style="font-size: 50px" id = "totalBrews" class="tally" th:text="${user.totalBreweries}"></div>
                     </div>
                     <div sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" id="passengerBadge" class="badge" >
-                        <div class="tally" style="font-size: 50px" th:text="${driver.totalPassengers}"></div>
+                        <div class="tally" style="font-size: 50px" id ="totalPassengers" th:text="${driver.totalPassengers}"></div>
                     </div>
                 </div>
             </div>
@@ -194,5 +215,32 @@
     </div>
 </main>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
+<script>
+    let brewsBorder = document.getElementById("brewBadge");
+    let passBorder = document.getElementById("passengerBadge");
+    let totalBrews = document.getElementById("totalBrews").innerHTML;
+    console.log(totalBrews);
+    let totalPassengers = document.getElementById("totalPassengers").innerHTML;
+    console.log(totalPassengers);
+    if(parseInt(totalBrews) >= 100) {
+        brewsBorder.style.borderColor = "#FFD700";
+    } else if (parseInt(totalBrews) >= 25) {
+        brewsBorder.style.borderColor = "#C0C0C0";
+    } else if (parseInt(totalBrews) >= 10) {
+        brewsBorder.style.borderColor = "#AF6114";
+    } else {
+        brewsBorder.style.borderColor = "black";
+    }
+
+    if(parseInt(totalPassengers) >= 250) {
+        passBorder.style.borderColor = "#FFD700";
+    } else if (parseInt(totalPassengers) >= 100) {
+        passBorder.style.borderColor = "#C0C0C0";
+    } else if (parseInt(totalPassengers) >= 25) {
+        passBorder.style.borderColor = "#AF6114";
+    } else {
+        passBorder.style.borderColor = "black";
+    }
+</script>
 </body>
 </html>

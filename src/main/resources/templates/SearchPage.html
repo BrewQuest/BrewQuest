@@ -19,6 +19,15 @@
             flex-direction: column;
             align-items: center;
         }
+        a {
+            color:inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: burlywood;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +99,7 @@
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
                     if (brewery.name != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:20px"> <p>${brewery.name}</p></span>`
+                        cardHTML += `<a href="/brewery/${brewery.id}"><span class="SearchCard" style="font-size:20px"><h3>${brewery.name}</h3></span>`
                     }
                     if (brewery.address_1 != null) {
                         cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.address_1}</p></span>`
@@ -99,17 +108,16 @@
                         cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.city}</p></span>`
                     }
                     if (brewery.phone != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.phone}</p></span>`
-                    }
-                    if (brewery.website_url != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p><a ${brewery.website_url}" ></a></p></span>`
+                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.phone}</p></span></a>`
                     }
                     cardHTML += `</div>`
 
 
-                    popup = new mapboxgl.Popup({ offset: 25 }).setText(
-                        brewery.name
-                    );
+                    popupHTML = `<a href="/brewery/${brewery.id}"><p>${brewery.name}</p></a>`
+
+
+                    let popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHTML);
+
                     new mapboxgl.Marker()
                         .setLngLat([brewery.longitude, brewery.latitude])
                         .setPopup(popup)

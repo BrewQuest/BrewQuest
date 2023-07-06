@@ -12,9 +12,12 @@ body {
     color: burlywood;
 }
 
+
 p {
     font-size: 15px;
 }
+
+
 
 /* Mobile responsive styles */
 @media screen and (max-width: 600px) {
