@@ -1,28 +1,36 @@
 body {
     background-image: url("/img/bw-homepage.webp");
-    font-family: Arial, sans-serif;
     background-color: #f2f2f2;
+    font-family: 'Rubik Dirt', cursive;
+}
+
+main {
+
 }
 
 .container {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
+    /*margin: 0 auto;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*height: 100vh;*/
 }
 
 .leaderboard {
     color: #f2a767;
     display: inline-block;
-    margin-right: 50px;
-    background-color: transparent;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: 15px;
+}
+#breweryTable, #passengerTable {
+    background-color: white;
 }
 
 h2 {
     margin-top: 0;
+    text-align: center;
+}
+
+h1 {
+    color: burlywood;
 }
 
 table {

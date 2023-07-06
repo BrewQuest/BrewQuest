@@ -21,9 +21,10 @@
 
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" th:field="*{description}"></textarea><br><br>
-
+        <th:block th:if="${driverCheck} == 'true'">
         <label for="passengers">Number of Passengers:</label>
-        <input type="number" id="passengers" name="passengers" min="0" th:field="*{passengers}"><br><br>
+        <input type="number" id="passengers" name="passengers" min="0" max="6" th:field="*{passengers}"><br><br>
+        </th:block>
 
         <input type="hidden" name="breweryId" th:value="${brewId}">
 
