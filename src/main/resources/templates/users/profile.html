@@ -37,12 +37,14 @@
             padding: 10px;
             margin-bottom: 10px;
             text-decoration: none;
+            box-shadow: black 2px 2px 4px;
         }
 
         .favorites-section, .wishlist-section {
             overflow: auto;
             max-height: 50vh;
             margin: 0 15px;
+            width: 100%;
         }
 
 
@@ -94,9 +96,11 @@
         }
         #passengerBadge {
             background-image: url("/img/shield_badge.jpeg");
+            box-shadow: black 2px 2px 2px;
         }
         #brewBadge {
             background-image: url("/img/beers_badge.jpeg");
+            box-shadow: black 2px 2px 2px;
         }
 
         .badge  div {
@@ -113,7 +117,7 @@
 
         }
         button {
-            box-shadow: black 4px 4px 4px;
+            box-shadow: black 2px 2px 2px;
             background-color: burlywood;
             margin: 10px 0;
         }
@@ -187,8 +191,12 @@
 
         <section id="right">
             <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
+            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
+                <button>Friends</button>
+            </form>
+
             <a th:href="@{/profile/{id}/reviews(id=${user.id})}">
-                <button>My Reviews</button>
+                <button>Reviews</button>
             </a>
 
             <form sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id == user.id}" th:action="@{/profile/{id}/edit(id=${user.id})}" th:method="get">

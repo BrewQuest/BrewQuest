@@ -2,34 +2,131 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Review</title>
+    <title>Edit Review</title>
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+
+    <style>
+        body {
+            background-color: #666666;
+            background-image: url("/img/review-img.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        main {
+            font-family: 'Rubik Dirt', cursive;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            background-color: burlywood;
+            border-radius: 15px;
+            margin: 15px;
+            box-shadow: black 2px 2px 2px;
+            width: 95%;
+        }
+        #review-form {
+            text-align: center;
+            box-shadow: black 2px 2px 2px;
+            background-color: white;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 15px;
+            width: 75%;
+        }
+        #submitBtn {
+            background-color: burlywood;
+            border-radius: 10px;
+            box-shadow: black 2px 2px 2px;
+        }
+
+        .rating {
+            display: inline-block;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            float: right;
+            width: 75px;
+            height: 75px;
+            background: url('/img/beer_glass.jpeg') no-repeat;
+            background-size: cover;
+            cursor: pointer;
+            transition: background-image 0.3s;
+            margin: 15px;
+        }
+
+        .rating label:before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: gray;
+            border-radius: 50%;
+            padding-right: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .rating input:checked ~ label:before {
+            background-color: transparent;
+        }
+
+        .rating input:checked ~ label {
+            background-image: url('/img/beer_glass.jpeg');
+        }
+
+        #description {
+            border: 2px black solid;
+            border-radius: 15px;
+            width: 80%;
+            padding: 15px;
+        }
+
+    </style>
 </head>
+
 <body>
-<h1>Create Review</h1>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
+<main>
+<h1>New Review</h1>
 
 <div id="review-form">
     <form method="post" th:action="@{/brewery/create-review}" th:object="${review}">
 
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating" th:field="*{rating}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select><br><br>
+        <label for="rating"></label>
+        <div class= "rating" id="rating" name="rating" th:field="*{rating}">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"></label>
+        </div><br><br>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" th:field="*{description}"></textarea><br><br>
+        <label for="description"></label>
+        <textarea id="description" placeholder="Write a review ..." name="description" rows="5" th:field="*{description}"></textarea><br><br>
         <th:block th:if="${driverCheck} == 'true'">
-        <label for="passengers">Number of Passengers:</label>
+        <label for="passengers">Passengers: </label>
         <input type="number" id="passengers" name="passengers" min="0" max="6" th:field="*{passengers}"><br><br>
         </th:block>
 
         <input type="hidden" name="breweryId" th:value="${brewId}">
 
-        <input type="submit" value="Submit Review">
+        <input id="submitBtn" type="submit" value="Submit Review">
     </form>
 </div>
+</main>
 </body>
 </html>
