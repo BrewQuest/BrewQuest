@@ -95,8 +95,9 @@ public class ReviewController {
 }
     @PostMapping("/review/{id}/delete")
     public String deleteReview(@PathVariable("id") long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         reviewDaos.deleteById(id);
-        return "redirect:/profile/" + reviewDaos.findById(id).get().getUser().getId() + "/reviews";
+        return "redirect:/profile/" + user.getId() + "/reviews";
     }
 
     @GetMapping("profile/{id}/reviews")
