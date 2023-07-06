@@ -99,7 +99,7 @@
     <h1>Edit Review</h1>
 
     <div id="review-form">
-        <form method="post" th:action="@{/brewery/create-review}" th:object="${review}">
+        <form method="post" th:action="@{/review/{id}/edit(id = ${review.getId()})}" th:object="${review}">
             <h2>Rating</h2>
             <label for="rating"></label>
             <!-- Modify the HTML for the star rating section -->

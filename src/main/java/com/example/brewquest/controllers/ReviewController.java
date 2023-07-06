@@ -85,12 +85,10 @@ public class ReviewController {
 }
 @PostMapping("/review/{id}/edit")
     public String updateReview(@PathVariable long id, @ModelAttribute Review review){
-        User user = usersDaos.findById(id).get();
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Review editReview = reviewDaos.findById(id).get();
-        editReview.setBreweryId(review.getBreweryId());
         editReview.setRating(review.getRating());
         editReview.setDescription(review.getDescription());
-        editReview.setPassengers(review.getPassengers());
         reviewDaos.save(editReview);
         return "redirect:/profile/" + user.getId() + "/reviews";
 
