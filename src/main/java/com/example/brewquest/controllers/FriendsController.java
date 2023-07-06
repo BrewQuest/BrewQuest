@@ -35,7 +35,7 @@ public class FriendsController {
         User user = usersDao.findById(id).orElse(null);
 
         if (user == null) {
-            return "error";
+            return "bruh";
         }
 
         // Save the authenticated user if it's not already saved
