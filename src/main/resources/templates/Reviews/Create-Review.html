@@ -101,6 +101,7 @@
 <div id="review-form">
     <form method="post" th:action="@{/brewery/create-review}" th:object="${review}">
 
+        <h2>Rating</h2>
         <label for="rating"></label>
         <div class= "rating" id="rating" name="rating" th:field="*{rating}">
             <input type="radio" id="star5" name="rating" value="5">
@@ -115,10 +116,12 @@
             <label for="star1"></label>
         </div><br><br>
 
+        <h2>Description</h2>
         <label for="description"></label>
         <textarea id="description" placeholder="Write a review ..." name="description" rows="5" th:field="*{description}"></textarea><br><br>
         <th:block th:if="${driverCheck} == 'true'">
-        <label for="passengers">Passengers: </label>
+            <h2>Passengers</h2>
+        <label for="passengers"></label>
         <input type="number" id="passengers" name="passengers" min="0" max="6" th:field="*{passengers}"><br><br>
         </th:block>
 
