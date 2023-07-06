@@ -18,9 +18,9 @@
     </div>
     <div class="button-containerb">
     <div th:each="review : ${reviews}" class="review-card">
-        <h3>Rating: <span th:text="${review.rating}"></span></h3>
-        <p>Description: <span th:text="${review.description}"></span></p>
-        <p>Passengers: <span th:text="${review.passengers}"></span></p>
+        <h2 class="brewName" th:text="${review.breweryId}"></h2><hr>
+        <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
+        <p>Description: <span th:text="${review.rating}"></span></p>
 
         <form th:action="@{/review/{id}/edit(id=${review.id})}" method="get">
             <button class="edit-btn" type="submit">Edit</button>
@@ -33,5 +33,22 @@
     </div>
 </main>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
+<script>
+    let brewnames = document.getElementsByClassName("brewName");
+    for(let i =0; i < brewnames.length; i++) {
+        let id = brewnames[i].innerHTML
+        console.log(brewnames[i].innerHTML)
+        fetch('https://api.openbrewerydb.org/v1/breweries?by_ids=' + id)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // You can process the retrieved data here
+                brewnames[i].innerHTML = data[0].name;
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
+
+    }
+</script>
 </body>
 </html>

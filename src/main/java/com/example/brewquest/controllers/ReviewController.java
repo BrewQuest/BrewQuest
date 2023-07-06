@@ -6,14 +6,22 @@ import com.example.brewquest.models.User;
 import com.example.brewquest.repositories.DriverRepository;
 import com.example.brewquest.repositories.ReviewRepository;
 import com.example.brewquest.repositories.UserRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ReviewController {
@@ -30,11 +38,22 @@ public class ReviewController {
     // using string of id due to API "id"
     @GetMapping("/brewery/{id}/create-review")
     public String showCreateForm(@PathVariable String id, Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Driver> drivers = driverDao.findAll();
+        String driverCheck = "";
+        for(Driver driver : drivers) {
+            if (driver.getUser().getId() == user.getId()) {
+                System.out.println("running");
+                driverCheck = "true";
+                break;
+            }
+        }
+        model.addAttribute("driverCheck", driverCheck);
         String brewId = id;
         model.addAttribute("brewId", brewId);
         System.out.println(brewId);
         model.addAttribute("review", new Review());
-        return "/Reviews/Create-Review";
+        return "Reviews/Create-Review";
     }
     // create the new review and send back to brewery page
     @PostMapping("/brewery/create-review")
@@ -62,7 +81,7 @@ public class ReviewController {
         }
         String reviewDescription= reviewDaos.findById(id).get().getDescription();
         model.addAttribute("description", reviewDescription);
-        return "/Reviews/Edit-Review";
+        return "Reviews/Edit-Review";
 }
 @PostMapping("/review/{id}/edit")
     public String updateReview(@PathVariable long id, @ModelAttribute Review review){
@@ -73,7 +92,7 @@ public class ReviewController {
         editReview.setDescription(review.getDescription());
         editReview.setPassengers(review.getPassengers());
         reviewDaos.save(editReview);
-        return "/profile/" + user.getId() + "/reviews";
+        return "redirect:/profile/" + user.getId() + "/reviews";
 
 }
     @PostMapping("/review/{id}/delete")
