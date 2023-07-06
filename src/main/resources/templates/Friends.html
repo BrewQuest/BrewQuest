@@ -10,7 +10,7 @@
     <th:block th:each="friend : ${friends}">
         <li>
             <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
-                <span th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></span>
+                <span th:text="${friend.friend.username}"></span>
             </a>
         </li>
     </th:block>
