@@ -8,7 +8,11 @@
 <ul>
     <!-- Iterate over the friends and display their names -->
     <th:block th:each="friend : ${friends}">
-        <li th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></li>
+        <li>
+            <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
+                <span th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></span>
+            </a>
+        </li>
     </th:block>
 </ul>
 </body>
