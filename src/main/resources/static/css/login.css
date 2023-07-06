@@ -1,7 +1,7 @@
 body {
     background-image: url("/img/review-img.jpeg");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     text-align: center;
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
@@ -22,6 +22,7 @@ body {
 @media (max-width: 768px) {
     body {
         font-size: 18px;
+        background-size: cover;
     }
 
     .container {
@@ -32,6 +33,7 @@ body {
 @media (max-width: 480px) {
     body {
         font-size: 16px;
+        background-size: cover;
     }
 
     .container {
