@@ -31,14 +31,19 @@ public class FriendsController {
 
     @GetMapping("/addFriend/{id}")
     public String addFriend(@PathVariable("id") long id, Model model) {
+        User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = usersDao.findById(id).orElse(null);
 
         if (user == null) {
             return "error";
         }
 
+        // Save the authenticated user if it's not already saved
+        if (authenticatedUser.getId() == null) {
+            usersDao.save(authenticatedUser);
+        }
+
         Friend newFriend = new Friend();
-        User authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         newFriend.setUser(authenticatedUser);
         newFriend.setFriend(user);
 
@@ -46,6 +51,7 @@ public class FriendsController {
 
         return "redirect:/profile/" + id;
     }
+
 
     @GetMapping("/deleteFriend/{id}")
     public String deleteFriend(@PathVariable("id") long id) {

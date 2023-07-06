@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Friends List</title>
+    <title>Friends</title>
 </head>
 <body>
-<h1>Friends List</h1>
-<!-- ... -->
-<tbody>
-<!-- Iterate over the friends and display their data -->
-<tr th:each="friend : ${friends}">
-    <td th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></td>
-    <td th:text="${friend.friend.breweriesVisited()}"></td>
-    <td th:text="${friend.friend.passengerCount()}"></td>
-</tr>
-</tbody>
-<!-- ... -->
-
+<h1>BrewBuddies</h1>
+<ul>
+    <!-- Iterate over the friends and display their names -->
+    <th:block th:each="friend : ${friends}">
+        <li th:text="${friend.friend.firstName} + ' ' + ${friend.friend.lastName}"></li>
+    </th:block>
+</ul>
 </body>
 </html>
-
