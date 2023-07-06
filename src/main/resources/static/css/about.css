@@ -6,28 +6,60 @@ body {
 }
 
 #aboutDiv {
-    max-width: 500px;
+    max-width: 700px; /* Adjust the width as needed */
     margin: 0 auto;
     text-align: center;
     color: burlywood;
 }
 
-
 p {
     font-size: 15px;
 }
 
+#foundersImages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
+.founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.founder-image {
+    width: 125px;
+    height: 125px;
+}
+
+.founder-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 
 /* Mobile responsive styles */
 @media screen and (max-width: 600px) {
     body {
-        background-size: contain;
+        background-size: cover;
     }
 
     #aboutDiv {
         width: 90%;
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    .founder {
+        flex-basis: 100%; /* Full width for each founder */
+    }
+
+    .founder-image {
+        width: 75px; /* Adjust size as needed */
+        height: 75px;
     }
 }
-
 

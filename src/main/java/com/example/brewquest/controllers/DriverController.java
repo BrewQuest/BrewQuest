@@ -28,7 +28,7 @@ public class DriverController {
     @GetMapping("/signup-driver")
     public String showSignupForm(Model model) {
         model.addAttribute("driver", new Driver());
-        return "/Driver/sign-up-driver";
+        return "Driver/sign-up-driver";
     }
 
     @PostMapping("/signup-driver")

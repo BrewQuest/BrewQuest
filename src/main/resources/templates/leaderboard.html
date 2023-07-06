@@ -2,57 +2,61 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>BrewQuest | Leaderboards</title>
+    <link rel="icon" type="image/x-icon" href="/img/brewquest-logo.png">
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/leaderboard.css}" type="text/css">
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<div class="container">
-    <div class="leaderboard" id="breweryLeaderboard">
-        <h2>Brewery Leaderboard</h2>
-        <table id="breweryTable">
-            <thead>
-            <tr>
-                <th>Username</th>
-                <th>Score</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}" th:sort="${user.totalBreweries}">
-                <td>
-                    <a th:href="@{'/profile/' + ${user.id}}">
-                        <span th:text="${user.username}"></span>
-                    </a>
-                </td>
-                <td th:text="${user.totalBreweries}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<h1 style="text-align: center">Leaderboards</h1>
+<main>
+    <div class="container">
+        <div class="leaderboard" id="breweryLeaderboard">
+            <h2>Breweries</h2>
+            <table id="breweryTable">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}" th:sort="${user.totalBreweries}">
+                    <td>
+                        <a th:href="@{'/profile/' + ${user.id}}">
+                            <span th:text="${user.username}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${user.totalBreweries}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="leaderboard" id="passengerLeaderboard">
-        <h2>Passenger Leaderboard</h2>
-        <table id="passengerTable">
-            <thead>
-            <tr>
-                <th>Username</th>
-                <th>Score</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="driver : ${drivers}">
-                <td>
-                    <a th:href="@{'/profile/' + ${driver.user.id}}"> <!-- Link to user's profile -->
-                        <span th:text="${driver.user.username}"></span>
-                    </a>
-                </td>
-                <td th:text="${driver.totalPassengers}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="leaderboard" id="passengerLeaderboard">
+            <h2>Passengers</h2>
+            <table id="passengerTable">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="driver : ${drivers}">
+                    <td>
+                        <a th:href="@{'/profile/' + ${driver.user.id}}"> <!-- Link to user's profile -->
+                            <span th:text="${driver.user.username}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${driver.totalPassengers}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</main>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
