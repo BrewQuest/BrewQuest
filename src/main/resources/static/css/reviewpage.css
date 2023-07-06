@@ -2,6 +2,11 @@
 html {
     font-family: 'Rubik Dirt', cursive;
 }
+body{
+    background-image: url("/img/bw-homepage.webp");
+    background-size: cover;
+    background-position: center;
+}
 
 main {
     margin: 0;
@@ -10,9 +15,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url("/img/bw-homepage.webp");
-    background-size: cover;
-    background-position: center;
+
     background-attachment: fixed;
     font-family: 'Rubik Dirt', cursive;
 }

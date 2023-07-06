@@ -45,14 +45,21 @@ p {
 /* Mobile responsive styles */
 @media screen and (max-width: 600px) {
     body {
-        background-size: contain;
+        background-size: cover;
     }
 
     #aboutDiv {
         width: 90%;
+        margin: 10px auto; /* Adjust margin as needed */
     }
 
     .founder {
-        flex-basis: 50%;
+        flex-basis: 100%; /* Full width for each founder */
+    }
+
+    .founder-image {
+        width: 75px; /* Adjust size as needed */
+        height: 75px;
     }
 }
+
