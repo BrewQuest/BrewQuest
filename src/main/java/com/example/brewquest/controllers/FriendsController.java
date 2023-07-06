@@ -26,7 +26,7 @@ public class FriendsController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Friend> friends = friendsDao.findByUser(loggedInUser);
         model.addAttribute("friends", friends);
-        return "friends";
+        return "Friends";
     }
 
     @GetMapping("/addFriend/{id}")
