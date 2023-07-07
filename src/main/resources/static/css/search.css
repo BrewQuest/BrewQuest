@@ -13,14 +13,42 @@ body {
     left: 0;
     right: 20%;
     height: calc(100vh - 77px);
+    margin: 15px;
+    border-radius: 15px;
 }
 
 #searchForm {
-    position: absolute;
-    width: 20%;
-    right: 0;
-    top: 57px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
 }
+
+#searchInput {
+    width: 65%;
+    border-radius: 15px;
+}
+
+#submitSearch {
+    background-color: burlywood;
+    text-shadow:
+            -1px -1px 0 #fff,
+            0   -1px 0 #fff,
+            1px -1px 0 #fff,
+            1px  0   0 #fff,
+            1px  1px 0 #fff,
+            0    1px 0 #fff,
+            -1px  1px 0 #fff,
+            -1px  0   0 #fff;
+    box-shadow: black 2px 2px 2px;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 15px;
+}
+
+#submitSearch:hover {
+    cursor: pointer;
+}
+
 
 #scrollbox {
     position: absolute;
@@ -33,6 +61,7 @@ body {
 
 #scrollbox::-webkit-scrollbar {
     display: none;
+    width: 25%;
 }
 
 #SearchCard {
@@ -42,11 +71,15 @@ body {
     background: linear-gradient(45deg, burlywood 0%, #70452e 100%);
     border: white 3px solid;
     color: white;
-    height: 261px;
-    width: 300px;
+    width: 90%;
+    min-height: 250px;
     margin-top: 20px;
     border-radius: 25px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 }
 
 /* Media queries for responsive design */
@@ -63,7 +96,7 @@ body {
 
     #searchForm {
         position: static;
-        width: 100%;
+        width: 90%;
         margin-top: 20px;
     }
 

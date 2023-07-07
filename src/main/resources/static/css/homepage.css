@@ -208,6 +208,10 @@ h1 {
     font-weight: 300;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 /* Media Queries */
 @media screen and (max-width: 64rem) {
     .col {
