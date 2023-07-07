@@ -130,6 +130,18 @@
             color: burlywood;
             text-decoration: none;
         }
+
+        #totalPassengers,#totalBrews {
+            text-shadow:
+                    -1px -1px 0 #fff,
+                    0   -1px 0 #fff,
+                    1px -1px 0 #fff,
+                    1px  0   0 #fff,
+                    1px  1px 0 #fff,
+                    0    1px 0 #fff,
+                    -1px  1px 0 #fff,
+                    -1px  0   0 #fff;
+        }
     </style>
 </head>
 <body>
@@ -226,6 +238,8 @@
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 <script>
     let brewsBorder = document.getElementById("brewBadge");
+    let brewText = document.getElementById("totalBrews");
+    let passText = document.getElementById("totalPassengers");
     let passBorder = document.getElementById("passengerBadge");
     let totalBrews = document.getElementById("totalBrews").innerHTML;
     console.log(totalBrews);
@@ -233,22 +247,30 @@
     console.log(totalPassengers);
     if(parseInt(totalBrews) >= 100) {
         brewsBorder.style.borderColor = "#FFD700";
+        brewText.style.color = "#FFD700";
     } else if (parseInt(totalBrews) >= 25) {
         brewsBorder.style.borderColor = "#C0C0C0";
+        brewText.style.color = "#C0C0C0";
     } else if (parseInt(totalBrews) >= 10) {
         brewsBorder.style.borderColor = "#AF6114";
+        brewText.style.color = "#AF6114";
     } else {
         brewsBorder.style.borderColor = "black";
+        brewText.style.color = "black";
     }
 
     if(parseInt(totalPassengers) >= 250) {
         passBorder.style.borderColor = "#FFD700";
+        passText.style.color = "#FFD700";
     } else if (parseInt(totalPassengers) >= 100) {
         passBorder.style.borderColor = "#C0C0C0";
+        passText.style.color = "#C0C0C0";
     } else if (parseInt(totalPassengers) >= 25) {
         passBorder.style.borderColor = "#AF6114";
+        passText.style.color = "#AF6114";
     } else {
         passBorder.style.borderColor = "black";
+        passText.style.color = "black";
     }
 </script>
 </body>

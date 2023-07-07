@@ -139,6 +139,13 @@ h1 {
     z-index: 2;
 }
 
+.inner button {
+    box-shadow: black 2px 2px 2px;
+    background-color: #666666;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 .container .back {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
