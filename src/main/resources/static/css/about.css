@@ -7,29 +7,34 @@ body {
 }
 
 #aboutDiv {
-    max-width: 700px; /* Adjust the width as needed */
+    width: 75%;
     margin: 0 auto;
     text-align: center;
     color: burlywood;
+    background-color: rgba(0,0,0,0.56);
+    padding: 25px;
+    border-radius: 15px;
 }
 
 p {
-    font-size: 15px;
+    /*font-size: 15px;*/
     margin-top: 25px;
 }
 
 #foundersImages {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    padding-bottom:25px ;
 }
 
 .founder {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .founder-image {
