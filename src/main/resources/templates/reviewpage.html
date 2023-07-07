@@ -23,6 +23,7 @@
         <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
         <p>Description: <span th:text="${review.rating}"></span></p>
 
+<th:block th:if="${#authentication.principal.id == user.getId()}">
         <form th:action="@{/review/{id}/edit(id=${review.id})}" method="get">
             <button class="edit-btn" type="submit">Edit</button>
             <input type="hidden" name="reviewId" th:value="${review.id}" />
@@ -30,6 +31,7 @@
         <form action="#" th:action="@{/review/{id}/delete(id=${review.id})}" method="post">
             <button class="delete-btn" type="submit">Delete</button>
         </form>
+</th:block>
     </div>
     </div>
 </main>

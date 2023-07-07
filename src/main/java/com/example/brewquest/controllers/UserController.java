@@ -88,7 +88,7 @@ public class UserController {
         User user = userDao.findById(id).get();
         Driver driver = driverDao.findByUser(user);
         Friend friendYes = null;
-        String friendCheck = "";
+        String friendCheck = "false";
         String friendNo = "";
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -267,6 +267,12 @@ public class UserController {
     @PostMapping("/profile/{id}/delete")
     public String deleteProfile(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Driver> drivers = driverDao.findAll();
+        for(Driver driver : drivers) {
+            if(driver.getUser().getId() == user.getId()) {
+                driverDao.delete(driver);
+            }
+        }
 
         if(user.getId() == userDao.findById(id).get().getId()) {
             userDao.deleteById(id);
