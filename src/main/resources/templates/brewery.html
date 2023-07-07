@@ -100,6 +100,8 @@
             </div>
         </th:block>
         <input type="hidden" id="city" th:value="${city}"/>
+        <input type="hidden" id="state" th:value="${state}"/>
+        <input type="hidden" id="street" th:value="${street}"/>
         <div id="mapContainer">
             <div id='map'></div>
         </div>
@@ -124,7 +126,10 @@
 
 <script>
     let city = $('#city').val();
-    console.log(city);
+    let street = $('#street').val();
+    let state = $('#state').val();
+    let address = street + " " + city + ", " + state;
+    console.log(address);
     mapboxgl.accessToken = MAPBOX_TOKEN
     var map = new mapboxgl.Map({
         container: 'map',
@@ -134,7 +139,7 @@
         cooperativeGestures: true
     });
 
-    geocode(city, MAPBOX_TOKEN).then(function(result) {
+    geocode(address, MAPBOX_TOKEN).then(function(result) {
         console.log
         $('#weather').empty();
         map.jumpTo({

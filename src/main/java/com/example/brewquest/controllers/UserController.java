@@ -258,7 +258,9 @@ public class UserController {
         editUser.setEmail(user.getEmail());
         editUser.setZipcode(user.getZipcode());
         editUser.setUsername(user.getUsername());
-        editUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getPassword().length() > 8) {
+            editUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
 
         userDao.save(editUser);
         return "redirect:/profile/" + id;
