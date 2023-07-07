@@ -84,8 +84,8 @@ body {
 
 /* Media queries for responsive design */
 
-/* Small devices (up to 768px) */
-@media (max-width: 768px) {
+/* Small devices (up to 425px) */
+@media (max-width: 625px) {
     #map {
         top: 57px;
         bottom: 50%;
@@ -108,12 +108,13 @@ body {
     }
 
     #SearchCard {
+        margin-top: 50px;
         width: 100%;
     }
 }
 
-/* Medium devices (769px to 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Medium devices (426px to 750px) */
+@media (min-width: 426px) and (max-width: 999px) {
     #map {
         top: 57px;
         bottom: 50%;
@@ -130,18 +131,18 @@ body {
 
     #scrollbox {
         position: static;
-        width: 30%;
+        width: 100%;
         margin-top: 20px;
         height: 500px;
     }
 
     #SearchCard {
-        width: 30%;
+        width: 100%;
     }
 }
 
-/* Large devices (1025px and above) */
-@media (min-width: 1025px) {
+/* Large devices (1000px and above) */
+@media (min-width: 1000px) {
     #map {
         position: absolute;
         top: 57px;
