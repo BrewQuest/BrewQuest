@@ -11,7 +11,7 @@
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Driver Profile</h1>
-<form th:action="@{/signup-driver}" th:method="post" th:object="${driver}">
+<form id="driver" th:action="@{/signup-driver}" th:method="post" th:object="${driver}">
     <label for="carMake">Car Make:</label>
     <input type="text" id="carMake" name="carMake" required th:field="*{carMake}"><br><br>
 
@@ -24,7 +24,8 @@
     <label for="licensePlate">License Plate:</label>
     <input type="text" id="licensePlate" name="licensePlateNum" required th:field="*{licensePlateNum}"><br><br>
 
-    <button type="submit">Sign Up</button>
+    <p id="signup"><button  type="submit">Sign Up</button></p>
+
 </form>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>

@@ -16,12 +16,11 @@ h1 {
 }
 
 /* Styles for the form */
-form {
+#driver {
     padding: 15px;
     width: 400px;
     margin: 0 auto;
-
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .7); /* Black color with 100% opacity */
 }
 
 label {
@@ -52,6 +51,10 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #45a049;
     color: #f2f2f2;
+}
+#signup{
+   justify-content: center;
+    display: flex;
 }
 
 /* Responsive styles for smaller screens */
