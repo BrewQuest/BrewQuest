@@ -17,14 +17,16 @@ h1 {
 
 /* Styles for the form */
 form {
+    padding: 15px;
     width: 400px;
     margin: 0 auto;
+
+    background-color: rgba(0, 0, 0, .7);
 }
 
 label {
     display: block;
     margin-bottom: 10px;
-    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
 }
 
 input[type="text"] {
