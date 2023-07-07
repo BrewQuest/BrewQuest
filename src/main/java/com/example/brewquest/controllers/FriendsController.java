@@ -26,7 +26,7 @@ public class FriendsController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Friend> friends = friendsDao.findByUser(loggedInUser);
         model.addAttribute("friends", friends);
-        return "friends";
+        return "Friends";
     }
 
     @GetMapping("/addFriend/{id}")
@@ -35,7 +35,7 @@ public class FriendsController {
         User user = usersDao.findById(id).orElse(null);
 
         if (user == null) {
-            return "error";
+            return "bruh";
         }
 
         // Save the authenticated user if it's not already saved

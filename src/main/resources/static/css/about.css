@@ -3,6 +3,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
+    font-family: 'Rubik Dirt', cursive;
 }
 
 #aboutDiv {
@@ -14,6 +15,7 @@ body {
 
 p {
     font-size: 15px;
+    margin-top: 25px;
 }
 
 #foundersImages {
@@ -33,6 +35,8 @@ p {
 .founder-image {
     width: 125px;
     height: 125px;
+    border-radius: 50%;
+    margin-bottom: 15px;
 }
 
 .founder-icons {
