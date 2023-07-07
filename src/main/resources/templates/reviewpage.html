@@ -8,29 +8,38 @@
     <th:block th:replace="partials/header :: font"></th:block>
     <link rel="stylesheet" th:href="@{/css/reviewpage.css}" type="text/css">
     <th:block th:replace="partials/Navbar :: styles"></th:block>
+
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <main>
-    <h1 style="color: #ffffff">My Reviews</h1>
+    <h1>My Reviews</h1>
 
     <div th:if="${reviews.empty}">
         <p>No reviews found.</p>
     </div>
     <div class="button-containerb">
     <div th:each="review : ${reviews}" class="review-card">
-        <h2 class="brewName" th:text="${review.breweryId}"></h2><hr>
-        <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
-        <p>Description: <span th:text="${review.rating}"></span></p>
+        <a th:href="@{/brewery/{id}(id=${review.getBreweryId()})}"> <h2 class="brewName" th:text="${review.breweryId}"></h2></a><hr>
+        <h4 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h4>
+        <p style="margin: 25px"><span class="rating" th:text="${review.rating}"></span></p>
 
 <th:block th:if="${#authentication.principal.id == user.getId()}">
+    <div id="buttonsContainer">
         <form th:action="@{/review/{id}/edit(id=${review.id})}" method="get">
             <button class="edit-btn" type="submit">Edit</button>
             <input type="hidden" name="reviewId" th:value="${review.id}" />
         </form>
-        <form action="#" th:action="@{/review/{id}/delete(id=${review.id})}" method="post">
+        <form th:action="@{/review/{id}/delete(id=${review.id})}" method="post">
             <button class="delete-btn" type="submit">Delete</button>
         </form>
+    </div>
 </th:block>
     </div>
     </div>
@@ -51,6 +60,21 @@
                 console.log('Error:', error);
             });
 
+    }
+
+    let rating = document.getElementsByClassName("rating");
+    for(let i = 0; i < rating.length; i++) {
+        if (rating[i].innerHTML === "1") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "2") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "3") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "3") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        }
     }
 </script>
 </body>
