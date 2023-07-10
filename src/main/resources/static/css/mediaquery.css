@@ -1,0 +1,21 @@
+@media screen and (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px (e.g., phones) */
+    /* Adjust the styles as per your requirements */
+    body {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Styles for screens between 769px and 1024px (e.g., tablets) */
+    body {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    /* Styles for screens with a minimum width of 1025px (e.g., desktop screens) */
+    body {
+        font-size: 18px;
+    }
+}
