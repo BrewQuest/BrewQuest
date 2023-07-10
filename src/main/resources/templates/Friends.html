@@ -11,17 +11,19 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
+<div class="main">
 <h1>BrewBuddies</h1>
-<div>
+<div class="cardContainer">
     <!-- Iterate over the friends and display their names -->
     <th:block th:each="friend : ${friends}">
         <div class="friendCard">
-            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
             <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
                 <span th:text="${friend.friend.username}"></span>
             </a>
         </div>
     </th:block>
+</div>
 </div>
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>

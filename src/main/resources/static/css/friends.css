@@ -1,9 +1,10 @@
 body {
     font-family: 'Rubik Dirt', cursive;
-    background: #333333;
-    background: -webkit-linear-gradient(45deg, #666666 0%, black 100%);
-    background: -o-linear-gradient(45deg, #666666 0%, black 100%);
-    background: linear-gradient(45deg, #666666 0%, black 100%);
+    background: black;
+    background: -webkit-linear-gradient(45deg, #ffffff 0%, black 100%);
+    background: -o-linear-gradient(45deg, #ffffff 0%, black 100%);
+    background: linear-gradient(45deg, #ffffff 0%, black 100%);
+
 }
 
 h1 {
@@ -11,6 +12,16 @@ h1 {
     text-align: center;
     padding: 15px 15px 15px 15px;
     margin: auto;
+}
+.main{
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #pfp {
@@ -26,6 +37,7 @@ h1 {
     margin-bottom: 10px;
     background-color: burlywood;
     padding: 15px 10px 10px 10px;
+    /*height: 200px;*/
     width: 200px;
     text-align: center;
     margin-left: auto;
@@ -44,43 +56,43 @@ a {
 a:hover {
     text-decoration: underline;
 }
-/* Mobile Responsive Styles */
+/*!* Mobile Responsive Styles *!*/
 
-@media (min-width: 200px) {
-    body{
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    h1 {
-        color: #fff;
-        text-align: center;
-        padding: 15px 15px 15px 15px;
-        margin: auto;
-    }
+/*@media (min-width: 200px) {*/
+/*    body{*/
+/*        background-size: cover;*/
+/*        background-repeat: no-repeat;*/
+/*    }*/
+/*    h1 {*/
+/*        color: #fff;*/
+/*        text-align: center;*/
+/*        padding: 15px 15px 15px 15px;*/
+/*        margin: auto;*/
+/*    }*/
 
-    /*#pfp {*/
-    /*    height: 50px;*/
-    /*    width: 50px;*/
-    /*    margin: 10px;*/
-    /*}*/
+/*    !*#pfp {*!*/
+/*    !*    height: 50px;*!*/
+/*    !*    width: 50px;*!*/
+/*    !*    margin: 10px;*!*/
+/*    !*}*!*/
 
-    .friendCard {
-        /*display: flex;*/
-        flex-wrap: wrap;
-        margin-top: 15px;
-        margin-bottom: 10px;
-        background-color: burlywood;
-        padding: 15px 10px 10px 10px;
-        width: 200px;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        border: #f2f2f2 solid 2px;
-        border-radius: 15px;
-    }
+/*    .friendCard {*/
+/*        !*display: flex;*!*/
+/*        flex-wrap: wrap;*/
+/*        margin-top: 15px;*/
+/*        margin-bottom: 10px;*/
+/*        background-color: burlywood;*/
+/*        padding: 15px 10px 10px 10px;*/
+/*        width: 200px;*/
+/*        text-align: center;*/
+/*        margin-left: auto;*/
+/*        margin-right: auto;*/
+/*        border: #f2f2f2 solid 2px;*/
+/*        border-radius: 15px;*/
+/*    }*/
 
-    a {
-        padding-top: 10px;
-        font-size: 14px;
-    }
-}
+/*    a {*/
+/*        padding-top: 10px;*/
+/*        font-size: 14px;*/
+/*    }*/
+/*}*/
