@@ -39,6 +39,8 @@
         }
         h1 {
             text-align: center;
+            background-color: burlywood;
+            padding: 15px;
         }
         #left {
             width: 75%;
@@ -69,11 +71,16 @@
         .reviewCard {
             border: 2px black solid;
             padding: 15px;
+            margin: 15px;
             text-align: center;
             border-radius: 15px;
             background-color: white;
         }
         #right {
+        }
+        img {
+            height: 50px;
+            width: 50px;
         }
 
 
@@ -110,8 +117,12 @@
     <div id="right">
         <h2>Reviews</h2>
         <hr>
+        <div th:if="${reviews.empty}">
+            <p style="text-align: center">No reviews found.</p>
+        </div>
         <th:block th:each="review : ${reviews}">
             <div class="reviewCard">
+                <p style="margin: 25px"><span class="rating" th:text="${review.rating}"></span></p>
                 <h3 th:text="${'&quot;' + review.getDescription() + '&quot;'}"></h3>
                 <a th:href="@{/profile/{id}(id=${review.getUser().getId()})}"> <p th:text="'- ' + ${review.getUser().getUsername()}"></p></a>
             </div>
@@ -151,6 +162,21 @@
             .setLngLat([result[0], result[1]])
             .addTo(map);
     });
+
+    let rating = document.getElementsByClassName("rating");
+    for(let i = 0; i < rating.length; i++) {
+        if (rating[i].innerHTML === "1") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "2") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "3") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else if (rating[i].innerHTML === "3") {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        } else {
+            rating[i].innerHTML = "<img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'><img src='/img/beer_glass.jpeg'>";
+        }
+    }
 
 </script>
 </body>
