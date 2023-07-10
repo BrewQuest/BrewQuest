@@ -39,13 +39,19 @@
             margin-bottom: 10px;
             text-decoration: none;
             box-shadow: black 2px 2px 4px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
 
         .favorites-section, .wishlist-section {
             overflow: auto;
             max-height: 50vh;
-            margin: 0 15px;
             width: 100%;
+            padding: 15px;
+        }
+
+        .favorites-section {
         }
 
 
@@ -171,7 +177,7 @@
                     <div id="brewBadge" class="badge">
                         <div  style="font-size: 50px" id = "totalBrews" class="tally" th:text="${user.totalBreweries}"></div>
                     </div>
-                    <div sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" id="passengerBadge" class="badge" >
+                    <div sec:authorize="isAuthenticated()" th:if="${driver != null}" id="passengerBadge" class="badge" >
                         <div class="tally" style="font-size: 50px" id ="totalPassengers" th:text="${driver.totalPassengers}"></div>
                     </div>
                 </div>
@@ -179,8 +185,8 @@
 
             <div id="left-bottom">
                 <div>
-                    <h3>Favorites</h3>
                     <div class="favorites-section">
+                        <h3>Favorites</h3>
                         <th:block th:each="favorite : ${favorites}">
                             <div class="favCard">
                                 <a th:href="@{/brewery/{id}(id = ${favorite.id})}">
@@ -196,8 +202,9 @@
                 </div>
 
                 <div>
-                    <h3>Wishlist</h3>
+
                     <div  id = "wishlist" class="wishlist-section">
+                        <h3>Wishlist</h3>
                     <th:block th:each="wishlist : ${wishlists}">
                         <div class="favCard">
                             <a th:href="@{/brewery/{id}(id = ${wishlist.id})}">
@@ -216,8 +223,8 @@
         </section>
 
         <section id="right">
-            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
-            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
+        <form sec:authorize="isAuthenticated()"th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
                 <button>Friends</button>
             </form>
 

@@ -1,7 +1,9 @@
 package com.example.brewquest.controllers;
 
+import com.example.brewquest.models.Driver;
 import com.example.brewquest.models.Friend;
 import com.example.brewquest.models.User;
+import com.example.brewquest.repositories.DriverRepository;
 import com.example.brewquest.repositories.FriendsRepository;
 import com.example.brewquest.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,15 +18,19 @@ public class FriendsController {
     private final UserRepository usersDao;
     private final FriendsRepository friendsDao;
 
-    public FriendsController(UserRepository usersDao, FriendsRepository friendsDao) {
+    private final DriverRepository driversDao;
+
+    public FriendsController(UserRepository usersDao, FriendsRepository friendsDao, DriverRepository driversDao) {
         this.usersDao = usersDao;
         this.friendsDao = friendsDao;
+        this.driversDao = driversDao;
     }
 
     @GetMapping("/friends")
     public String showFriends(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Friend> friends = friendsDao.findByUser(loggedInUser);
+        List<Driver> drivers = driversDao.findAll();
         model.addAttribute("friends", friends);
         return "Friends";
     }

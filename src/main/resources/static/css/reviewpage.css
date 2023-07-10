@@ -93,7 +93,7 @@ h2 {
     overflow: auto;
     margin-top: 25px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 #buttonsContainer {

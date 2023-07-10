@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrewQuest | Friends</title>
     <link rel="icon" type="image/x-icon" href="/img/brewquest-logo.png">
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <link rel="stylesheet" th:href="@{/css/friends.css}" type="text/css">
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
+<div class="main">
 <h1>BrewBuddies</h1>
-<ul>
+<div class="cardContainer">
     <!-- Iterate over the friends and display their names -->
     <th:block th:each="friend : ${friends}">
-        <li>
+        <div class="friendCard">
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
             <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
                 <span th:text="${friend.friend.username}"></span>
             </a>
-        </li>
+        </div>
     </th:block>
-</ul>
+</div>
+</div>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>

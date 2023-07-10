@@ -6,6 +6,10 @@ body {
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
 }
+.main{
+    background-color: rgba(0,0,0, .6);
+    border-radius: 15%;
+}
 
 h3{
     margin-top: 50px;
