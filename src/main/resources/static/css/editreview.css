@@ -3,6 +3,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    overflow: auto;
+    height: 100%;
+}
+html {
+    overflow: hidden;
+    height: 100%;
 }
 
 #card-container {
