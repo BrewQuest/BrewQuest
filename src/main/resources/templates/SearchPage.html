@@ -37,7 +37,7 @@
 
 <form id="searchForm" class="d-flex">
     <input id="searchInput" class="form-control me-2" type="search" placeholder="Search By Location" aria-label="Search">
-    <input id="submitSearch" class="btn btn-outline-success" type="submit" value="Find" onclick="brewSearch()">
+    <input id="submitSearch" class="" type="submit" value="Search" onclick="brewSearch()">
 </form>
 
 <div id='map'></div>
@@ -107,9 +107,6 @@
                     }
                     if (brewery.city != null) {
                         cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.city}</p></span>`
-                    }
-                    if (brewery.phone != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.phone}</p></span></a>`
                     }
                     cardHTML += `</div>`
 

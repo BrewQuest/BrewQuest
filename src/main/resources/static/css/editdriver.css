@@ -17,6 +17,16 @@ h1 {
 form {
     margin-bottom: 20px;
     text-align: center;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    background-color: rgba(0, 0, 0, .7);
+=======
+    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
+>>>>>>> 6fde885d4087ac78971c56a2a053d94f83e66126
+=======
+
+    background-color: rgba(0, 0, 0, .7);
+>>>>>>> 130810bf25edd34621240ca307d85e872e19bb62
 }
 
 label {

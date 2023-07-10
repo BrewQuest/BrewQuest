@@ -1,28 +1,29 @@
 /* Global styles */
 html {
     font-family: 'Rubik Dirt', cursive;
+    background-color: #666666;
 }
 body{
-    background-image: url("/img/bw-homepage.webp");
-    background-size: cover;
-    background-position: center;
+    background-color: #666666;
 }
 
 main {
-    margin: 0;
-    padding: 0;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    background-color: #666666;
     background-attachment: fixed;
     font-family: 'Rubik Dirt', cursive;
 }
 
 h1 {
     text-align: center;
-    margin-top: 20px;
+    background-color: burlywood;
+    border-radius: 15px;
+    color: black;
+
 }
 
 p {
@@ -31,29 +32,29 @@ p {
 
 /* Review card styles */
 .review-card {
-    border: 1px solid #ccc;
+    border: 2px solid black;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: rgba(112, 69, 46, 0.8);
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    max-width: 450px;
+    width: 75%;
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    margin-top: 15px;
 }
 
 .review-card h3 {
-    font-size: 18px;
-    color: white;
+    color: black;
 }
 
 .review-card p {
     margin-top: 5px;
-    color: white;
+    color: black;
 }
 
 .review-card button {
@@ -67,24 +68,45 @@ p {
 .edit-btn,
 .delete-btn {
     background-color: burlywood !important;
-    color: #70452e;
+    margin-right: 15px;
+    border-radius: 15px;
     border: none;
-    padding: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 50px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 12px;
-    white-space: nowrap;
-    font-weight: bold;
+    padding: 5px 15px;
+    text-shadow:
+            -1px -1px 0 #fff,
+            0   -1px 0 #fff,
+            1px -1px 0 #fff,
+            1px  0   0 #fff,
+            1px  1px 0 #fff,
+            0    1px 0 #fff,
+            -1px  1px 0 #fff,
+            -1px  0   0 #fff;
+    box-shadow: black 2px 2px 2px;
 }
+
+h2 {
+    color: black;
+}
+
+.button-containerb {
+    height: 80vh;
+    overflow: auto;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#buttonsContainer {
+    display: flex;
+}
+.review-card a {
+    color: black;
+}
+.review-card a:hover {
+    color: burlywood;
+    text-decoration: none;
+}
+
 
 /* Media queries */
 @media only screen and (max-width: 600px) {

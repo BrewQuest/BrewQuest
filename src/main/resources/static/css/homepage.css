@@ -139,6 +139,22 @@ h1 {
     z-index: 2;
 }
 
+.inner button {
+    box-shadow: black 2px 2px 2px;
+    background-color: #666666;
+    padding: 10px;
+    border-radius: 15px;
+    text-shadow:
+            -1px -1px 0 #fff,
+            0   -1px 0 #fff,
+            1px -1px 0 #fff,
+            1px  0   0 #fff,
+            1px  1px 0 #fff,
+            0    1px 0 #fff,
+            -1px  1px 0 #fff,
+            -1px  0   0 #fff;
+}
+
 .container .back {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
@@ -190,6 +206,10 @@ h1 {
     color: #D9740F;
     font-family: 'Rubik Dirt', cursive;
     font-weight: 300;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 /* Media Queries */

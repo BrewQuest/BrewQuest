@@ -51,7 +51,20 @@
             background-color: burlywood;
             border-radius: 15px;
             border: none;
-            box-shadow: black 4px 4px 4px;
+            box-shadow: black 2px 2px 2px;
+            cursor: pointer;
+        }
+
+        main button {
+            text-shadow:
+                    -1px -1px 0 #fff,
+                    0   -1px 0 #fff,
+                    1px -1px 0 #fff,
+                    1px  0   0 #fff,
+                    1px  1px 0 #fff,
+                    0    1px 0 #fff,
+                    -1px  1px 0 #fff,
+                    -1px  0   0 #fff;
         }
         .reviewCard {
             border: 2px black solid;
@@ -87,6 +100,8 @@
             </div>
         </th:block>
         <input type="hidden" id="city" th:value="${city}"/>
+        <input type="hidden" id="state" th:value="${state}"/>
+        <input type="hidden" id="street" th:value="${street}"/>
         <div id="mapContainer">
             <div id='map'></div>
         </div>
@@ -111,7 +126,10 @@
 
 <script>
     let city = $('#city').val();
-    console.log(city);
+    let street = $('#street').val();
+    let state = $('#state').val();
+    let address = street + " " + city + ", " + state;
+    console.log(address);
     mapboxgl.accessToken = MAPBOX_TOKEN
     var map = new mapboxgl.Map({
         container: 'map',
@@ -121,7 +139,7 @@
         cooperativeGestures: true
     });
 
-    geocode(city, MAPBOX_TOKEN).then(function(result) {
+    geocode(address, MAPBOX_TOKEN).then(function(result) {
         console.log
         $('#weather').empty();
         map.jumpTo({
