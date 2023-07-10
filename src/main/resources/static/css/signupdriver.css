@@ -5,9 +5,13 @@ body {
     background-repeat: no-repeat;
     font-family: 'Rubik Dirt', cursive;
     color: #D9740F;
+    overflow: auto;
+    height: 100%;
 }
-
-
+html {
+    overflow: hidden;
+    height: 100%;
+}
 /* Styles for the h1 heading */
 h1 {
     color: #D9740F;
