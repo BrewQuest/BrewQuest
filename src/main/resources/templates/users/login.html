@@ -8,19 +8,25 @@
     <th:block th:replace="partials/header :: font"></th:block>
 </head>
 <body>
-<div class="main">
-    <h1>BrewQuest</h1>
 
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" />
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" />
-        <input type="submit" value="Log In" />
-    </form>
 
-    <h3>Not a Member?</h3>
-    <a th:href="@{/sign-up}"><button>Sign-up</button></a>
-</div>
+<h1>BrewQuest</h1>
+
+
+<form th:action="@{/login}" method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text"/>
+    <label for="password" id="passwordLabel">Password</label>
+    <input id="password" name="password" type="password"/>
+    <input type="submit" value="Log In"/>
+</form>
+
+
+<h3>Not a Member?</h3>
+
+<a th:href="@{/sign-up}">
+    <button id="signupbutton">Sign-up</button>
+</a>
+
 </body>
 </html>
