@@ -17,7 +17,7 @@
     <th:block th:each="friend : ${friends}">
         <div class="friendCard">
             <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
-            <a th:href="@{/profile/{id}(id=${friend.friend.id})}" style="color: #70452e">
+            <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
                 <span th:text="${friend.friend.username}"></span>
             </a>
         </div>
