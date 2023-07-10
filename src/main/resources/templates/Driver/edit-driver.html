@@ -11,26 +11,47 @@
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>Edit Driver's Profile</h1>
+<div id="formContainer">
 
-<form th:action="@{/driver/{id}/edit(id=${driver.user.id})}" th:method="post">
-    <label for="carMake">Car Make:</label>
-    <input type="text" id="carMake" name="carMake" required th:value="${driver.carMake}"><br><br>
+    <form id="mainForm" th:action="@{/driver/{id}/edit(id=${driver.user.id})}" th:method="post">
+        <label for="carMake">Car Make:</label>
+        <input type="text" id="carMake" name="carMake" required th:value="${driver.carMake}"><br><br>
 
-    <label for="carModel">Car Model:</label>
-    <input type="text" id="carModel" name="carModel" required th:value="${driver.carModel}"><br><br>
+        <label for="carModel">Car Model:</label>
+        <input type="text" id="carModel" name="carModel" required th:value="${driver.carModel}"><br><br>
 
-    <label for="driverLicense">Driver's License:</label>
-    <input type="text" id="driverLicense" name="driversLicenseNum" required th:value="${driver.driversLicenseNum}"><br><br>
+        <label for="driverLicense">Driver's License:</label>
+        <input type="text" id="driverLicense" name="driversLicenseNum" required th:value="${driver.driversLicenseNum}"><br><br>
 
-    <label for="licensePlate">License Plate:</label>
-    <input type="text" id="licensePlate" name="licensePlateNum" required th:value="${driver.licensePlateNum}"><br><br>
+        <label for="licensePlate">License Plate:</label>
+        <input type="text" id="licensePlate" name="licensePlateNum" required th:value="${driver.licensePlateNum}"><br><br>
 
-    <button type="submit" class="edit-btn">Edit Driver</button>
-</form>
+        <button type="submit" class="edit-btn">Edit Driver</button>
 
-<form th:action="@{/driver/{id}/delete(id=${driver.id})}" th:method="post">
-    <button type="submit" class="delete-button">Delete Driver</button>
-</form>
+    </form>
+    <div id="tgl-btn-container">
+    <button class= "tglBtn" type="button" data-toggle="modal" data-target="#form">Delete Driver Profile</button>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document" >
+        <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4" style="background-color: #666666; border-radius: 15px;">
+
+            <h3 style="text-align: center">Are you sure?</h3>
+
+            <div class="text-center mb-3">
+                <form th:action="@{/driver/{id}/delete(id=${driver.id})}" th:method="post">
+                    <button class = "delete-btn" type="submit">Delete</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
