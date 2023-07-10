@@ -2,9 +2,13 @@
 html {
     font-family: 'Rubik Dirt', cursive;
     background-color: #666666;
+    overflow: hidden;
+    height: 100%;
 }
 body{
     background-color: #666666;
+    overflow: auto;
+    height: 100%;
 }
 
 main {
