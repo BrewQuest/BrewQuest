@@ -3,18 +3,66 @@
 <head>
     <title>BrewQuest | Friends</title>
     <link rel="icon" type="image/x-icon" href="/img/brewquest-logo.png">
+    <th:block th:replace="partials/header :: font"></th:block>
+    <th:block th:replace="partials/Navbar :: styles"></th:block>
+    <!-- <link rel="stylesheet" th:href="@{/css/homepage.css}" type="text/css"> -->
+    <style>
+        body {
+            font-family: 'Rubik Dirt', cursive;
+            background-image: url("/img/review-img.jpeg");
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            margin: auto;
+        }
+        #pfp {
+            height:75px;
+            width: 75px;
+            border-radius: 50%;
+            border: 4px solid black;
+            margin: 25px;
+        }
+
+        .friendCard {
+            margin-bottom: 10px;
+            background-color: burlywood;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+
+        a {
+            padding-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+<nav th:replace="~{partials/Navbar::navbar}"></nav>
 <h1>BrewBuddies</h1>
 <ul>
     <!-- Iterate over the friends and display their names -->
     <th:block th:each="friend : ${friends}">
-        <li>
-            <a th:href="@{/profile/{id}(id=${friend.friend.id})}">
+        <li class="friendCard">
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
+            <a th:href="@{/profile/{id}(id=${friend.friend.id})}" style="color: #70452e">
                 <span th:text="${friend.friend.username}"></span>
             </a>
         </li>
     </th:block>
 </ul>
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 </body>
 </html>
