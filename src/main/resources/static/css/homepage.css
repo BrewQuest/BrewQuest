@@ -11,6 +11,8 @@ body {
     background-repeat: no-repeat;
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
+    overflow: auto;
+    height: 100%;
 }
 
 .intro {
@@ -211,7 +213,10 @@ h1 {
 button:hover {
     cursor: pointer;
 }
-
+html {
+    overflow: hidden;
+    height: 100%;
+}
 /* Media Queries */
 @media screen and (max-width: 64rem) {
     .col {
