@@ -47,6 +47,13 @@ body {
 #submitSearch:hover {
     cursor: pointer;
 }
+path:hover {
+    cursor: pointer;
+}
+
+circle:hover{
+    cursor: pointer;
+}
 
 
 #scrollbox {
