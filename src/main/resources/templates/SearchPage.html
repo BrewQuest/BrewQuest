@@ -100,13 +100,13 @@
                 data.forEach(brewery => {
                     cardHTML += `<div id="SearchCard">`
                     if (brewery.name != null) {
-                        cardHTML += `<a href="/brewery/${brewery.id}"><span class="SearchCard" style="font-size:20px"><h3>${brewery.name}</h3></span>`
+                        cardHTML += `<a href="/brewery/${brewery.id}"><span class="SearchCard"><h3>${brewery.name}</h3></span>`
                     }
                     if (brewery.address_1 != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.address_1}</p></span>`
+                        cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
                     }
                     if (brewery.city != null) {
-                        cardHTML += `<span class="SearchCard" style="font-size:15px"> <p>${brewery.city}</p></span>`
+                        cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
                     }
                     cardHTML += `</div>`
 
