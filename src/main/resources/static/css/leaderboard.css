@@ -20,9 +20,17 @@ main {
 .leaderboard {
     color: #f2a767;
     display: inline-block;
+    width: 100%;
+    padding: 25px;
+    font-size: larger;
+
 }
 #breweryTable, #passengerTable {
     background-color: white;
+}
+table {
+    border: black solid 2px;
+    box-shadow: black 2px 2px 2px;
 }
 
 h2 {
@@ -44,6 +52,7 @@ table {
     border-radius: 10px;
 
 }
+
 
 
 th, td {
