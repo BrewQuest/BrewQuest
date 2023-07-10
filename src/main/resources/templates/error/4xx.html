@@ -4,11 +4,14 @@
     <meta charset="UTF-8"/>
     <title>error message 403</title>
     <link rel="icon" type="image/x-icon" href="/img/brewquest-logo.png">
+    <link rel="stylesheet" th:href="@{/css/error.css}" type="text/css">
 </head>
 <body>
-<h1>You had too much to drink, your not suppose to be here!</h1>
-<img src="https://media.tenor.com/IKhzLHKhGjMAAAAM/lazy-beer.gif">
-<br>
-<a href="/home">Go to HomePage</a>
+<div class="container">
+    <h1>Oops! You've had too much to drink.</h1>
+    <img src="https://media.tenor.com/IKhzLHKhGjMAAAAM/lazy-beer.gif" alt="Lazy Beer">
+    <p>You're not supposed to be here. Please take a break and come back later.</p>
+    <a href="/home">Go to Homepage</a>
+</div>
 </body>
 </html>
