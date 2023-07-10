@@ -171,7 +171,7 @@
                     <div id="brewBadge" class="badge">
                         <div  style="font-size: 50px" id = "totalBrews" class="tally" th:text="${user.totalBreweries}"></div>
                     </div>
-                    <div sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id) && driver != null}" id="passengerBadge" class="badge" >
+                    <div sec:authorize="isAuthenticated()" th:if="${driver != null}" id="passengerBadge" class="badge" >
                         <div class="tally" style="font-size: 50px" id ="totalPassengers" th:text="${driver.totalPassengers}"></div>
                     </div>
                 </div>

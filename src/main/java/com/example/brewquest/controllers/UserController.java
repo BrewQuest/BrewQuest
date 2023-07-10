@@ -103,9 +103,12 @@ public class UserController {
 
         for(Friend friend : userFriends) {
             System.out.println("hasFriends");
+            System.out.println(friend.getFriend().getUsername());
+            System.out.println(user.getUsername());
             if(friend.getFriend() == user) {
                 friendYes = friend;
                 friendCheck = "true";
+                break;
             } else {
                 friendCheck = "false";
             }
