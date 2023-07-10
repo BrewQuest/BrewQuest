@@ -4,6 +4,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Rubik Dirt', cursive;
+    overflow: auto;
+    height: 100%;
+}
+html {
+    overflow: hidden;
+    height: 100%;
 }
 
 #map {

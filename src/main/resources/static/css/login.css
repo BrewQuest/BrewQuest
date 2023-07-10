@@ -5,6 +5,12 @@ body {
     text-align: center;
     font-family: 'Rubik Dirt', cursive;
     color: burlywood;
+    overflow: auto;
+    height: 100%;
+}
+html {
+    overflow: hidden;
+    height: 100%;
 }
 .main{
     background-color: rgba(0,0,0, .6);
