@@ -216,8 +216,8 @@
         </section>
 
         <section id="right">
-            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"></div>
-            <form sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
+            <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
+        <form sec:authorize="isAuthenticated()"th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
                 <button>Friends</button>
             </form>
 
