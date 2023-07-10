@@ -32,12 +32,12 @@
 
     <label for="password" style="color: #D9740F">Password</label>
     <input id="password" type="password" th:field="*{password}" />
-    <small id=“passwordRequirements” class=“form-text text-muted”>
-        Password must be at least 8 characters long and contain at least (1) lowercase letter, (1) uppercase letter, (1) digit, and (1) special character (*).
-    </small>
 
     <label for="passwordConfirm" style="color: #D9740F">Confirm Password</label>
     <input id="passwordConfirm" type="password"/>
+    <small id=“passwordRequirements” class=“form-text text-muted”>
+        Password must be at least 8 characters long and contain at least (1) lowercase letter, (1) uppercase letter, (1) digit, and (1) special character (*).
+    </small><br>
     <span id="alert">! Your password does not match !</span>
     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 
