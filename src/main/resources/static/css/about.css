@@ -9,6 +9,7 @@
         font-family: 'Rubik Dirt', cursive;
         overflow: auto;
         height: 100%;
+
     }
 
     #aboutDiv {
@@ -20,9 +21,12 @@
         padding: 25px;
         border-radius: 15px;
     }
+    h1{
+        margin: 20px;
+    }
 
     p {
-        /*font-size: 15px;*/
+        font-size: 24px;
         margin-top: 25px;
     }
 
@@ -68,7 +72,7 @@
     }
 
     #aboutDiv {
-        width: 100%;
+        width: 80%;
         margin: 10px auto; /* Adjust margin as needed */
     }
 

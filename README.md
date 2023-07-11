@@ -58,4 +58,13 @@ spring.datasource.hikari.maximum-pool-size=4
 
 Ensure latest TomCat 9.0.74 server is ready to deploy on local host. Install all Maven dependencies.
 
+## Future Feature List
+- Update the brewery API
+- General ride-share
+- In-app messaging / email service
+- Ability to check into breweries
+- Allow breweries to make an account for their own brewery
+- Event calender
+
 Enjoy!
+The Founders!
