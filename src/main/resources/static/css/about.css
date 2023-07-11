@@ -1,70 +1,74 @@
-body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/aboutus.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
-    font-family: 'Rubik Dirt', cursive;
-    overflow: auto;
-    height: 100%;
-}
+@media(min-width: 20em) {
 
-#aboutDiv {
-    width: 75%;
-    margin: 0 auto;
-    text-align: center;
-    color: burlywood;
-    background-color: rgba(0,0,0,0.56);
-    padding: 25px;
-    border-radius: 15px;
-}
 
-p {
-    /*font-size: 15px;*/
-    margin-top: 25px;
-}
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/aboutus.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-align: center;
+        font-family: 'Rubik Dirt', cursive;
+        overflow: auto;
+        height: 100%;
+    }
 
-#foundersImages {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding-bottom:25px ;
-}
+    #aboutDiv {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        color: burlywood;
+        background-color: rgba(0, 0, 0, 0.56);
+        padding: 25px;
+        border-radius: 15px;
+    }
 
-.founder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    p {
+        /*font-size: 15px;*/
+        margin-top: 25px;
+    }
 
-}
+    #foundersImages {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-bottom: 25px;
+    }
 
-.founder-image {
-    width: 125px;
-    height: 125px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
+    .founder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-.founder-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-html {
-    overflow: hidden;
-    height: 100%;
-}
+    }
 
-/* Mobile responsive styles */
-@media screen and (max-width: 600px) {
+    .founder-image {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .founder-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+
+    html {
+        overflow: hidden;
+        height: 100%;
+    }
+}
+ Mobile responsive styles
+@media screen and (min-width: 37.5em) {
     body {
         background-size: cover;
     }
 
     #aboutDiv {
-        width: 90%;
+        width: 100%;
         margin: 10px auto; /* Adjust margin as needed */
     }
 
@@ -78,3 +82,22 @@ html {
     }
 }
 
+/*@media screen and (min-width: 63em) {*/
+/*    body {*/
+/*        background-size: cover;*/
+/*    }*/
+
+/*    #aboutDiv {*/
+/*        width: 75%;*/
+/*        margin: 10px auto; !* Adjust margin as needed *!*/
+/*    }*/
+
+/*    .founder {*/
+/*        flex-basis: 75%; !* Full width for each founder *!*/
+/*    }*/
+
+/*    .founder-image {*/
+/*        width: 80px; !* Adjust size as needed *!*/
+/*        height: 80px;*/
+/*    }*/
+/*}*/
