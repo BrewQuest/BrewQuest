@@ -6,6 +6,15 @@
     <th:block th:replace="partials/header :: font"></th:block>
     <th:block th:replace="partials/Navbar :: styles"></th:block>
     <link rel="stylesheet" th:href="@{/css/leaderboard.css}" type="text/css">
+    <style>
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
