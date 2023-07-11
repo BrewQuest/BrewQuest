@@ -13,7 +13,6 @@ main {
 .container {
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -84,5 +83,12 @@ tbody tr:hover {
 html {
     overflow: hidden;
     height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
