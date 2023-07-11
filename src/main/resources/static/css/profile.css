@@ -50,7 +50,7 @@ a:hover {
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     /* Styles for screens up to 768px wide */
     h1 {
         font-size: 24px;
@@ -82,7 +82,7 @@ a:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
     /* Styles for screens up to 480px wide */
     h1 {
         font-size: 20px;

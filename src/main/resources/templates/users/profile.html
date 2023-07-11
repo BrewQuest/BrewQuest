@@ -10,7 +10,6 @@
     <style>
         html {
             background-color: #666666;
-            overflow: hidden;
             height: 100%;
         }
         main {
@@ -103,6 +102,7 @@
             justify-content: center;
             align-items: center;
         }
+
         #passengerBadge {
             background-image: url("/img/shield_badge.jpeg");
             box-shadow: black 2px 2px 2px;
@@ -128,7 +128,6 @@
         button {
             box-shadow: black 2px 2px 2px;
             background-color: burlywood;
-            margin: 10px 0;
             cursor: pointer;
         }
 
@@ -142,6 +141,8 @@
                     0    1px 0 #fff,
                     -1px  1px 0 #fff,
                     -1px  0   0 #fff;
+
+            margin: 10px 0;
         }
         a {
             color: inherit;
@@ -150,6 +151,12 @@
         a:hover {
             color: burlywood;
             text-decoration: none;
+        }
+
+        #buttonsContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #totalPassengers,#totalBrews {
@@ -164,6 +171,42 @@
                     -1px  0   0 #fff;
         }
 
+        @media screen and (max-width: 992px) {
+            #mainContainer {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
+            #buttonsContainer {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin-bottom: 15px;
+            }
+            
+            #badgesContainer {
+                margin-bottom: 15px;
+            }
+
+            .badge {
+                height: 125px;
+                width: 125px;
+            }
+
+            #totalBrews #totalPassengers {
+                font-size: 20px;
+            }
+
+            #left-bottom {
+                flex-direction: column;
+            }
+
+            .favCard {
+                width: 100%;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -227,6 +270,7 @@
 
         <section id="right">
             <div id="pfpContainer"><img id="pfp" src="/img/vikingPFP.jpeg"> </div>
+            <div id="buttonsContainer">
         <form sec:authorize="isAuthenticated()"th:if="${(#authentication.principal.id == user.id)}" th:action="@{/friends}" th:method="get">
                 <button>Friends</button>
             </form>
@@ -254,6 +298,7 @@
             <a sec:authorize="isAuthenticated()" th:if="${(#authentication.principal.id != user.id) && (friendCheck == 'true')}" th:href="@{/deleteFriend/{id}(id=${user.id})}">
                 <button>Delete Friend</button>
             </a>
+            </div>
         </section>
 
     </div>
