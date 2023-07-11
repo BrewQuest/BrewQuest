@@ -14,11 +14,10 @@ main {
     margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
-    height: 100vh;
 }
 
 .leaderboard {
-    color: #f2a767;
+    color: black;
     display: inline-block;
     width: 100%;
     padding: 25px;
@@ -60,7 +59,6 @@ table {
 
 th, td {
     padding: 8px;
-    text-align: left;
     text-align: center;
     /*border-bottom: 1px solid #ddd;*/
 }
@@ -71,7 +69,7 @@ th {
 }
 
 tbody tr:hover {
-    background-color: #70452e;
+    background-color: burlywood;
 }
 
 .alternate-row {
@@ -87,19 +85,10 @@ html {
     height: 100%;
 }
 
-/*@media (min-width: 768px) {*/
-/*    .container {*/
-/*        display: flex;*/
-/*        flex-wrap: wrap;*/
-/*        justify-content: center;*/
-/*        align-items: center;*/
-/*        height: 100vh;*/
-/*    }*/
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
-/*    .leaderboard {*/
-/*        margin-right: 50px;*/
-/*        margin-bottom: 30px;*/
-/*        width: 100%;*/
-/*        max-width: 400px;*/
-/*    }*/
-/*}*/
