@@ -1,12 +1,24 @@
 use BrewQuest_db;
 INSERT INTO users (first_name, last_name, birth_date, zipcode, username, email, password, total_breweries)
 VALUES
-    ('John', 'Doe', '1990-01-01', 12345, 'johndoe', 'john@example.com', '$2a$12$SeEcwNyruDM/iZsa1dqXfu7s/D./vTHxYNEgkJjh9tBh3vnWOdbcq
-', 10),
-    ('Jane', 'Smith', '1992-05-10', 54321, 'janesmith', 'jane@example.com', '$2a$12$MIDhaXlMhCwxtPYlSLPTpORr.Q8pTd2KyoaCXeujUIbJrhTxhTTWy
-', 5),
-    ('Mike', 'Johnson', '1985-12-15', 98765, 'mikejohnson', 'mike@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC
-', 8);
+    ('Michael', 'Smith', '1980-01-01', 90210, 'michaelsmith01', 'michael@example.com', '$2a$12$SeEcwNyruDM/iZsa1dqXfu7s/D./vTHxYNEgkJjh9tBh3vnWOdbcq', 5),
+    ('Jennifer', 'Jones', '1985-05-10', 11235, 'jenniferjones1985', 'jennifer@example.com', '$2a$12$MIDhaXlMhCwxtPYlSLPTpORr.Q8pTd2KyoaCXeujUIbJrhTxhTTWy', 10),
+    ('David', 'Williams', '1990-12-15', 12345, 'DavidTheMAn', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Jennifer', 'Vasquez', '1990-12-15', 12345, 'Jennifer90', 'Jennifer@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 20),
+    ('Ammar', 'Morton', '1998-4-16', 12345, 'Morton98', 'Ammar@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Maggie', 'Kidd', '2000-1-04', 12345, 'KiddMag', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Zuzanna', 'Gilbert', '1976-12-15', 12345, 'ZuzannaGil76', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Maddie', 'Johnston', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Jensen', 'Cain', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Cai', 'Gross', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Wade', 'Knight', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Mason', 'Lozano', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Cynthia', 'Boyer', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Monica', 'Lam', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Katy', 'Sawyer', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Philippa', 'Barton', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+    ('Noor', 'Ferrell', '1990-12-15', 12345, 'davidwilliams', 'david@example.com', '$2a$12$x8cw4GfFKXkenFCfXkqxbeqKJbvH7XbZox8eJsy./AKOf070VxWSC', 3),
+
 
 INSERT INTO drivers (drivers_license_num, license_plate_num, car_make, car_model, total_passengers, user_id)
 VALUES
