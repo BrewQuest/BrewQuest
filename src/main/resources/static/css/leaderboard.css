@@ -36,6 +36,10 @@ table {
 h2 {
     margin-top: 0;
     text-align: center;
+    background-color: #666666;
+    border-radius: 15px;
+    color: white;
+    box-shadow: black 2px 2px 2px;
 }
 
 h1 {
@@ -50,7 +54,6 @@ table {
     border-collapse: collapse;
     margin-top: 10px;
     border-radius: 10px;
-
 }
 
 
@@ -58,6 +61,7 @@ table {
 th, td {
     padding: 8px;
     text-align: left;
+    text-align: center;
     /*border-bottom: 1px solid #ddd;*/
 }
 
