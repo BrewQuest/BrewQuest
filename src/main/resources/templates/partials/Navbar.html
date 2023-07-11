@@ -16,7 +16,7 @@
             margin-right: 10px;
         }
 
-        .nav-right {
+        .nav-right a {
             margin-left: auto;
         }
         .navbar-nav .nav-link {
@@ -36,8 +36,8 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: burlywood">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%">
+        <ul class="navbar-nav" style="width: 100%; display: flex;">
             <li sec:authorize="isAuthenticated()" class="nav-item">
                 <a class="nav-link" th:href="@{/profile/{id}(id = ${#authentication.principal.id})}"style="color: burlywood">My Profile</a>
             </li>
@@ -48,19 +48,13 @@
                 <a class="nav-link" href="/leaderboard"style="color: burlywood">Leaderboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/search"style="color: burlywood">Search</a>
+                <a class="nav-link" href="/search"style="color: burlywood; margin-left: auto">Search</a>
             </li>
-        </ul>
-    </div>
-    <div class="nav-right">
-        <ul class="navbar-nav">
-            <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/login"style="color: burlywood">Login/Signup</a>
-            </li>
-            <li>
-            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                <button class="btn" style="margin-top: 2px; background-color: black; color: burlywood">Logout</button>
-            </form>
+            <li class="nav-item ml-lg-auto" id="login-logout">
+                <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login"style="color: burlywood;">Login/Signup</a>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+                    <button class="btn" style="margin-top: 2px; background-color: black; color: burlywood; padding-left: 0;">Logout</button>
+                </form>
             </li>
         </ul>
     </div>
