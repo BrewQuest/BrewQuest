@@ -85,6 +85,8 @@ h1 {
     width: 80%;
     padding: 15px;
 }
+
+
 /* Media Query for screens with a maximum width of 768px */
 @media (max-width: 768px) {
     body {
@@ -92,16 +94,17 @@ h1 {
     }
 
     #review-form {
-        width: 90%;
+        width: 50%;
     }
 
     #description {
         width: 90%;
     }
+    .rating label
 }
 
-/* Media Query for screens with a maximum width of 576px */
-@media (max-width: 576px) {
+/* Media Query for screens with a min width of 320px */
+@media screen and (max-width: 768px) {
     h1 {
         font-size: 20px;
     }
