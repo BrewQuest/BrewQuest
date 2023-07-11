@@ -8,6 +8,55 @@ body {
     overflow: auto;
     height: 100%;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Rubik Dirt', cursive;
+}
+#loginBtn {
+    height: 35px;
+    font-family: 'Rubik Dirt', cursive;
+    background-color:#666666;
+    border-radius: 15px;
+    box-shadow: black 2px 2px 2px;
+    text-shadow:
+            -1px -1px 0 #fff,
+            0   -1px 0 #fff,
+            1px -1px 0 #fff,
+            1px  0   0 #fff,
+            1px  1px 0 #fff,
+            0    1px 0 #fff,
+            -1px  1px 0 #fff,
+            -1px  0   0 #fff;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+input {
+    border-radius: 15px;
+    height: 35px;
+}
+
+label {
+    font-size: 1.5em;
+    margin: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+}
+
+section {
+    background-color: rgba(0,0,0,0.71);
+    padding: 25px;
+    width: 50%;
+    border-radius: 25px;
+}
 html {
     overflow: hidden;
     height: 100%;
@@ -15,6 +64,16 @@ html {
 .main{
     background-color: rgba(0,0,0, .6);
     border-radius: 15%;
+}
+
+h3{
+    margin-top: 50px;
+    font-size:40px;
+}
+
+h1{
+    font-size:90px;
+    margin-bottom: 50px;
 }
 
 .container {
@@ -26,6 +85,27 @@ html {
     text-align: center;
     padding: 20px;
 }
+
+#signupbutton {
+    height: 35px;
+    font-family: 'Rubik Dirt', cursive;
+    background-color:#666666;
+    border-radius: 15px;
+    box-shadow: black 2px 2px 2px;
+    text-shadow:
+            -1px -1px 0 #fff,
+            0   -1px 0 #fff,
+            1px -1px 0 #fff,
+            1px  0   0 #fff,
+            1px  1px 0 #fff,
+            0    1px 0 #fff,
+            -1px  1px 0 #fff,
+            -1px  0   0 #fff;
+    width: 30%;
+    margin: 0 auto;
+}
+
+
 
 /* Media Queries */
 
