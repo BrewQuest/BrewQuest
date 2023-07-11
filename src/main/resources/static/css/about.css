@@ -9,6 +9,7 @@
         font-family: 'Rubik Dirt', cursive;
         overflow: auto;
         height: 100%;
+
     }
 
     #aboutDiv {
@@ -22,7 +23,7 @@
     }
 
     p {
-        /*font-size: 15px;*/
+        font-size: 24px;
         margin-top: 25px;
     }
 
