@@ -34,15 +34,19 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<div id="scrollbox"></div>
+
 
 <form id="searchForm" class="d-flex">
     <input id="searchInput" class="form-control me-2" type="search" placeholder="Search By Location" aria-label="Search">
     <input id="submitSearch" class="" type="submit" value="Search" onclick="brewSearch()">
 </form>
 
-<div id='map'></div>
+<section>
+    <div id='map'></div>
+    <div id="scrollbox"></div>
+</section>
 
+<th:block th:replace="partials/Navbar :: scripts"></th:block>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
 <script th:src="@{js/geocoder.js}"></script>
@@ -103,11 +107,8 @@
                     if (brewery.name != null) {
                         cardHTML += `<a href="/brewery/${brewery.id}"><span class="SearchCard"><h3>${brewery.name}</h3></span>`
                     }
-                    if (brewery.address_1 != null) {
-                        cardHTML += `<span class="SearchCard"> <p>${brewery.address_1}</p></span>`
-                    }
                     if (brewery.city != null) {
-                        cardHTML += `<span class="SearchCard"> <p>${brewery.city}</p></span>`
+                        cardHTML += `<span class="SearchCard cityState"> <p>${brewery.city}, ${brewery.state}</p></span>`
                     }
                     cardHTML += `</div>`
 

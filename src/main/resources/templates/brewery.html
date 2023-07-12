@@ -46,7 +46,8 @@
         h1 {
             text-align: center;
             background-color: burlywood;
-            padding: 15px;
+            margin: 15px;
+            border-radius: 15px;
         }
         #left {
             width: 75%;
@@ -144,7 +145,7 @@
         <h2>Reviews</h2>
         <hr>
         <div th:if="${reviews.empty}">
-            <p style="text-align: center">No reviews found.</p>
+            <p style="text-align: center">Be the first to leave a review!</p>
         </div>
         <th:block th:each="review : ${reviews}">
             <div class="reviewCard">

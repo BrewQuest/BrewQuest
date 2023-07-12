@@ -5,6 +5,9 @@ import com.example.brewquest.models.*;
 import com.example.brewquest.repositories.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -270,7 +273,7 @@ public class UserController {
     }
 
     @PostMapping("/profile/{id}/delete")
-    public String deleteProfile(@PathVariable Long id) {
+    public String deleteProfile(@PathVariable Long id, HttpServletRequest request) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Driver> drivers = driverDao.findAll();
         for(Driver driver : drivers) {
@@ -279,7 +282,11 @@ public class UserController {
             }
         }
 
-        if(user.getId() == userDao.findById(id).get().getId()) {
+        if(user.getId().equals(id)) {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
+            }
             userDao.deleteById(id);
         }
 

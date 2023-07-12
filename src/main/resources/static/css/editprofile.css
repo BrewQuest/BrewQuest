@@ -35,18 +35,23 @@ label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
+    /* Black color with 100% opacity */
+}
+
+main {
+background-color: rgba(0,0,0,0.6);
+    padding-bottom: 20px;
+    margin: 0 auto;
 }
 
 /* Styles for form inputs */
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+
 }
 
 /* Styles for the submit button */
@@ -90,12 +95,26 @@ button[type="submit"]:hover {
     color: #f2f2f2;
 }
 
+.delete-btn {
+    box-shadow: black 2px 2px 2px;
+    background-color: burlywood;
+    color: #70452e;
+    height: 35px;
+    border-radius: 15px;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
 /* Styles for the message below the form */
 p {
     margin-top: 20px;
-    margin-left: 585px;
+    width: 100%;
     text-align: center;
-    display: flex;
     padding: 10px;
     color: #ff0000;
 }
