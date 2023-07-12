@@ -6,11 +6,13 @@
     <link rel="icon" type="image/x-icon" href="/img/brewquest-logo.png">
     <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
     <th:block th:replace="partials/header :: font"></th:block>
+    <style>
+    </style>
 </head>
 <body>
 
 <main>
-<h1>BrewQuest</h1>
+<a th:href="@{/home}" style="text-decoration: none; color: burlywood"><h1>BrewQuest</h1></a>
 <section>
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>
