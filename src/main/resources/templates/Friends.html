@@ -12,6 +12,7 @@
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
 <div class="main">
 <h1>BrewBuddies</h1>
+    <div th:if = "${friends.empty}" style="text-align: center">You have not added any friends yet!</div>
 <div class="cardContainer">
     <!-- Iterate over the friends and display their names -->
     <th:block th:each="friend : ${friends}">

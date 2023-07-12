@@ -145,7 +145,7 @@
         <h2>Reviews</h2>
         <hr>
         <div th:if="${reviews.empty}">
-            <p style="text-align: center">No reviews found.</p>
+            <p style="text-align: center">Be the first to leave a review!</p>
         </div>
         <th:block th:each="review : ${reviews}">
             <div class="reviewCard">
