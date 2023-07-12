@@ -12,7 +12,9 @@
 </head>
 <body>
 <nav th:replace="~{partials/Navbar::navbar}"></nav>
-<h1>Edit Profile</h1>
+
+<main>
+    <h1>Edit Profile</h1>
 <form th:action="@{/profile/{id}/edit(id=${user.id})}" th:object="${user}" th:method="post" class="edit">
     <label for="firstName">First Name</label>
     <input id="firstName" th:field="*{firstName}">
@@ -32,14 +34,14 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <input value="Update Profile" type="submit" />
+    <input value="Update Profile" type="submit" style="width: 200px"/>
 </form>
 
-<p>Looking to delete your Account?</p>
+<p style="text-align: center">Looking to delete your Account?</p>
 <div id="tgl-btn-container" style="display: flex; justify-content: center">
-    <button class= "tglBtn" type="button" data-toggle="modal" data-target="#form">Delete Profile</button>
+    <button class= "tglBtn delete-btn" type="button" data-toggle="modal" data-target="#form">Delete Profile</button>
 </div>
-
+</main>
 
 <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document" >
