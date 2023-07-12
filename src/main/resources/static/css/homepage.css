@@ -32,7 +32,7 @@ h1 {
 }
 
 .wrapper {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     max-width: 80rem;
 }
@@ -50,7 +50,7 @@ h1 {
 
 .col {
     width: calc(25% - 2rem);
-    margin: 1rem;
+    margin: 1rem 0;
     cursor: pointer;
 }
 
