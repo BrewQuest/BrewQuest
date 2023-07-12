@@ -76,10 +76,6 @@ circle:hover{
     width: 25%;
 }
 
-h3{
-    font-size: 20px;
-}
-
 #SearchCard {
     background: burlywood;
     background: -webkit-linear-gradient(45deg, burlywood 0%, #70452e 100%);
@@ -96,7 +92,7 @@ h3{
     justify-content: center;
     align-items: center;
     padding: 15px;
-    font-size:15px;
+    font-size:25px;
 }
 
 /* Media queries for responsive design */
