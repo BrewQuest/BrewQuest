@@ -109,10 +109,20 @@ h1{
 
 /* Media Queries */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     body {
         font-size: 18px;
         background-size: cover;
+    }
+    section {
+        width: 90%;
+    }
+    h1 {
+        font-size: 64px;
+    }
+
+    h3 {
+        font-size: 36px;
     }
 
     .container {
@@ -120,13 +130,4 @@ h1{
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        font-size: 16px;
-        background-size: cover;
-    }
 
-    .container {
-        padding: 10px;
-    }
-}
