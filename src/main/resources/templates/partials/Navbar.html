@@ -14,6 +14,8 @@
 
         .nav-item {
             margin-right: 10px;
+            display: flex;
+            justify-content: center;
         }
 
         .nav-right a {
@@ -25,6 +27,7 @@
         nav {
             font-family: 'Rubik Dirt', cursive;
         }
+
 
     </style>
 
@@ -38,22 +41,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav" style="width: 100%">
         <ul class="navbar-nav" style="width: 100%; display: flex;">
-            <li sec:authorize="isAuthenticated()" class="nav-item">
+            <li sec:authorize="isAuthenticated()" class="nav-item" style=" text-align: center">
                 <a class="nav-link" th:href="@{/profile/{id}(id = ${#authentication.principal.id})}"style="color: burlywood">My Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/aboutus"style="color: burlywood">About</a>
+                <a class="nav-link" href="/aboutus"style="color: burlywood;  text-align: center">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/leaderboard"style="color: burlywood">Leaderboard</a>
+                <a class="nav-link" href="/leaderboard"style="color: burlywood;  text-align: center">Leaderboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/search"style="color: burlywood; margin-left: auto">Search</a>
+                <a class="nav-link" href="/search"style="color: burlywood; margin-left: auto;  text-align: center">Search</a>
             </li>
             <li class="nav-item ml-lg-auto" id="login-logout">
                 <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login"style="color: burlywood;">Login/Signup</a>
-                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="btn" style="margin-top: 2px; background-color: black; color: burlywood; padding-left: 0;">Logout</button>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post" style="display: flex; justify-content: center">
+                    <button class="btn" style="margin-top: 2px; background-color: black; color: burlywood; padding-left: 0; padding-right: 0px">Logout</button>
                 </form>
             </li>
         </ul>
