@@ -54,7 +54,7 @@
                 <a class="nav-link" href="/search"style="color: burlywood; margin-left: auto;  text-align: center">Search</a>
             </li>
             <li class="nav-item ml-lg-auto" id="login-logout">
-                <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login"style="color: burlywood;">Login/Signup</a>
+                <a sec:authorize="!isAuthenticated()" class="nav-link" href="/login"style="color: burlywood; text-align: center">Login/Signup</a>
                 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post" style="display: flex; justify-content: center">
                     <button class="btn" style="margin-top: 2px; background-color: black; color: burlywood; padding-left: 0; padding-right: 0px">Logout</button>
                 </form>
