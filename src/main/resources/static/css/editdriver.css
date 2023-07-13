@@ -16,8 +16,11 @@ html {
 }
 
 h1 {
-    color: #f2f2f2;
+    color: black;
     text-align: center;
+    background-color: burlywood;
+    margin: 15px;
+    border-radius: 15px;
 }
 
 #mainForm {
@@ -28,9 +31,8 @@ h1 {
 #formContainer {
     background-color: rgba(0, 0, 0, .5); /* Black color with 100% opacity */
     padding: 25px;
-    margin-right: 35%;
-    margin-left: 35%;
     border-radius: 15px;
+    margin: 10px 15%;
 }
 
 label {
@@ -81,7 +83,6 @@ button {
     color: #f2f2f2;
 }
 
-/* Styles for extra small screens (e.g., smartphones) */
 @media only screen and (max-width: 480px) {
     body {
         font-size: 12px;
@@ -103,7 +104,7 @@ button {
 /* Styles for small screens (e.g., tablets) */
 @media only screen and (min-width: 481px) and (max-width: 768px) {
     h1 {
-        font-size: 24px;
+        font-size: 30px;
     }
 }
 
@@ -118,5 +119,11 @@ button {
 @media only screen and (min-width: 1025px) {
     h1 {
         font-size: 48px;
+    }
+}
+
+@media screen and(max-width: 992px) {
+    #formContainer {
+       margin: 15px;
     }
 }
