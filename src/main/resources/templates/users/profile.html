@@ -178,6 +178,9 @@
                 display: flex;
                 flex-direction: column-reverse;
             }
+            .name {
+                font-size: 36px;
+            }
 
             #buttonsContainer {
                 width: 100%;
@@ -215,7 +218,7 @@
     <nav th:replace="~{partials/Navbar::navbar}"></nav>
 
     <main>
-    <h1>Champion: <span th:text="${user.username}"></span></h1>
+    <h1 class="name">Champion: <span class="name" th:text="${user.username}"></span></h1>
         <hr>
     <div id="mainContainer">
         <section id="left">
