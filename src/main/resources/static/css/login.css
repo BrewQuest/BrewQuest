@@ -109,7 +109,7 @@ h1{
 
 /* Media Queries */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     body {
         font-size: 18px;
         background-size: cover;
