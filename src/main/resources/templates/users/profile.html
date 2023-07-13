@@ -317,9 +317,9 @@
     let passText = document.getElementById("totalPassengers");
     let passBorder = document.getElementById("passengerBadge");
     let totalBrews = document.getElementById("totalBrews").innerHTML;
+    console.log(totalBrews)
     console.log(totalBrews);
-    let totalPassengers = document.getElementById("totalPassengers").innerHTML;
-    console.log(totalPassengers);
+
     if(parseInt(totalBrews) >= 50) {
         brewsBorder.style.borderColor = "#FFD700";
         brewText.style.color = "#FFD700";
@@ -333,7 +333,7 @@
         brewsBorder.style.borderColor = "black";
         brewText.style.color = "black";
     }
-
+    let totalPassengers = document.getElementById("totalPassengers").innerHTML;
     if(parseInt(totalPassengers) >= 250) {
         passBorder.style.borderColor = "#FFD700";
         passText.style.color = "#FFD700";
